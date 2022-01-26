@@ -37,7 +37,7 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
-import HomeScreen from './src/screens/Home'
+import AppsScreen from './src/screens/Apps'
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark'
@@ -66,13 +66,35 @@ const Section = ({children, title}) => {
   );
 };
 
-function SettingsScreen() {
+function PortfoliosScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-      <Text>Settings!</Text>
-      <Text>Settings!</Text>
-      <Text>Settings!</Text>
+      <Text>Portfolios!</Text>
+      <Text>Portfolios!</Text>
+      <Text>Portfolios!</Text>
+      <Text>Portfolios!</Text>
+    </View>
+  );
+}
+
+function CafeScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Cafe!</Text>
+      <Text>Cafe!</Text>
+      <Text>Cafe!</Text>
+      <Text>Cafe!</Text>
+    </View>
+  );
+}
+
+function TreasuryScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Treasury!</Text>
+      <Text>Treasury!</Text>
+      <Text>Treasury!</Text>
+      <Text>Treasury!</Text>
     </View>
   );
 }
@@ -80,31 +102,53 @@ function SettingsScreen() {
 const Tab = createBottomTabNavigator()
 
 const App = () => {
+    /* Request dard mode. */
+    const isDarkMode = useColorScheme() === 'dark'
+
+    /* Set background style. */
+    const backgroundStyle = {
+        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    }
+
     return (
         <NavigationContainer>
-            <Tab.Navigator
-                screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused, color, size }) => {
-                        let iconName;
+            <SafeAreaView style={backgroundStyle, tailwind('h-full')}>
+                <Tab.Navigator
+                    screenOptions={({ route }) => ({
+                        tabBarIcon: ({ focused, color, size }) => {
+                            let iconName;
 
-                        if (route.name === 'Home') {
-                            iconName = focused
-                            ? 'ios-information-circle'
-                            : 'ios-information-circle-outline';
-                        } else if (route.name === 'Settings') {
-                            iconName = focused ? 'ios-list-outline' : 'ios-list';
-                        }
+                            if (route.name === 'Apps') {
+                                iconName = focused
+                                ? 'ios-apps'
+                                : 'ios-apps-outline'
+                            } else if (route.name === 'Portfolios') {
+                                iconName = focused
+                                ? 'ios-bar-chart'
+                                : 'ios-bar-chart-outline'
+                            } else if (route.name === 'Treasury') {
+                                iconName = focused
+                                ? 'ios-cash'
+                                : 'ios-cash-outline'
+                            } else if (route.name === 'Cafe') {
+                                iconName = focused
+                                ? 'ios-cafe'
+                                : 'ios-cafe-outline'
+                            }
 
-                        // You can return any component that you like here!
-                        return <Ionicons name={iconName} size={size} color={color} />;
-                    },
-                    tabBarActiveTintColor: 'tomato',
-                    tabBarInactiveTintColor: 'gray',
-                })}
-            >
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
+                            // You can return any component that you like here!
+                            return <Ionicons name={iconName} size={size} color={color} />;
+                        },
+                        tabBarActiveTintColor: 'tomato',
+                        tabBarInactiveTintColor: 'gray',
+                    })}
+                >
+                    <Tab.Screen name="Portfolios" component={PortfoliosScreen} />
+                    <Tab.Screen name="Treasury" component={TreasuryScreen} />
+                    <Tab.Screen name="Cafe" component={CafeScreen} />
+                    <Tab.Screen name="Apps" component={AppsScreen} />
+                </Tab.Navigator>
+            </SafeAreaView>
         </NavigationContainer>
     )
 }
