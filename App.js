@@ -6,8 +6,10 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import type {Node} from 'react';
+import React from 'react'
+
+import type {Node} from 'react'
+
 import {
   SafeAreaView,
   ScrollView,
@@ -16,7 +18,7 @@ import {
   Text,
   useColorScheme,
   View,
-} from 'react-native';
+} from 'react-native'
 
 import {
   Colors,
@@ -24,12 +26,15 @@ import {
   Header,
   LearnMoreLinks,
   ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+} from 'react-native/Libraries/NewAppScreen'
 
 import tailwind from 'tailwind-rn'
 
+import LottieView from 'lottie-react-native'
+
 const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'dark'
+
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -55,51 +60,58 @@ const Section = ({children, title}) => {
 };
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+    const isDarkMode = useColorScheme() === 'dark'
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+    const backgroundStyle = {
+        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    }
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
+    return (
+        <SafeAreaView style={backgroundStyle}>
+            <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
 
-          <View style={tailwind('pt-12 items-center')}>
-				<View style={tailwind('bg-blue-200 px-3 py-1 rounded-full')}>
-					<Text style={tailwind('text-blue-800 font-semibold')}>
-						Hello Tailwind
-					</Text>
-				</View>
-			</View>
+            <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={backgroundStyle}
+            >
+                <Header />
 
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+                <View
+                    style={{
+                        backgroundColor: isDarkMode ? Colors.black : Colors.white
+                }, tailwind('pb-10')}>
+                    <Section title="Step One">
+                        Edit <Text style={styles.highlight}>App.js</Text> to change this
+                        screen and then come back to see your edits.
+                    </Section>
+
+                    <View style={tailwind('py-6 items-center')}>
+                        <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
+                            <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
+                                Welcome to Ava Gogo
+                            </Text>
+                        </View>
+                    </View>
+
+                    <View style={tailwind('py-5 bg-pink-500 items-center')}>
+                        <LottieView
+                            style={tailwind('h-32')}
+                            source={require('./src/assets/lottie/moon.json')} autoPlay loop
+                        />
+
+                        <Text style={tailwind('text-gray-100 font-semibold')}>
+                            Lottie Moon
+                        </Text>
+                    </View>
+
+                    <Section title="What's Next?">
+                        Let's build the greatest DeFi app EVER!!
+                    </Section>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
+    )
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {
