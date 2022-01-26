@@ -38,6 +38,9 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 import AppsScreen from './src/screens/Apps'
+import CafeScreen from './src/screens/Cafe'
+import PortfoliosScreen from './src/screens/Portfolios'
+import TreasuryScreen from './src/screens/Treasury'
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark'
@@ -65,39 +68,6 @@ const Section = ({children, title}) => {
     </View>
   );
 };
-
-function PortfoliosScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Portfolios!</Text>
-      <Text>Portfolios!</Text>
-      <Text>Portfolios!</Text>
-      <Text>Portfolios!</Text>
-    </View>
-  );
-}
-
-function CafeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Cafe!</Text>
-      <Text>Cafe!</Text>
-      <Text>Cafe!</Text>
-      <Text>Cafe!</Text>
-    </View>
-  );
-}
-
-function TreasuryScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Treasury!</Text>
-      <Text>Treasury!</Text>
-      <Text>Treasury!</Text>
-      <Text>Treasury!</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator()
 

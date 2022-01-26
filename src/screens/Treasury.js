@@ -81,7 +81,7 @@ function Home() {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <Section title="Apps">
+            <Section title="Treasury">
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
             </Section>
@@ -89,19 +89,19 @@ function Home() {
             <View style={tailwind('py-6 items-center')}>
                 <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
                     <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                        Ava Gogo App Center
+                        $13,370.88
                     </Text>
                 </View>
             </View>
 
-            <View style={tailwind('py-5 bg-gray-50 items-center')}>
+            <View style={tailwind('py-5 bg-pink-100 items-center')}>
                 <LottieView
                     style={tailwind('h-48')}
-                    source={require('../assets/lottie/online-shopping.json')} autoPlay loop
+                    source={require('../assets/lottie/treasure-chest.json')} autoPlay loop
                 />
 
-                <Text style={tailwind('text-pink-500 font-semibold')}>
-                    TOP DeFi App Store
+                <Text style={tailwind('text-pink-800 font-semibold')}>
+                    Chinese Treasure Chest
                 </Text>
             </View>
 
