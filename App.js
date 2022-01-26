@@ -26,7 +26,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
+import tailwind from 'tailwind-rn'
+
+const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -52,7 +54,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -74,6 +76,15 @@ const App: () => Node = () => {
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
           </Section>
+
+          <View style={tailwind('pt-12 items-center')}>
+				<View style={tailwind('bg-blue-200 px-3 py-1 rounded-full')}>
+					<Text style={tailwind('text-blue-800 font-semibold')}>
+						Hello Tailwind
+					</Text>
+				</View>
+			</View>
+
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>
