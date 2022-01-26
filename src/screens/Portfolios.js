@@ -100,8 +100,8 @@ function Home() {
                     source={require('../assets/lottie/happy-pig.json')} autoPlay loop
                 />
 
-                <Text style={tailwind('text-gray-100 font-semibold')}>
-                    Lottie Moon
+                <Text style={tailwind('text-pink-800 font-semibold')}>
+                    Ava Gogo Piggy Bank
                 </Text>
             </View>
 
