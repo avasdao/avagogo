@@ -37,8 +37,6 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
-import HomeScreen from './src/screens/Home'
-
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark'
 
@@ -66,46 +64,51 @@ const Section = ({children, title}) => {
   );
 };
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-      <Text>Settings!</Text>
-      <Text>Settings!</Text>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+/**
+ * Home Screen
+ */
+function Home() {
+    /* Request dard mode. */
+    const isDarkMode = useColorScheme() === 'dark'
 
-const Tab = createBottomTabNavigator()
+    /* Set background style. */
+    const backgroundStyle = {
+        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    }
 
-const App = () => {
     return (
-        <NavigationContainer>
-            <Tab.Navigator
-                screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused, color, size }) => {
-                        let iconName;
+        <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={tailwind('')}
+        >
+            <Section title="Step One">
+                Edit <Text style={styles.highlight}>App.js</Text> to change this
+                screen and then come back to see your edits.
+            </Section>
 
-                        if (route.name === 'Home') {
-                            iconName = focused
-                            ? 'ios-information-circle'
-                            : 'ios-information-circle-outline';
-                        } else if (route.name === 'Settings') {
-                            iconName = focused ? 'ios-list-outline' : 'ios-list';
-                        }
+            <View style={tailwind('py-6 items-center')}>
+                <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
+                    <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
+                        Welcome to Ava Gogo
+                    </Text>
+                </View>
+            </View>
 
-                        // You can return any component that you like here!
-                        return <Ionicons name={iconName} size={size} color={color} />;
-                    },
-                    tabBarActiveTintColor: 'tomato',
-                    tabBarInactiveTintColor: 'gray',
-                })}
-            >
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
-        </NavigationContainer>
+            <View style={tailwind('py-5 bg-pink-100 items-center')}>
+                <LottieView
+                    style={tailwind('h-48')}
+                    source={require('../assets/lottie/happy-pig.json')} autoPlay loop
+                />
+
+                <Text style={tailwind('text-gray-100 font-semibold')}>
+                    Lottie Moon
+                </Text>
+            </View>
+
+            <Section title="What's Next?">
+                Let's build the greatest DeFi app EVER!!
+            </Section>
+        </ScrollView>
     )
 }
 
@@ -128,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App
+export default Home
