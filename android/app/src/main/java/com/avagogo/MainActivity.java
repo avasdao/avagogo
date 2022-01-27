@@ -1,4 +1,4 @@
-package com.avagogo;
+package io.avagogo;
 
 import com.facebook.react.ReactActivity;
 
