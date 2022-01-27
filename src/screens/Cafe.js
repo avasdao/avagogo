@@ -97,7 +97,7 @@ function Home() {
             <View style={tailwind('py-5 bg-gray-50 items-center')}>
                 <LottieView
                     style={tailwind('h-48')}
-                    source={require('../assets/lottie/broadcast.json')} autoPlay loop
+                    source={require('../assets/lottie/couple-talk.json')} autoPlay loop
                 />
 
                 <Text style={tailwind('text-pink-500 font-semibold')}>
