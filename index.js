@@ -1,9 +1,9 @@
-import Bugsnag from "@bugsnag/react-native";
-Bugsnag.start();
-
 /**
  * @format
  */
+
+import Bugsnag from '@bugsnag/react-native'
+Bugsnag.start()
 
 import {AppRegistry} from 'react-native'
 
