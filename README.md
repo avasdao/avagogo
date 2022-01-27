@@ -2,6 +2,8 @@
 
 https://avagogo.io
 
-__An Exclusive Social DeFi Community__
+## An Exclusive Social DeFi Community
 
-![Ava Nakamoto](https://i.imgur.com/y0BgIEh.png)
+![Ava Nakamoto](https://i.imgur.com/ItHvLdH.png)
+
+### DeFi Is HARD! Copy Strategies From TOP Traders

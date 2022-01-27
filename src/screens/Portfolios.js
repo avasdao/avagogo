@@ -11,6 +11,7 @@ import React from 'react'
 import type {Node} from 'react'
 
 import {
+  Dimensions,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -19,14 +20,6 @@ import {
   useColorScheme,
   View,
 } from 'react-native'
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -37,54 +30,82 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
-const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark'
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart
+} from 'react-native-chart-kit'
 
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+const pieData = [
+      {
+        name: 'Seoul',
+        population: 21500000,
+        color: 'rgba(131, 167, 234, 1)',
+        legendFontColor: '#7F7F7F',
+        legendFontSize: 12,
+      },
+      {
+        name: 'Toronto',
+        population: 2800000,
+        color: '#F00',
+        legendFontColor: '#7F7F7F',
+        legendFontSize: 12,
+      },
+      {
+        name: 'Beijing',
+        population: 527612,
+        color: 'red',
+        legendFontColor: '#7F7F7F',
+        legendFontSize: 12,
+      },
+      {
+        name: 'New York',
+        population: 8538000,
+        color: '#ffffff',
+        legendFontColor: '#7F7F7F',
+        legendFontSize: 12,
+      },
+      {
+        name: 'Moscow',
+        population: 11920000,
+        color: 'rgb(0, 0, 255)',
+        legendFontColor: '#7F7F7F',
+        legendFontSize: 12,
+      },
+    ];
+
+    const chartConfig = {
+      backgroundGradientFrom: "#1E2923",
+      backgroundGradientFromOpacity: 0,
+      backgroundGradientTo: "#08130D",
+      backgroundGradientToOpacity: 0.5,
+      color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+      strokeWidth: 2, // optional, default 3
+      barPercentage: 0.5,
+      useShadowColorFromDataset: false // optional
+    }
 
 /**
  * Home Screen
  */
 function Home() {
-    /* Request dard mode. */
-    const isDarkMode = useColorScheme() === 'dark'
-
-    /* Set background style. */
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    }
-
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <Section title="Portfolios">
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-            </Section>
+            <View style={tailwind('px-5 pt-5')}>
+                <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
+                    Portfolios
+                </Text>
+
+                <Text style={tailwind('text-lg text-gray-800')}>
+                    Track ALL of your <Text style={tailwind('font-bold')}>DeFi</Text> investments from a single screen.
+                </Text>
+            </View>
 
             <View style={tailwind('py-6 items-center')}>
                 <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
@@ -94,7 +115,21 @@ function Home() {
                 </View>
             </View>
 
-            <View style={tailwind('py-5 bg-pink-100 items-center')}>
+            <View style={tailwind('my-3')}>
+                <PieChart
+                    style={tailwind('')}
+                    data={pieData}
+                    width={Dimensions.get('window').width}
+                    height={120}
+                    chartConfig={chartConfig}
+                    accessor="population"
+                    backgroundColor="transparent"
+                    paddingLeft={0}
+                    absolute
+                />
+            </View>
+
+            <View style={tailwind('mt-3 py-5 bg-pink-100 items-center')}>
                 <LottieView
                     style={tailwind('h-48')}
                     source={require('../assets/lottie/happy-pig.json')} autoPlay loop
@@ -105,9 +140,54 @@ function Home() {
                 </Text>
             </View>
 
-            <Section title="What's Next?">
-                Let's build the greatest DeFi app EVER!!
-            </Section>
+
+            <View>
+              <Text>Bezier Line Chart</Text>
+              <LineChart
+                data={{
+                  labels: ["January", "February", "March", "April", "May", "June"],
+                  datasets: [
+                    {
+                      data: [
+                        Math.random() * 100,
+                        Math.random() * 100,
+                        Math.random() * 100,
+                        Math.random() * 100,
+                        Math.random() * 100,
+                        Math.random() * 100
+                      ]
+                    }
+                  ]
+                }}
+                width={Dimensions.get('window').width}
+                height={220}
+                yAxisLabel="$"
+                yAxisSuffix="k"
+                yAxisInterval={1} // optional, defaults to 1
+                chartConfig={{
+                  backgroundColor: "#e26a00",
+                  backgroundGradientFrom: "#fb8c00",
+                  backgroundGradientTo: "#ffa726",
+                  decimalPlaces: 2, // optional, defaults to 2dp
+                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                  style: {
+                    borderRadius: 16
+                  },
+                  propsForDots: {
+                    r: "6",
+                    strokeWidth: "2",
+                    stroke: "#ffa726"
+                  }
+                }}
+                bezier
+                style={{
+                  marginVertical: 8,
+                  borderRadius: 16
+                }}
+              />
+            </View>
+
         </ScrollView>
     )
 }

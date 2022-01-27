@@ -22,7 +22,7 @@ import {
   View,
 } from 'react-native'
 
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -35,6 +35,14 @@ import LottieView from 'lottie-react-native'
  * Help Screen
  */
 function Help({navigation}) {
+    // https://reactnavigation.org/docs/navigation-container/#getcurrentroute
+    
+    // const navigationRef = useNavigationContainerRef()
+    // console.log('HELP CONTEXT (ref):', navigationRef)
+    //
+    // const route = navigation.getCurrentRoute()
+    // console.log('HELP CONTEXT (route):', route)
+
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"

@@ -11,24 +11,14 @@ import React from 'react'
 import type {Node} from 'react'
 
 import {
-    Button,
     Pressable,
     SafeAreaView,
     ScrollView,
     StatusBar,
-    StyleSheet,
     Text,
     useColorScheme,
     View,
 } from 'react-native'
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen'
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -46,39 +36,15 @@ import HelpScreen from './src/screens/Help'
 import PortfoliosScreen from './src/screens/Portfolios'
 import TreasuryScreen from './src/screens/Treasury'
 
-const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark'
-
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
 /**
  * Help & Support Button
  */
 const HelpButton = () => {
     /* Request navigation. */
     const navigation = useNavigation()
+
+    // const navState = navigation.getState()
+    // console.log('NAVIGATION (state):', navState)
 
     return (
         <Pressable onPress={() => navigation.navigate('Help')}>
@@ -92,11 +58,14 @@ const HelpButton = () => {
     )
 }
 
+/* Initialize navigators. */
 const HomeStack = createNativeStackNavigator()
-// const RootStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
-function TabScreens() {
+/**
+ * Tab Screens
+ */
+const TabScreens = () => {
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -107,6 +76,10 @@ function TabScreens() {
                         iconName = focused
                         ? 'ios-apps'
                         : 'ios-apps-outline'
+                    } else if (route.name === 'Cafe') {
+                        iconName = focused
+                        ? 'ios-cafe'
+                        : 'ios-cafe-outline'
                     } else if (route.name === 'Portfolios') {
                         iconName = focused
                         ? 'ios-bar-chart'
@@ -115,13 +88,9 @@ function TabScreens() {
                         iconName = focused
                         ? 'ios-cash'
                         : 'ios-cash-outline'
-                    } else if (route.name === 'Cafe') {
-                        iconName = focused
-                        ? 'ios-cafe'
-                        : 'ios-cafe-outline'
                     }
 
-                    // You can return any component that you like here!
+                    /* Return (tab) icon. */
                     return <Ionicons name={iconName} size={size} color={color} />
                 },
                 tabBarActiveTintColor: 'tomato',
@@ -135,6 +104,7 @@ function TabScreens() {
                     headerRight: HelpButton,
                 }}
             />
+
             <Tab.Screen
                 name="Treasury"
                 component={TreasuryScreen}
@@ -162,7 +132,10 @@ function TabScreens() {
     )
 }
 
-function HomeStackScreen() {
+/**
+ * Home Stack Screen
+ */
+const HomeStackScreen = () => {
     return (
         <HomeStack.Navigator
             screenOptions={{ headerShown: false }}
@@ -173,13 +146,16 @@ function HomeStackScreen() {
     )
 }
 
+/**
+ * Main Application
+ */
 const App = () => {
     /* Request dard mode. */
     const isDarkMode = useColorScheme() === 'dark'
 
     /* Set background style. */
     const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+        backgroundColor: isDarkMode ? 'rgba(30, 30, 30, 0.8)' : 'rgba(180, 180, 180, 0.8)',
     }
 
     return (
@@ -190,24 +166,5 @@ const App = () => {
         </NavigationContainer>
     )
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App
