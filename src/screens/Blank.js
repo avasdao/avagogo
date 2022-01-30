@@ -27,9 +27,22 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 /**
- * Help Screen
+ * Blank Screen
  */
-function Help({navigation}) {
+function Blank({navigation}) {
+    /* Handle onLoad scripts. */
+    React.useEffect(() => {
+        /**
+         * Fetch Info
+         */
+        const fetchInfo = async () => {
+            //
+        }
+
+        /* Fetch info. */
+        fetchInfo()
+    }, [])
+
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
@@ -66,4 +79,4 @@ function Help({navigation}) {
     )
 }
 
-export default Help
+export default Blank
