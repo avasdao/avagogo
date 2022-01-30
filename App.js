@@ -32,7 +32,7 @@ import LottieView from 'lottie-react-native'
 
 import Bugsnag from '@bugsnag/react-native'
 
-import AppsScreen from './src/screens/Apps'
+import DAppsScreen from './src/screens/DApps'
 import CafeScreen from './src/screens/Cafe'
 import HelpScreen from './src/screens/Help'
 import PortfolioScreen from './src/screens/Portfolio'
@@ -74,7 +74,7 @@ const TabScreens = () => {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === 'Apps') {
+                    if (route.name === 'DApps') {
                         iconName = focused
                         ? 'ios-apps'
                         : 'ios-apps-outline'
@@ -97,6 +97,7 @@ const TabScreens = () => {
                 },
                 tabBarActiveTintColor: 'tomato',
                 tabBarInactiveTintColor: 'gray',
+                tabBarItemStyle: { paddingBottom: 3 },
             })}
         >
             <Tab.Screen
@@ -120,12 +121,13 @@ const TabScreens = () => {
                 component={CafeScreen}
                 options={{
                     headerRight: HelpButton,
+                    tabBarBadge: 3,
                 }}
             />
 
             <Tab.Screen
-                name="Apps"
-                component={AppsScreen}
+                name="DApps"
+                component={DAppsScreen}
                 options={{
                     headerRight: HelpButton,
                 }}
