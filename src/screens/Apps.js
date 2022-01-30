@@ -28,9 +28,6 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen'
 
-import { NavigationContainer } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import tailwind from 'tailwind-rn'
@@ -81,7 +78,7 @@ function Home() {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <Section title="Apps">
+            <Section title="DApps">
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
             </Section>

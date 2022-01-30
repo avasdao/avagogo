@@ -21,9 +21,6 @@ import {
   View,
 } from 'react-native'
 
-import { NavigationContainer } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import tailwind from 'tailwind-rn'
@@ -113,7 +110,7 @@ function Home() {
         >
             <View style={tailwind('px-5 pt-5')}>
                 <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
-                    Portfolios
+                    Portfolio
                 </Text>
 
                 <Text style={tailwind('text-lg text-gray-800')}>

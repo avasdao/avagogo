@@ -22,8 +22,7 @@ import {
   View,
 } from 'react-native'
 
-import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { useNavigationContainerRef } from '@react-navigation/native'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -36,7 +35,7 @@ import LottieView from 'lottie-react-native'
  */
 function Help({navigation}) {
     // https://reactnavigation.org/docs/navigation-container/#getcurrentroute
-    
+
     // const navigationRef = useNavigationContainerRef()
     // console.log('HELP CONTEXT (ref):', navigationRef)
     //

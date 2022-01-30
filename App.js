@@ -30,10 +30,12 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
+import Bugsnag from '@bugsnag/react-native'
+
 import AppsScreen from './src/screens/Apps'
 import CafeScreen from './src/screens/Cafe'
 import HelpScreen from './src/screens/Help'
-import PortfoliosScreen from './src/screens/Portfolios'
+import PortfolioScreen from './src/screens/Portfolio'
 import TreasuryScreen from './src/screens/Treasury'
 
 /**
@@ -80,7 +82,7 @@ const TabScreens = () => {
                         iconName = focused
                         ? 'ios-cafe'
                         : 'ios-cafe-outline'
-                    } else if (route.name === 'Portfolios') {
+                    } else if (route.name === 'Portfolio') {
                         iconName = focused
                         ? 'ios-bar-chart'
                         : 'ios-bar-chart-outline'
@@ -98,8 +100,8 @@ const TabScreens = () => {
             })}
         >
             <Tab.Screen
-                name="Portfolios"
-                component={PortfoliosScreen}
+                name="Portfolio"
+                component={PortfolioScreen}
                 options={{
                     headerRight: HelpButton,
                 }}
@@ -150,6 +152,10 @@ const HomeStackScreen = () => {
  * Main Application
  */
 const App = () => {
+    const { createNavigationContainer } = Bugsnag.getPlugin('reactNavigation')
+    const BugsnagNavigationContainer = createNavigationContainer(
+        NavigationContainer)
+
     /* Request dard mode. */
     const isDarkMode = useColorScheme() === 'dark'
 
@@ -159,11 +165,11 @@ const App = () => {
     }
 
     return (
-        <NavigationContainer>
+        <BugsnagNavigationContainer>
             <SafeAreaView style={backgroundStyle, tailwind('h-full')}>
                 <HomeStackScreen />
             </SafeAreaView>
-        </NavigationContainer>
+        </BugsnagNavigationContainer>
     )
 }
 
