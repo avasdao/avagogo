@@ -32,7 +32,9 @@ import LottieView from 'lottie-react-native'
 
 import Bugsnag from '@bugsnag/react-native'
 
-import DAppsScreen from './src/screens/DApps'
+import DAppsStart from './src/screens/DApps'
+import AlphaFinanceLabs from './src/screens/DApps/AlphaFinanceLabs'
+
 import CafeScreen from './src/screens/Cafe'
 import HelpScreen from './src/screens/Help'
 import PortfolioScreen from './src/screens/Portfolio'
@@ -61,8 +63,23 @@ const HelpButton = () => {
 }
 
 /* Initialize navigators. */
+const DappsStack = createNativeStackNavigator()
 const HomeStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
+
+/**
+ * DApps Stack Screen
+ */
+const DappsStackScreen = () => {
+    return (
+        <DappsStack.Navigator
+            screenOptions={{ headerShown: false }}
+        >
+            <DappsStack.Screen name="DAppsStart" component={DAppsStart} />
+            <DappsStack.Screen name="AlphaFinanceLabs" component={AlphaFinanceLabs} />
+        </DappsStack.Navigator>
+    )
+}
 
 /**
  * Tab Screens
@@ -127,7 +144,7 @@ const TabScreens = () => {
 
             <Tab.Screen
                 name="DApps"
-                component={DAppsScreen}
+                component={DappsStackScreen}
                 options={{
                     headerRight: HelpButton,
                 }}

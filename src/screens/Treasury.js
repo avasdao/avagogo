@@ -11,6 +11,7 @@ import React from 'react'
 import type {Node} from 'react'
 
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -62,15 +63,48 @@ const Section = ({children, title}) => {
 };
 
 /**
- * Home Screen
+ * Treasury Screen
  */
-function Home() {
+function Treasury() {
     /* Request dard mode. */
     const isDarkMode = useColorScheme() === 'dark'
 
     /* Set background style. */
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    }
+
+    const { authenticate, isAuthenticated, user } = useMoralis()
+
+    /* Handle onLoad scripts. */
+    React.useEffect(() => {
+        /**
+         * Fetch Info
+         */
+        // const fetchInfo = async () => {
+        //     //
+        // }
+
+        /* Fetch info. */
+        // fetchInfo()
+
+        const Web3Api = useMoralisWeb3Api()
+
+        const fetchBlock = async() => {
+            const result = await Web3Api.native.getBlock({
+                block_number_or_hash: '100000'
+            })
+            console.log('FETCH BLOCK', result)
+        }
+
+    }, [])
+
+    if (!isAuthenticated) {
+        return (
+            <View>
+                <Button onClick={() => authenticate()}>Authenticate</Button>
+            </View>
+        )
     }
 
     return (
@@ -90,6 +124,8 @@ function Home() {
                     </Text>
                 </View>
             </View>
+
+            <Text>Welcome {user.get('username')}</Text>
 
             <View style={tailwind('py-5 bg-pink-100 items-center')}>
                 <LottieView
@@ -128,4 +164,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home
+export default Treasury
