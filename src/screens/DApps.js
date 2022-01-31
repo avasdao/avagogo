@@ -81,7 +81,7 @@ function DApps({navigation}) {
                         />
 
                         <Text style={tailwind('text-pink-500 font-semibold')}>
-                            AVAX Mobile DApp Store
+                            Avalanche Mobile DApp Store
                         </Text>
                     </View>
 

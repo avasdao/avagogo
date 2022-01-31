@@ -12,6 +12,7 @@ import type {Node} from 'react'
 
 import {
   Dimensions,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -99,127 +100,186 @@ const pieData = [
       { quarter: 4, earnings: 19000 }
     ];
 
+const display = () => {
+    // return (
+    //     <View style={tailwind('px-5 pt-5')}>
+    //         <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
+    //             Portfolio
+    //         </Text>
+    //
+    //         <Text style={tailwind('text-lg text-gray-800')}>
+    //             Track ALL of your <Text style={tailwind('font-bold')}>DeFi</Text> investments from a single screen.
+    //         </Text>
+    //     </View>
+    //
+    //     <View style={tailwind('py-6 items-center')}>
+    //         <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
+    //             <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
+    //                 $1,337.88
+    //             </Text>
+    //         </View>
+    //     </View>
+    //
+    //     <View style={tailwind('')}>
+    //         <VictoryChart
+    //             width={350}
+    //             theme={VictoryTheme.material}
+    //             domainPadding={20}
+    //         >
+    //             <VictoryAxis
+    //                   // tickValues specifies both the number of ticks and where
+    //                   // they are placed on the axis
+    //                   tickValues={[1, 2, 3, 4]}
+    //                   tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+    //             />
+    //             <VictoryAxis
+    //                   dependentAxis
+    //                   // tickFormat specifies how ticks should be displayed
+    //                   tickFormat={(x) => (`$${x / 1000}k`)}
+    //             />
+    //             <VictoryBar data={data} x="quarter" y="earnings" />
+    //         </VictoryChart>
+    //     </View>
+    //
+    //     <View style={tailwind('my-3')}>
+    //         <PieChart
+    //             style={tailwind('')}
+    //             data={pieData}
+    //             width={Dimensions.get('window').width}
+    //             height={120}
+    //             chartConfig={chartConfig}
+    //             accessor="population"
+    //             backgroundColor="transparent"
+    //             paddingLeft={0}
+    //             absolute
+    //         />
+    //     </View>
+    //
+    //     <View>
+    //       <Text>Bezier Line Chart</Text>
+    //       <LineChart
+    //         data={{
+    //           labels: ["January", "February", "March", "April", "May", "June"],
+    //           datasets: [
+    //             {
+    //               data: [
+    //                 Math.random() * 100,
+    //                 Math.random() * 100,
+    //                 Math.random() * 100,
+    //                 Math.random() * 100,
+    //                 Math.random() * 100,
+    //                 Math.random() * 100
+    //               ]
+    //             }
+    //           ]
+    //         }}
+    //         width={Dimensions.get('window').width}
+    //         height={220}
+    //         yAxisLabel="$"
+    //         yAxisSuffix="k"
+    //         yAxisInterval={1} // optional, defaults to 1
+    //         chartConfig={{
+    //           backgroundColor: "#e26a00",
+    //           backgroundGradientFrom: "#fb8c00",
+    //           backgroundGradientTo: "#ffa726",
+    //           decimalPlaces: 2, // optional, defaults to 2dp
+    //           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    //           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    //           style: {
+    //             borderRadius: 16
+    //           },
+    //           propsForDots: {
+    //             r: "6",
+    //             strokeWidth: "2",
+    //             stroke: "#ffa726"
+    //           }
+    //         }}
+    //         bezier
+    //         style={{
+    //           marginVertical: 8,
+    //           borderRadius: 16
+    //         }}
+    //       />
+    //     </View>
+    // )
+}
+
 /**
  * Home Screen
  */
 function Home() {
+    const [hasAgreed, setHasAgreed] = React.useState(false)
+
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <View style={tailwind('px-5 pt-5')}>
-                <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
-                    Portfolio
-                </Text>
+            {hasAgreed &&
+                <View style={tailwind('px-5 pt-5')}>
+                    <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
+                        Portfolio
+                    </Text>
 
-                <Text style={tailwind('text-lg text-gray-800')}>
-                    Track ALL of your <Text style={tailwind('font-bold')}>DeFi</Text> investments from a single screen.
-                </Text>
-            </View>
+                    <Text style={tailwind('text-lg text-gray-800')}>
+                        Track ALL of your <Text style={tailwind('font-bold')}>DeFi</Text> investments from a single screen.
+                    </Text>
 
-            <View style={tailwind('py-6 items-center')}>
-                <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
-                    <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                        $1,337.88
+                    <Text style={tailwind('mt-3 text-lg text-gray-800')}>
+                        $1,337.88 Total Portfolio Value
                     </Text>
                 </View>
-            </View>
+            }
 
-            <View style={tailwind('')}>
-                <VictoryChart
-                    width={350}
-                    theme={VictoryTheme.material}
-                    domainPadding={20}
-                >
-                    <VictoryAxis
-                          // tickValues specifies both the number of ticks and where
-                          // they are placed on the axis
-                          tickValues={[1, 2, 3, 4]}
-                          tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-                    />
-                    <VictoryAxis
-                          dependentAxis
-                          // tickFormat specifies how ticks should be displayed
-                          tickFormat={(x) => (`$${x / 1000}k`)}
-                    />
-                    <VictoryBar data={data} x="quarter" y="earnings" />
-                </VictoryChart>
-            </View>
+            {!hasAgreed &&
+                <View>
+                    <View style={tailwind('px-5 pt-5 items-center')}>
+                        <Text style={tailwind('text-lg text-gray-800 font-bold')}>
+                            DeFi will NEVER been easier than this!
+                        </Text>
 
-            <View style={tailwind('my-3')}>
-                <PieChart
-                    style={tailwind('')}
-                    data={pieData}
-                    width={Dimensions.get('window').width}
-                    height={120}
-                    chartConfig={chartConfig}
-                    accessor="population"
-                    backgroundColor="transparent"
-                    paddingLeft={0}
-                    absolute
-                />
-            </View>
+                        <Text style={tailwind('mt-3 text-lg text-gray-800')}>
+                            You can easily keep track of ALL your <Text style={tailwind('font-bold')}>"Managed" Investment Funds</Text> from one central location.
+                        </Text>
+                    </View>
 
-            <View style={tailwind('mt-3 py-5 bg-pink-100 items-center')}>
-                <LottieView
-                    style={tailwind('h-48')}
-                    source={require('../assets/lottie/happy-pig.json')} autoPlay loop
-                />
+                    <View style={tailwind('mt-3 py-5 bg-pink-100 items-center')}>
+                        <LottieView
+                            style={tailwind('h-48')}
+                            source={require('../assets/lottie/happy-pig.json')} autoPlay loop
+                        />
 
-                <Text style={tailwind('text-pink-800 font-semibold')}>
-                    Ava Gogo Piggy Bank
-                </Text>
-            </View>
+                        <Text style={tailwind('mt-3 text-pink-800 font-semibold')}>
+                            Your AVAX Daily Earnings
+                        </Text>
+                    </View>
 
+                    <View style={tailwind('px-5 pt-5')}>
+                        <Text style={tailwind('text-sm text-red-500 font-bold')}>
+                            !! WARNING !!
+                        </Text>
 
-            <View>
-              <Text>Bezier Line Chart</Text>
-              <LineChart
-                data={{
-                  labels: ["January", "February", "March", "April", "May", "June"],
-                  datasets: [
-                    {
-                      data: [
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100,
-                        Math.random() * 100
-                      ]
-                    }
-                  ]
-                }}
-                width={Dimensions.get('window').width}
-                height={220}
-                yAxisLabel="$"
-                yAxisSuffix="k"
-                yAxisInterval={1} // optional, defaults to 1
-                chartConfig={{
-                  backgroundColor: "#e26a00",
-                  backgroundGradientFrom: "#fb8c00",
-                  backgroundGradientTo: "#ffa726",
-                  decimalPlaces: 2, // optional, defaults to 2dp
-                  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                  style: {
-                    borderRadius: 16
-                  },
-                  propsForDots: {
-                    r: "6",
-                    strokeWidth: "2",
-                    stroke: "#ffa726"
-                  }
-                }}
-                bezier
-                style={{
-                  marginVertical: 8,
-                  borderRadius: 16
-                }}
-              />
-            </View>
+                        <Text style={tailwind('mt-3 text-sm text-gray-800')}>
+                            This is a very early (alpha) release of Ava GoGo that is currently using a <Text style={tailwind('font-bold')}>"SHARED"</Text> wallet for ALL demo users.
+                        </Text>
 
+                        <Text style={tailwind('mt-3 text-sm text-gray-800')}>
+                            It is very likely that other users will be modifying the portofio when you are not using the app.
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('py-6 items-center')}>
+                        <Pressable
+                            onPress={() => setHasAgreed(true)}
+                            style={tailwind('bg-yellow-200 px-10 py-2 border-2 border-yellow-400 rounded-xl')}
+                        >
+                            <Text style={tailwind('text-yellow-800 text-xl font-semibold')}>
+                                Okay, got it!
+                            </Text>
+                        </Pressable>
+                    </View>
+                </View>
+            }
         </ScrollView>
     )
 }

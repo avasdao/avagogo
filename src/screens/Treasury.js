@@ -95,7 +95,7 @@ function Treasury() {
                         </Text>
 
                         <Text style={tailwind('mt-3 text-sm text-gray-800')}>
-                            This is a very early release of Ava GoGo that is currently using a <Text style={tailwind('font-bold')}>"SHARED"</Text> wallet for ALL demo users.
+                            This is a very early (alpha) release of Ava GoGo that is currently using a <Text style={tailwind('font-bold')}>"SHARED"</Text> wallet for ALL demo users.
                         </Text>
 
                         <Text style={tailwind('mt-3 text-sm text-gray-800')}>
