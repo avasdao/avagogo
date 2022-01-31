@@ -31,49 +31,69 @@ import 'react-native-get-random-values'
 import '@ethersproject/shims'
 import { ethers, utils, Wallet } from 'ethers'
 
+import moment from 'moment'
+
+import store from '../store'
+
+function waitforme(milisec) {
+    return new Promise(resolve => {
+        setTimeout(() => { resolve('') }, milisec);
+    })
+}
+
 /**
  * Treasury Screen
  */
 function Treasury() {
     const [hasAgreed, setHasAgreed] = React.useState(false)
+    const [balance, setBalance] = React.useState(0)
+
+    /* Initialize PROFILE context. */
+    const {
+        wallet,
+        metaWallet,
+        createWallet,
+    } = React.useContext(store.Profile)
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         /**
          * Fetch Info
          */
-        // const fetchInfo = async () => {
-        //     //
-        // }
+        const fetchInfo = async () => {
+            console.log('\nTREASURY (meta wallet):', metaWallet)
+            console.log('\nTREASURY (wallet):', wallet)
+
+            /* Validate wallet. */
+            if (!wallet) {
+                /* Create new wallet. */
+                const returnedWallet = await createWallet()
+                console.log('\nTREASURY (returned wallet)', returnedWallet)
+
+                /* Set live wallet. */
+                setLiveWallet(returnedWallet)
+
+                waitforme(1000)
+
+                console.log('\nTREASURY (connected wallet):', wallet)
+            }
+
+            if (wallet) {
+                // Querying the network
+                const balance = await wallet.getBalance()
+                    .catch(err => console.error(err))
+                console.log('\nTREASURY (balance):', balance, moment().unix())
+
+                setBalance(balance)
+
+                const txCount = await wallet.getTransactionCount()
+                    .catch(err => console.error(err))
+                console.log('\nTREASURY (txs):', txCount, moment().unix())
+            }
+        }
 
         /* Fetch info. */
-        // fetchInfo()
-
-        /* Set node URL. */
-        // const NODE_URL = 'https://speedy-nodes-nyc.moralis.io/39f5474b84a2f39277aea60a/avalanche/mainnet'
-        const NODE_URL = 'wss://speedy-nodes-nyc.moralis.io/39f5474b84a2f39277aea60a/avalanche/mainnet/ws'
-
-        /* Set provider. */
-        // const provider = new ethers.providers.JsonRpcProvider(NODE_URL)
-        const provider = new ethers.providers.WebSocketProvider(NODE_URL)
-        // console.log('\nPROVIDER', provider)
-
-        /* Set signer. */
-        const signer = provider.getSigner()
-        console.log('\nSIGNER', signer)
-
-        /* Set mnemonic. */
-        const mnemonic = require('../../.secrets').mnemonic
-        console.log('\nMNEMONIC', mnemonic)
-
-        const node = utils.HDNode.fromMnemonic(mnemonic)
-        console.log('\nNODE', node)
-
-        // const secondAccount = hdNode.derivePath(`m/44'/60'/0'/0/1`); // This returns a new HDNode
-        // const thirdAccount = hdNode.derivePath(`m/44'/60'/0'/0/2`);
-
-        const wallet = Wallet.fromMnemonic(mnemonic, `m/44'/60'/0'/0/0`)
-        console.log('\nWALLET', wallet)
+        fetchInfo()
 
     }, [])
 
@@ -86,7 +106,10 @@ function Treasury() {
                 <View style={tailwind('py-6 items-center')}>
                     <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
                         <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                            $13,370.88
+                            {balance ? ethers.BigNumber.from(balance).toString() : '0.00' }
+                        </Text>
+                        <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
+                            $0.00
                         </Text>
                     </View>
                 </View>

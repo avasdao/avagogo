@@ -32,13 +32,15 @@ import LottieView from 'lottie-react-native'
 
 import Bugsnag from '@bugsnag/react-native'
 
-import DAppsStart from './src/screens/DApps'
-import AlphaFinanceLabs from './src/screens/DApps/AlphaFinanceLabs'
+import store from './store'
 
-import CafeScreen from './src/screens/Cafe'
-import HelpScreen from './src/screens/Help'
-import PortfolioScreen from './src/screens/Portfolio'
-import TreasuryScreen from './src/screens/Treasury'
+import DAppsStart from './screens/DApps'
+import AlphaFinanceLabs from './screens/DApps/AlphaFinanceLabs'
+
+import CafeScreen from './screens/Cafe'
+import HelpScreen from './screens/Help'
+import PortfolioScreen from './screens/Portfolio'
+import TreasuryScreen from './screens/Treasury'
 
 /**
  * Help & Support Button
