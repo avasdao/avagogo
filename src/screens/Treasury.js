@@ -86,7 +86,7 @@ function Treasury() {
         }
 
         /* Fetch info. */
-        fetchInfo()
+        // fetchInfo()
 
     }, [wallet])
 

@@ -36,6 +36,10 @@ import store from './store'
 
 import DAppsStart from './screens/DApps'
 import AlphaFinanceLabs from './screens/DApps/AlphaFinanceLabs'
+import BENQI from './screens/DApps/BENQI'
+import Pangolin from './screens/DApps/Pangolin'
+import TraderJoe from './screens/DApps/TraderJoe'
+import YieldYak from './screens/DApps/YieldYak'
 
 import CafeScreen from './screens/Cafe'
 import HelpScreen from './screens/Help'
@@ -74,11 +78,60 @@ const Tab = createBottomTabNavigator()
  */
 const DappsStackScreen = () => {
     return (
-        <DappsStack.Navigator
-            screenOptions={{ headerShown: false }}
-        >
-            <DappsStack.Screen name="DAppsStart" component={DAppsStart} />
-            <DappsStack.Screen name="AlphaFinanceLabs" component={AlphaFinanceLabs} />
+        <DappsStack.Navigator>
+            <DappsStack.Screen
+                name="DAppsStart"
+                component={DAppsStart}
+                options={{
+                    title: 'DApp Store',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <DappsStack.Screen
+                name="DAppsAlphaFinanceLabs"
+                component={AlphaFinanceLabs}
+                options={{
+                    title: 'Alpha Finance Labs',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <DappsStack.Screen
+                name="DAppsBENQI"
+                component={BENQI}
+                options={{
+                    title: 'BENQI',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <DappsStack.Screen
+                name="DAppsPangolin"
+                component={Pangolin}
+                options={{
+                    title: 'Pangolin',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <DappsStack.Screen
+                name="DAppsTraderJoe"
+                component={TraderJoe}
+                options={{
+                    title: 'Trader Joe',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <DappsStack.Screen
+                name="DAppsYieldYak" 
+                component={YieldYak}
+                options={{
+                    title: 'Yield Yak',
+                    headerRight: HelpButton,
+                }}
+            />
         </DappsStack.Navigator>
     )
 }
@@ -148,7 +201,7 @@ const TabScreens = () => {
                 name="DApps"
                 component={DappsStackScreen}
                 options={{
-                    headerRight: HelpButton,
+                    headerShown: false,
                 }}
             />
         </Tab.Navigator>

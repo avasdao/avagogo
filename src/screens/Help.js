@@ -58,7 +58,7 @@ function Help({navigation}) {
                 </Pressable>
             </View>
 
-            <View style={tailwind('py-6 items-center')}>
+            <View style={tailwind('hidden py-6 items-center')}>
                 <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
                     <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
                         Portfolio Help

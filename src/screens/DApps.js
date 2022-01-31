@@ -41,9 +41,9 @@ function DApps({navigation}) {
             style={tailwind('')}
         >
             {hasAgreed &&
-                <View>
+                <View style={tailwind('py-5')}>
                     <Pressable
-                        onPress={() => navigation.navigate('AlphaFinanceLabs')}
+                        onPress={() => navigation.navigate('DAppsAlphaFinanceLabs')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -54,12 +54,67 @@ function DApps({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => alert('load benqi')}
+                        onPress={() => navigation.navigate('DAppsBENQI')}
                         style={tailwind('items-center')}
                     >
                         <Image
                             style={styles.dappBanner}
                             source={require('../assets/banners/benqi.png')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('DAppsPangolin')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/pangolin.png')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('DAppsTraderJoe')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/trader-joe.png')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('DAppsYieldYak')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/yield-yak.png')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => alert('Our team is hard at work to make this happen. Check back soon..')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/aave.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => alert('Our team is hard at work to make this happen. Check back soon..')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/curve-finance.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>

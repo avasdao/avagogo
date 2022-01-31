@@ -66,10 +66,10 @@ class Profile {
         // console.log('\nWALLET', walletMnemonic, moment().unix())
 
         this.metaWallet = Wallet.fromMnemonic(mnemonic)
-        console.log('\nWALLET (meta):', this.metaWallet, moment().unix())
+        // console.log('\nWALLET (meta):', this.metaWallet, moment().unix())
 
         this.wallet = this.metaWallet.connect(provider)
-        console.log('\nWALLET (connected):', this.wallet, moment().unix())
+        // console.log('\nWALLET (connected):', this.wallet, moment().unix())
 
         // Querying the network
         const balance = await this.wallet.getBalance()

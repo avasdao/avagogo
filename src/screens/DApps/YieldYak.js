@@ -50,7 +50,7 @@ function Blank({navigation}) {
             style={tailwind('')}
         >
             <Text style={tailwind('m-16 text-pink-800 text-2xl font-semibold')}>
-                Alpha Finance Labs
+                Yield Yak
             </Text>
 
         </ScrollView>
