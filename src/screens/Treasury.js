@@ -69,13 +69,6 @@ function Treasury() {
                 /* Create new wallet. */
                 const returnedWallet = await createWallet()
                 console.log('\nTREASURY (returned wallet)', returnedWallet)
-
-                /* Set live wallet. */
-                setLiveWallet(returnedWallet)
-
-                waitforme(1000)
-
-                console.log('\nTREASURY (connected wallet):', wallet)
             }
 
             if (wallet) {
@@ -95,7 +88,7 @@ function Treasury() {
         /* Fetch info. */
         fetchInfo()
 
-    }, [])
+    }, [wallet])
 
     return (
         <ScrollView
@@ -163,7 +156,7 @@ function Treasury() {
 
                     <View style={tailwind('py-6 items-center')}>
                         <Pressable
-                            onPress={() => setHasAgreed(true)}
+                            onPress={() => setHasAgreed(true) }
                             style={tailwind('bg-yellow-200 px-10 py-2 border-2 border-yellow-400 rounded-xl')}
                         >
                             <Text style={tailwind('text-yellow-800 text-xl font-semibold')}>
