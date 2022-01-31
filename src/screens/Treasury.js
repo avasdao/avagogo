@@ -29,7 +29,7 @@ import LottieView from 'lottie-react-native'
 
 import 'react-native-get-random-values'
 import '@ethersproject/shims'
-import { ethers } from 'ethers'
+import { ethers, utils, Wallet } from 'ethers'
 
 /**
  * Treasury Screen
@@ -48,6 +48,32 @@ function Treasury() {
 
         /* Fetch info. */
         // fetchInfo()
+
+        /* Set node URL. */
+        // const NODE_URL = 'https://speedy-nodes-nyc.moralis.io/39f5474b84a2f39277aea60a/avalanche/mainnet'
+        const NODE_URL = 'wss://speedy-nodes-nyc.moralis.io/39f5474b84a2f39277aea60a/avalanche/mainnet/ws'
+
+        /* Set provider. */
+        // const provider = new ethers.providers.JsonRpcProvider(NODE_URL)
+        const provider = new ethers.providers.WebSocketProvider(NODE_URL)
+        // console.log('\nPROVIDER', provider)
+
+        /* Set signer. */
+        const signer = provider.getSigner()
+        console.log('\nSIGNER', signer)
+
+        /* Set mnemonic. */
+        const mnemonic = require('../../.secrets').mnemonic
+        console.log('\nMNEMONIC', mnemonic)
+
+        const node = utils.HDNode.fromMnemonic(mnemonic)
+        console.log('\nNODE', node)
+
+        // const secondAccount = hdNode.derivePath(`m/44'/60'/0'/0/1`); // This returns a new HDNode
+        // const thirdAccount = hdNode.derivePath(`m/44'/60'/0'/0/2`);
+
+        const wallet = Wallet.fromMnemonic(mnemonic, `m/44'/60'/0'/0/0`)
+        console.log('\nWALLET', wallet)
 
     }, [])
 
