@@ -100,110 +100,6 @@ const pieData = [
       { quarter: 4, earnings: 19000 }
     ];
 
-const display = () => {
-    // return (
-    //     <View style={tailwind('px-5 pt-5')}>
-    //         <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
-    //             Portfolio
-    //         </Text>
-    //
-    //         <Text style={tailwind('text-lg text-gray-800')}>
-    //             Track ALL of your <Text style={tailwind('font-bold')}>DeFi</Text> investments from a single screen.
-    //         </Text>
-    //     </View>
-    //
-    //     <View style={tailwind('py-6 items-center')}>
-    //         <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
-    //             <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-    //                 $1,337.88
-    //             </Text>
-    //         </View>
-    //     </View>
-    //
-    //     <View style={tailwind('')}>
-    //         <VictoryChart
-    //             width={350}
-    //             theme={VictoryTheme.material}
-    //             domainPadding={20}
-    //         >
-    //             <VictoryAxis
-    //                   // tickValues specifies both the number of ticks and where
-    //                   // they are placed on the axis
-    //                   tickValues={[1, 2, 3, 4]}
-    //                   tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-    //             />
-    //             <VictoryAxis
-    //                   dependentAxis
-    //                   // tickFormat specifies how ticks should be displayed
-    //                   tickFormat={(x) => (`$${x / 1000}k`)}
-    //             />
-    //             <VictoryBar data={data} x="quarter" y="earnings" />
-    //         </VictoryChart>
-    //     </View>
-    //
-    //     <View style={tailwind('my-3')}>
-    //         <PieChart
-    //             style={tailwind('')}
-    //             data={pieData}
-    //             width={Dimensions.get('window').width}
-    //             height={120}
-    //             chartConfig={chartConfig}
-    //             accessor="population"
-    //             backgroundColor="transparent"
-    //             paddingLeft={0}
-    //             absolute
-    //         />
-    //     </View>
-    //
-    //     <View>
-    //       <Text>Bezier Line Chart</Text>
-    //       <LineChart
-    //         data={{
-    //           labels: ["January", "February", "March", "April", "May", "June"],
-    //           datasets: [
-    //             {
-    //               data: [
-    //                 Math.random() * 100,
-    //                 Math.random() * 100,
-    //                 Math.random() * 100,
-    //                 Math.random() * 100,
-    //                 Math.random() * 100,
-    //                 Math.random() * 100
-    //               ]
-    //             }
-    //           ]
-    //         }}
-    //         width={Dimensions.get('window').width}
-    //         height={220}
-    //         yAxisLabel="$"
-    //         yAxisSuffix="k"
-    //         yAxisInterval={1} // optional, defaults to 1
-    //         chartConfig={{
-    //           backgroundColor: "#e26a00",
-    //           backgroundGradientFrom: "#fb8c00",
-    //           backgroundGradientTo: "#ffa726",
-    //           decimalPlaces: 2, // optional, defaults to 2dp
-    //           color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    //           labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    //           style: {
-    //             borderRadius: 16
-    //           },
-    //           propsForDots: {
-    //             r: "6",
-    //             strokeWidth: "2",
-    //             stroke: "#ffa726"
-    //           }
-    //         }}
-    //         bezier
-    //         style={{
-    //           marginVertical: 8,
-    //           borderRadius: 16
-    //         }}
-    //       />
-    //     </View>
-    // )
-}
-
 /**
  * Home Screen
  */
@@ -216,18 +112,109 @@ function Home() {
             style={tailwind('')}
         >
             {hasAgreed &&
-                <View style={tailwind('px-5 pt-5')}>
-                    <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
-                        Portfolio
-                    </Text>
+                <View>
+                    <View style={tailwind('px-5 pt-5')}>
+                        <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
+                            Portfolio
+                        </Text>
 
-                    <Text style={tailwind('text-lg text-gray-800')}>
-                        Track ALL of your <Text style={tailwind('font-bold')}>DeFi</Text> investments from a single screen.
-                    </Text>
+                        <Text style={tailwind('text-lg text-gray-800')}>
+                            Track ALL of your <Text style={tailwind('font-bold')}>DeFi</Text> investments from a single screen.
+                        </Text>
+                    </View>
 
-                    <Text style={tailwind('mt-3 text-lg text-gray-800')}>
-                        $1,337.88 Total Portfolio Value
-                    </Text>
+                    <View style={tailwind('py-6 items-center')}>
+                        <View style={tailwind('bg-pink-200 px-5 py-2 rounded-lg')}>
+                            <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
+                                $1,337.88
+                            </Text>
+                        </View>
+                    </View>
+
+                    <View style={tailwind('')}>
+                        <VictoryChart
+                            width={350}
+                            theme={VictoryTheme.material}
+                            domainPadding={20}
+                        >
+                            <VictoryAxis
+                                  // tickValues specifies both the number of ticks and where
+                                  // they are placed on the axis
+                                  tickValues={[1, 2, 3, 4]}
+                                  tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+                            />
+                            <VictoryAxis
+                                  dependentAxis
+                                  // tickFormat specifies how ticks should be displayed
+                                  tickFormat={(x) => (`$${x / 1000}k`)}
+                            />
+                            <VictoryBar data={data} x="quarter" y="earnings" />
+                        </VictoryChart>
+                    </View>
+
+                    <View style={tailwind('my-3')}>
+                        <PieChart
+                            style={tailwind('')}
+                            data={pieData}
+                            width={Dimensions.get('window').width}
+                            height={120}
+                            chartConfig={chartConfig}
+                            accessor="population"
+                            backgroundColor="transparent"
+                            paddingLeft={0}
+                            absolute
+                        />
+                    </View>
+
+                    <View style={tailwind('m-2')}>
+                        <Text style={tailwind('text-xl font-bold text-gray-500')}>
+                            Monthly Portolio History
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('mb-10')}>
+
+                        <LineChart
+                            style={tailwind('border-t-2 border-b-2 border-yellow-600')}
+                            data={{
+                                labels: ['Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Jan'],
+                                datasets: [
+                                    {
+                                        data: [
+                                            Math.random() * (75 - 25) + 25,
+                                            Math.random() * (100 - 50) + 50,
+                                            Math.random() * (125 - 75) + 75,
+                                            Math.random() * (150 - 100) + 100,
+                                            Math.random() * (175 - 125) + 125,
+                                            Math.random() * (200 - 150) + 150,
+                                        ]
+                                    }
+                                ]
+                            }}
+                            width={Dimensions.get('window').width}
+                            height={220}
+                            yAxisLabel="$"
+                            yAxisSuffix="k"
+                            yAxisInterval={1} // optional, defaults to 1
+                            chartConfig={{
+                                backgroundColor: "#e26a00",
+                                backgroundGradientFrom: "#fb8c00",
+                                backgroundGradientTo: "#ffa726",
+                                decimalPlaces: 2, // optional, defaults to 2dp
+                                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                style: {
+                                    borderRadius: 16
+                                },
+                                propsForDots: {
+                                    r: "6",
+                                    strokeWidth: "2",
+                                    stroke: "#ffa726"
+                                }
+                            }}
+                            bezier
+                        />
+                    </View>
                 </View>
             }
 
@@ -243,7 +230,7 @@ function Home() {
                         </Text>
                     </View>
 
-                    <View style={tailwind('mt-3 py-5 bg-pink-100 items-center')}>
+                    <View style={tailwind('mt-3 py-5 items-center')}>
                         <LottieView
                             style={tailwind('h-48')}
                             source={require('../assets/lottie/happy-pig.json')} autoPlay loop
