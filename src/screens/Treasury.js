@@ -11,7 +11,7 @@ import React from 'react'
 import type {Node} from 'react'
 
 import {
-  Button,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -21,60 +21,21 @@ import {
   View,
 } from 'react-native'
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen'
-
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
-const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark'
-
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+import 'react-native-get-random-values'
+import '@ethersproject/shims'
+import { ethers } from 'ethers'
 
 /**
  * Treasury Screen
  */
 function Treasury() {
-    /* Request dard mode. */
-    const isDarkMode = useColorScheme() === 'dark'
-
-    /* Set background style. */
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    }
-
-    const { authenticate, isAuthenticated, user } = useMoralis()
+    const [hasAgreed, setHasAgreed] = React.useState(false)
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
@@ -88,80 +49,83 @@ function Treasury() {
         /* Fetch info. */
         // fetchInfo()
 
-        const Web3Api = useMoralisWeb3Api()
-
-        const fetchBlock = async() => {
-            const result = await Web3Api.native.getBlock({
-                block_number_or_hash: '100000'
-            })
-            console.log('FETCH BLOCK', result)
-        }
-
     }, [])
-
-    if (!isAuthenticated) {
-        return (
-            <View>
-                <Button onClick={() => authenticate()}>Authenticate</Button>
-            </View>
-        )
-    }
 
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <Section title="Treasury">
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-            </Section>
-
-            <View style={tailwind('py-6 items-center')}>
-                <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
-                    <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                        $13,370.88
-                    </Text>
+            {hasAgreed &&
+                <View style={tailwind('py-6 items-center')}>
+                    <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
+                        <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
+                            $13,370.88
+                        </Text>
+                    </View>
                 </View>
-            </View>
+            }
 
-            <Text>Welcome {user.get('username')}</Text>
+            {!hasAgreed &&
+                <View>
+                    <View style={tailwind('px-5 pt-5 items-center')}>
+                        <Text style={tailwind('text-lg text-gray-800 font-bold')}>
+                            Welcome to your Treasury!
+                        </Text>
 
-            <View style={tailwind('py-5 bg-pink-100 items-center')}>
-                <LottieView
-                    style={tailwind('h-48')}
-                    source={require('../assets/lottie/treasure-chest.json')} autoPlay loop
-                />
+                        <Text style={tailwind('mt-3 text-lg text-gray-800')}>
+                            This area is where you can easily manage ALL of your assets in one place.
+                        </Text>
+                    </View>
 
-                <Text style={tailwind('text-pink-800 font-semibold')}>
-                    Chinese Treasure Chest
-                </Text>
-            </View>
+                    <View style={tailwind('py-5 items-center')}>
+                        <LottieView
+                            style={tailwind('h-48')}
+                            source={require('../assets/lottie/treasure-chest.json')} autoPlay loop
+                        />
 
-            <Section title="What's Next?">
-                Let's build the greatest DeFi app EVER!!
-            </Section>
+                        <Text style={tailwind('text-pink-500 font-semibold')}>
+                            Your AVAX Treasury
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('px-5 pt-5')}>
+                        <Text style={tailwind('text-sm text-red-500 font-bold')}>
+                            !! WARNING !!
+                        </Text>
+
+                        <Text style={tailwind('mt-3 text-sm text-gray-800')}>
+                            This is a very early release of Ava GoGo that is currently using a <Text style={tailwind('font-bold')}>"SHARED"</Text> wallet for ALL demo users.
+                        </Text>
+
+                        <Text style={tailwind('mt-3 text-sm text-gray-800')}>
+                            Our team has <Text style={tailwind('font-bold')}>10+ years</Text> of experience in building secure crypto wallets.
+                            We've carefully implemented an abundance of protections against ANY loss of funds.
+                        </Text>
+
+                        <Text style={tailwind('mt-3 text-sm text-gray-800')}>
+                            Modenero Corp and the team of Ava GoGo make <Text style={tailwind('font-bold')}>NO GUARANTEE</Text> about the safety and security of the Treasury.
+                        </Text>
+
+                        <Text style={tailwind('mt-3 text-sm text-red-500 font-bold')}>
+                            !! USE AT YOUR OWN RISK !!
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('py-6 items-center')}>
+                        <Pressable
+                            onPress={() => setHasAgreed(true)}
+                            style={tailwind('bg-yellow-200 px-10 py-2 border-2 border-yellow-400 rounded-xl')}
+                        >
+                            <Text style={tailwind('text-yellow-800 text-xl font-semibold')}>
+                                Okay, got it!
+                            </Text>
+                        </Pressable>
+                    </View>
+                </View>
+            }
         </ScrollView>
     )
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default Treasury

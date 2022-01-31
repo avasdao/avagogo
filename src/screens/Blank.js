@@ -11,6 +11,7 @@ import React from 'react'
 import type {Node} from 'react'
 
 import {
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -58,10 +59,10 @@ function Blank({navigation}) {
 
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ fontSize: 30 }}>
-                    Do you need help?
+                    Do <Text style={tailwind('font-bold')}>YOU</Text> need help?
                 </Text>
 
-                <Button onPress={() => navigation.goBack()} title="No thanks" />
+                <Pressable onPress={() => navigation.goBack()} title="No thanks" />
             </View>
 
             <View style={tailwind('py-5 bg-gray-50 items-center')}>

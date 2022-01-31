@@ -40,12 +40,6 @@ function DApps({navigation}) {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <View style={tailwind('px-5 pt-5')}>
-                <Text style={tailwind('text-lg text-gray-800')}>
-                    Explore and discover new decentralized applications that you can run directly from Ava GoGo.
-                </Text>
-            </View>
-
             {hasAgreed &&
                 <View>
                     <Pressable
@@ -74,6 +68,12 @@ function DApps({navigation}) {
 
             {!hasAgreed &&
                 <View>
+                    <View style={tailwind('px-5 pt-5')}>
+                        <Text style={tailwind('text-lg text-gray-800 text-center')}>
+                            Explore and discover <Text style={tailwind('font-bold')}>New & Noteworthy</Text> decentralized applications that you can run directly from Ava GoGo.
+                        </Text>
+                    </View>
+
                     <View style={tailwind('py-5 items-center')}>
                         <LottieView
                             style={tailwind('h-48')}
@@ -90,11 +90,15 @@ function DApps({navigation}) {
                             !! WARNING !!
                         </Text>
 
-                        <Text style={tailwind('text-sm text-gray-800')}>
-                            These are 3rd-party decentralized applications that have NOT been audited or reviewed by the team at Ava GoGo.
+                        <Text style={tailwind('mt-3 text-sm text-gray-800')}>
+                            The team at Ava GoGo are BUIDLing <Text style={tailwind('font-bold')}>native mobile</Text> experiences to the <Text style={tailwind('font-bold')}>TOP DApps</Text> found throughout the Avalanche ecosystem.
                         </Text>
 
-                        <Text style={tailwind('text-sm text-red-500 font-bold')}>
+                        <Text style={tailwind('mt-3 text-sm text-gray-800')}>
+                            Be extra cautious as these are 3rd-party decentralized applications that <Text style={tailwind('font-bold')}>HAVE NOT BEEN AUDITED OR REVIEWED</Text> by the team at Ava GoGo.
+                        </Text>
+
+                        <Text style={tailwind('mt-3 text-sm text-red-500 font-bold')}>
                             !! USE AT YOUR OWN RISK !!
                         </Text>
                     </View>
