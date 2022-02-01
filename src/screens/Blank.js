@@ -31,6 +31,8 @@ import LottieView from 'lottie-react-native'
  * Blank Screen
  */
 function Blank({navigation}) {
+    const [hasAgreed, setHasAgreed] = React.useState(false)
+
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         /**

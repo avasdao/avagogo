@@ -28,9 +28,9 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 /**
- * Blank Screen
+ * DApp Screen
  */
-function Blank({navigation}) {
+function DApp({navigation}) {
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         /**
@@ -57,4 +57,4 @@ function Blank({navigation}) {
     )
 }
 
-export default Blank
+export default DApp

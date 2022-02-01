@@ -11,6 +11,8 @@ import React from 'react'
 import type {Node} from 'react'
 
 import {
+  Dimensions,
+  Image,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -28,9 +30,9 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 /**
- * Blank Screen
+ * DApp Screen
  */
-function Blank({navigation}) {
+function DApp({navigation}) {
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         /**
@@ -57,4 +59,4 @@ function Blank({navigation}) {
     )
 }
 
-export default Blank
+export default DApp
