@@ -104,6 +104,7 @@ function DemoTx({navigation}) {
     }, [wallet])
 
     const runTest = async () => {
+        fetchInfo()
 
         const contractAddress = '0x60ae616a2155ee3d9a68541ba4544862310933d4'
         // console.log('\nCONTRACT ADDR', contractAddress)
