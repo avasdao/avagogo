@@ -8,10 +8,8 @@
 
 import React from 'react'
 
-import type {Node} from 'react'
-
 import {
-    Button,
+  Button,
   Pressable,
   SafeAreaView,
   ScrollView,

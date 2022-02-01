@@ -8,8 +8,6 @@
 
 import React from 'react'
 
-import type {Node} from 'react'
-
 import {
     Button,
   Pressable,
@@ -44,25 +42,7 @@ import store from '../store'
  * Demo Transaction Screen
  */
 const DemoTx = observer(({navigation}) => {
-
     const [balance, setBalance] = React.useState(0)
-
-    // https://reactnavigation.org/docs/navigation-container/#getcurrentroute
-
-    // const navigationRef = useNavigationContainerRef()
-    // console.log('HELP CONTEXT (ref):', navigationRef)
-    //
-    // const route = navigation.getCurrentRoute()
-    // console.log('HELP CONTEXT (route):', route)
-
-    /*
-
-    amountOutMin    0x00000000000000000000000000000000000e1de7
-    path            ["0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7", "0xc7198437980c041c805a1edcba50c1ce5db95118"]
-    to              0xE2266286745fEFdDeC42D895abC85a33710a2078
-    deadline        0x0000000000000000000000000000017EB321C590
-
-    */
 
     /* Initialize PROFILE context. */
     const {
@@ -109,7 +89,12 @@ const DemoTx = observer(({navigation}) => {
     const runTest = async () => {
         fetchInfo()
 
-        const contractAddress = '0x60ae616a2155ee3d9a68541ba4544862310933d4'
+        const contractAddress = '0x60ae616a2155ee3d9a68541ba4544862310933d4' // Trader Joe: Router
+        // const contractAddress = '0xe54ca86531e17ef3616d22ca28b0d458b6c89106' // Pangolin: Router
+        // const contractAddress = '0x5c0401e81bc07ca70fad469b451682c0d747ef1c' // Benqi Finance: qiAVAX Token
+        // const contractAddress = '0x486af39519b4dc9a7fccd318217352830e8ad9b4' // Benqi Finance: Comptroller
+        // const contractAddress = '0x21c630b7824d15bcdfeefa73cbd4e49cafe9f836' // Alpha Homora v2: Router
+        // const contractAddress = '0xc4729e56b831d74bbc18797e0e17a295fa77488c' // Yield Yak: Router
         // console.log('\nCONTRACT ADDR', contractAddress)
 
         const abi = require('./DApps/abis/trader-joe')

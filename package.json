@@ -1,6 +1,6 @@
 {
   "name": "avagogo",
-  "version": "21.1.28",
+  "version": "21.2.1",
   "license": "MIT",
   "scripts": {
     "android": "react-native run-android",
@@ -15,6 +15,7 @@
     "@ethersproject/shims": "5.5.0",
     "@react-native-async-storage/async-storage": "1.15.17",
     "@react-navigation/bottom-tabs": "6.0.9",
+    "@react-navigation/material-top-tabs": "6.1.0",
     "@react-navigation/native": "6.0.6",
     "@react-navigation/native-stack": "6.2.5",
     "ethers": "5.5.3",
@@ -35,6 +36,7 @@
     "react-native-get-random-values": "1.7.2",
     "react-native-gifted-chat": "0.16.3",
     "react-native-keychain": "8.0.0",
+    "react-native-pager-view": "5.4.9",
     "react-native-permissions": "3.2.0",
     "react-native-push-notification": "8.1.1",
     "react-native-qrcode-scanner": "1.5.4",
@@ -44,8 +46,8 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "3.10.2",
     "react-native-svg": "12.1.1",
+    "react-native-tab-view": "3.1.1",
     "react-native-vector-icons": "9.0.0",
-    "rn-nodeify": "^10.3.0",
     "scrypt-js": "3.0.1",
     "tailwind-rn": "3.0.1",
     "uuid": "8.3.2",
