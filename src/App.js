@@ -216,8 +216,11 @@ const HomeStackScreen = () => {
             screenOptions={{ headerShown: false }}
         >
             <HomeStack.Screen name="Start" component={TabScreens} />
-            <HomeStack.Screen name="TxManager" component={TxManagerScreen} />
-            <HomeStack.Screen name="Help" component={HelpScreen} />
+
+            <HomeStack.Group screenOptions={{ presentation: 'modal' }}>
+                <HomeStack.Screen name="TxManager" component={TxManagerScreen} />
+                <HomeStack.Screen name="Help" component={HelpScreen} />
+            </HomeStack.Group>
         </HomeStack.Navigator>
     )
 }
