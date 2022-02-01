@@ -51,7 +51,7 @@ function DApp({navigation}) {
      * Demo Trade
      */
     const demoTrade = () => {
-        navigation.navigate('DemoTx')
+        navigation.navigate('TxManager')
     }
 
     /**

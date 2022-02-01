@@ -43,7 +43,6 @@ function Treasury() {
     /* Initialize PROFILE context. */
     const {
         wallet,
-        metaWallet,
         createWallet,
     } = React.useContext(store.Profile)
 
@@ -53,7 +52,6 @@ function Treasury() {
          * Fetch Info
          */
         const fetchInfo = async () => {
-            console.log('\nTREASURY (meta wallet):', metaWallet)
             console.log('\nTREASURY (wallet):', wallet)
 
             /* Validate wallet. */

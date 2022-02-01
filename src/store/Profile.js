@@ -22,6 +22,8 @@ class Profile {
     }
 
     /* Initialize (observable) variables. */
+    @observable balance = 0
+    @observable txCount = 0
     @observable wallet = null
 
     /* Initialize (persistent) variables. */
@@ -33,38 +35,72 @@ class Profile {
     /* Create wallet. */
     @action.bound
     async createWallet() {
-        console.log('\nSTART TIME', moment().unix())
-
         /* Set node URL. */
         const NODE_URL = 'wss://speedy-nodes-nyc.moralis.io/39f5474b84a2f39277aea60a/avalanche/mainnet/ws'
 
         /* Set provider. */
         const provider = new ethers.providers.WebSocketProvider(NODE_URL)
-    
-        /* Set signer. */
-        const signer = provider.getSigner()
-    
-        /* Set mnemonic. */
-        const mnemonic = require('../../.secrets').mnemonic
-    
-        const mnemonicWallet = Wallet.fromMnemonic(mnemonic)
-        // console.log('\nWALLET (mnemonic):', mnemonicWallet)
-        console.log('\nWALLET (mnemonic):', moment().unix())
 
-        this.wallet = mnemonicWallet.connect(provider)
-        // console.log('\nWALLET', this.wallet, moment().unix())
-        console.log('\nWALLET', moment().unix())
+        /* Set mnemonic. */
+        // const mnemonic = require('../../.secrets').mnemonic
+
+        /* Initialize wallet. */
+        // const mnemonicWallet = Wallet.fromMnemonic(mnemonic)
+        // console.log('\nWALLET (mnemonic):')
+
+        /* Set private key. */
+        // FIXME: We need to provide an optimal UX for retrieving this private key.
+        const privateKey = require('../../.secrets').privateKey
+
+        /* Initialize wallet. */
+        const _wallet = new Wallet(privateKey, provider)
+
+        /* Save wallet. */
+        this.saveWallet(_wallet)
 
         // Querying the network
-        const balance = await this.wallet.getBalance()
+        const _balance = await this.wallet.getBalance()
             .catch(err => console.error(err))
-        console.log('\nBALANCE', balance, moment().unix())
+        // console.log('\nBALANCE (bn)', typeof balanceBN, balanceBN)
 
-        const txCount = await this.wallet.getTransactionCount()
+        /* Save balance. */
+        this.saveBalance(_balance)
+
+        /* Set balance. */
+        // this.balance = ethers.BigNumber.from(balanceBN)
+        // console.log('\nBALANCE', typeof this.balance, this.balance)
+
+        /* Set transaction count. */
+        const _txCount = await this.wallet.getTransactionCount()
             .catch(err => console.error(err))
-        console.log('\nTXS', txCount, moment().unix())
+        // console.log('\nTX COUNT', typeof this.txCount, this.txCount)
 
-        return this.wallet
+        /* Save transaction count. */
+        this.saveTxCount(_txCount)
+
+        return {
+            wallet: _wallet,
+            balance: _balance,
+            txCount: _txCount,
+        }
+    }
+
+    /* Save balance. */
+    @action.bound
+    saveBalance(_balance) {
+        this.balance = _balance
+    }
+
+    /* Save transaction count. */
+    @action.bound
+    saveTxCount(_txCount) {
+        this.txCount = _txCount
+    }
+
+    /* Save wallet. */
+    @action.bound
+    saveWallet(_wallet) {
+        this.wallet = _wallet
     }
 
     /* Save (mobile) phone number. */
@@ -89,6 +125,25 @@ class Profile {
     @action.bound
     saveStreetAddress(_streetAddress) {
         this.streetAddress = _streetAddress
+    }
+
+    /* Balance display. */
+    @computed
+    get balanceDisplay() {
+        if (this.balance === 0) {
+            return 0
+        } else {
+            const wei = ethers.BigNumber.from(this.balance)
+            console.log('\nWEI', wei)
+
+            const sats = wei.div(10000000000).toNumber()
+            console.log('\nSATS', sats)
+
+            const balance = sats / 100000000
+            console.log('\nBALANCE', balance)
+
+            return balance
+        }
     }
 
     /* Display name. */

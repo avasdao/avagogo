@@ -40,7 +40,7 @@ import TraderJoe from './screens/DApps/TraderJoe'
 import YieldYak from './screens/DApps/YieldYak'
 
 import CafeScreen from './screens/Cafe'
-import DemoTxScreen from './screens/DemoTx'
+import TxManagerScreen from './screens/TxManager'
 import HelpScreen from './screens/Help'
 import PortfolioScreen from './screens/Portfolio'
 import TreasuryScreen from './screens/Treasury'
@@ -216,7 +216,7 @@ const HomeStackScreen = () => {
             screenOptions={{ headerShown: false }}
         >
             <HomeStack.Screen name="Start" component={TabScreens} />
-            <HomeStack.Screen name="DemoTx" component={DemoTxScreen} />
+            <HomeStack.Screen name="TxManager" component={TxManagerScreen} />
             <HomeStack.Screen name="Help" component={HelpScreen} />
         </HomeStack.Navigator>
     )

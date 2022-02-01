@@ -39,17 +39,24 @@ import moment from 'moment'
 import store from '../store'
 
 /**
- * Demo Transaction Screen
+ * Transaction Manager Screen
  */
-const DemoTx = observer(({navigation}) => {
-    const [balance, setBalance] = React.useState(0)
+const TxManager = observer(({navigation}) => {
+    // const [balance, setBalance] = React.useState(0)
 
     /* Initialize PROFILE context. */
     const {
+        balance,
+        balanceDisplay,
         wallet,
-        metaWallet,
         createWallet,
     } = React.useContext(store.Profile)
+
+    /* Initialize SYSTEM context. */
+    const {
+        price,
+        quote,
+    } = React.useContext(store.System)
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
@@ -57,38 +64,25 @@ const DemoTx = observer(({navigation}) => {
          * Fetch Info
          */
         const fetchInfo = async () => {
-            console.log('\nTREASURY (meta wallet):', metaWallet)
-            console.log('\nTREASURY (wallet):', wallet)
+            console.log('\nTX MANAGER (saved wallet):', wallet)
 
             /* Validate wallet. */
             if (!wallet) {
                 /* Create new wallet. */
                 const returnedWallet = await createWallet()
-                console.log('\nTREASURY (returned wallet)', returnedWallet)
-            }
-
-            if (wallet) {
-                // Querying the network
-                const balance = await wallet.getBalance()
-                    .catch(err => console.error(err))
-                console.log('\nTREASURY (balance):', balance, moment().unix())
-
-                setBalance(balance ? balance.hex : 0)
-
-                const txCount = await wallet.getTransactionCount()
-                    .catch(err => console.error(err))
-                console.log('\nTREASURY (txs):', txCount, moment().unix())
+                console.log('\nTX MANAGER (new wallet)', returnedWallet)
             }
         }
 
         /* Fetch info. */
         fetchInfo()
 
-    }, [wallet])
+    }, [balance, wallet])
 
-    const runTest = async () => {
-        fetchInfo()
-
+    /**
+     * Start Transaction
+     */
+    const startTx = async () => {
         const contractAddress = '0x60ae616a2155ee3d9a68541ba4544862310933d4' // Trader Joe: Router
         // const contractAddress = '0xe54ca86531e17ef3616d22ca28b0d458b6c89106' // Pangolin: Router
         // const contractAddress = '0x5c0401e81bc07ca70fad469b451682c0d747ef1c' // Benqi Finance: qiAVAX Token
@@ -104,6 +98,7 @@ const DemoTx = observer(({navigation}) => {
         const contract = new ethers.Contract(contractAddress, abi, wallet)
         // console.log('\nCONTRACT', contract);
 
+        /* Call contract. */
         const tx = await contract.swapExactAVAXForTokens(
                 '0x00000000000000000000000000000000000e1de7',
                 ['0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7','0xc7198437980c041c805a1edcba50c1ce5db95118'],
@@ -119,10 +114,15 @@ const DemoTx = observer(({navigation}) => {
         )
         .catch(err => console.error(err))
 
-        // wait for the transaction to be mined
-        const receipt = await tx.wait()
-            .catch(err => console.error(err))
-        console.log('\nRECEIPT', receipt)
+        /* Validate transaction . */
+        if (tx) {
+            // wait for the transaction to be mined
+            const receipt = await tx.wait()
+                .catch(err => console.error(err))
+            console.log('\nRECEIPT', receipt)
+        } else {
+            alert('Oops! Something went wrong with the last transaction.')
+        }
 
     }
 
@@ -142,9 +142,11 @@ const DemoTx = observer(({navigation}) => {
                 </Pressable>
             </View>
 
-            <Text style={tailwind('text-pink-800 text-3xl font-semibold text-center')}>
-                Demo Transaction
-            </Text>
+            <View style={tailwind('m-5 items-center')}>
+                <Text style={tailwind('text-gray-400 text-3xl font-semibold')}>
+                    Transaction Manager
+                </Text>
+            </View>
 
             <View style={tailwind('hidden py-5 bg-gray-50 items-center')}>
                 <LottieView
@@ -158,15 +160,19 @@ const DemoTx = observer(({navigation}) => {
             </View>
 
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 30 }}>
-                    Balance: {balance}
+                <Text style={tailwind('text-2xl font-medium text-purple-500')}>
+                    Balance Display: {balanceDisplay}
                 </Text>
 
-                <Button onPress={() => runTest()} title="Run Test" />
+                <Text style={tailwind('text-2xl font-medium text-purple-500')}>
+                    AVAX Price: {price('AVAX')}
+                </Text>
+
+                <Button onPress={() => startTx()} title="Run Test" />
             </View>
 
         </ScrollView>
     )
 })
 
-export default DemoTx
+export default TxManager
