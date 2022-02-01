@@ -53,7 +53,7 @@ function DApp({navigation}) {
      * Demo Trade
      */
     const demoTrade = () => {
-        alert('Starting demo trade..')
+        navigation.navigate('DemoTx')
     }
 
     /**
@@ -205,6 +205,30 @@ function DApp({navigation}) {
                         Zap
                     </Text>
                 </Pressable>
+            </View>
+
+            <View style={tailwind('my-5')}>
+                <View style={tailwind('px-5 flex flex-row justify-between')}>
+                    <Text>Token</Text>
+                    <Text>Volume (24H)</Text>
+                    <Text>Price</Text>
+                    <Text>24H</Text>
+                    <Text>7D</Text>
+                </View>
+
+                <View style={tailwind('mt-3 px-5 flex flex-row justify-between')}>
+                    <View style={tailwind('flex flex-row items-center')}>
+                        <Image
+                            style={tailwind('w-4 h-4 mr-1')}
+                            source={require('../../assets/tokens/avax.png')}
+                        />
+                        <Text>AVAX</Text>
+                    </View>
+                    <Text>$210,878,984</Text>
+                    <Text>$69.98</Text>
+                    <Text>-0.21%</Text>
+                    <Text>3.03%</Text>
+                </View>
             </View>
 
         </ScrollView>
