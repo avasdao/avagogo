@@ -9,6 +9,7 @@
 import React from 'react'
 
 import {
+  LogBox,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -19,6 +20,10 @@ import {
   View,
 } from 'react-native'
 
+import {
+    createMaterialTopTabNavigator
+} from '@react-navigation/material-top-tabs'
+
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import tailwind from 'tailwind-rn'
@@ -26,6 +31,17 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 import { GiftedChat } from 'react-native-gifted-chat'
+
+/* Ignore GiftedChat warnings. */
+LogBox.ignoreLogs([
+    'keyboardWillShow',
+    'keyboardDidShow',
+    'keyboardWillHide',
+    'keyboardDidHide',
+])
+
+/* Initialize tab (navigation). */
+const Tab = createMaterialTopTabNavigator()
 
 /**
  * Cafe Screen
@@ -53,7 +69,37 @@ function Cafe() {
         setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
     }, [])
 
-    if (hasAgreed) {
+    /**
+     * Newsroom
+     */
+    const Newsroom = () => {
+        return (
+            <View>
+                <View style={tailwind('my-5 mx-5')}>
+                    <Text style={tailwind('text-3xl text-gray-400 font-bold')}>
+                        Welcome to the Ava GoGo Newsroom
+                    </Text>
+                </View>
+
+                <View style={tailwind('items-center border-t-2 border-pink-500')}>
+                    <LottieView
+                        style={tailwind('h-96')}
+                        source={require('../assets/lottie/people-reading-news.json')} autoPlay loop
+                    />
+
+                    <Text style={tailwind('hidden text-pink-500 font-semibold')}>
+                        Ava GoGo's Newsroom
+                    </Text>
+                </View>
+
+            </View>
+        )
+    }
+
+    /**
+     * Chatrooms
+     */
+    const Chatrooms = () => {
         return (
             <GiftedChat
                 messages={messages}
@@ -62,6 +108,27 @@ function Cafe() {
                     _id: 1,
                 }}
             />
+        )
+    }
+
+    if (hasAgreed) {
+        return (
+            <Tab.Navigator>
+                <Tab.Screen
+                    name="Newsroom"
+                    component={Newsroom}
+                    options={{
+                        title: 'Newsroom'
+                    }}
+                />
+                <Tab.Screen
+                    name="Chatrooms"
+                    component={Chatrooms}
+                    options={{
+                        title: 'Chatrooms'
+                    }}
+                />
+            </Tab.Navigator>
         )
     }
 

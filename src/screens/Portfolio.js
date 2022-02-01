@@ -46,6 +46,7 @@ import {
     VictoryTheme
 } from 'victory-native'
 
+/* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
 
 const pieData = [
