@@ -45,25 +45,66 @@ const Yield = () => {
         >
         <View style={tailwind('m-3')}>
 
-            <View style={tailwind('mt-3 px-5 py-2 flex flex-row justify-between border-2 border-gray-500 rounded-xl')}>
+            <View style={tailwind('mt-3 px-3 py-2 flex flex-row justify-between bg-yellow-100 border-2 border-yellow-300 rounded-xl')}>
                 <View style={tailwind('flex flex-row items-center')}>
                     <Image
-                        style={tailwind('w-4 h-4 mr-1')}
+                        style={tailwind('w-4 h-4')}
                         source={require('../../assets/tokens/avax.png')}
                     />
+
                     <Image
-                        style={tailwind('w-4 h-4 mr-1 relative -ml-2')}
+                        style={tailwind('w-4 h-4 relative -ml-1 mr-1')}
                         source={require('../../assets/tokens/usdt.png')}
                     />
+
                     <View>
-                        <Text style={tailwind('text-xs')}>Trader Joe</Text>
-                        <Text style={tailwind('text-xs')}>AVAX/USDT.e</Text>
+                        <Text style={tailwind('text-xs font-bold')}>
+                            Trader Joe
+                        </Text>
+
+                        <Text style={tailwind('text-xs font-bold')}>
+                            AVAX/USDT.e
+                        </Text>
                     </View>
                 </View>
-                <Text>$210,878,984</Text>
-                <Text>$69.98</Text>
-                <Text>-0.21%</Text>
-                <Text>3.03%</Text>
+
+                <View>
+                    <Text style={tailwind('text-lg font-bold')}>
+                        206.23%
+                    </Text>
+
+                    <Text style={tailwind('text-base font-bold line-through')}>
+                        59.87%
+                    </Text>
+                </View>
+
+                <View>
+                    <Text style={tailwind('text-xs font-semibold')}>
+                        Yield Farming
+                    </Text>
+
+                    <Text style={tailwind('text-xs font-semibold')}>
+                        Trading Fee
+                    </Text>
+
+                    <Text style={tailwind('text-xs font-semibold')}>
+                        Borrow APY
+                    </Text>
+                </View>
+
+                <View>
+                    <Text style={tailwind('text-xs font-bold text-right')}>
+                        95.02%
+                    </Text>
+
+                    <Text style={tailwind('text-xs font-bold text-right')}>
+                        156.77%
+                    </Text>
+
+                    <Text style={tailwind('text-xs font-bold text-right')}>
+                        -45.56%
+                    </Text>
+                </View>
             </View>
 
         </View>
@@ -80,10 +121,15 @@ const Liquidity = () => {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <View style={tailwind('m-3')}>
-                <Text style={tailwind('text-red-500 text-lg font-medium')}>
-                    There are no liquidity providers.
+            <View style={tailwind('mt-10 items-center')}>
+                <Text style={tailwind('text-red-400 text-lg font-medium text-center uppercase')}>
+                    no liquidity providers found
                 </Text>
+
+                <LottieView
+                    style={tailwind('h-48')}
+                    source={require('../../assets/lottie/no-result-found.json')} autoPlay loop
+                />
             </View>
         </ScrollView>
     )
@@ -113,9 +159,9 @@ function DApp({navigation}) {
                 source={require('../../assets/backgrounds/gradient-purple-pink.jpg')}
             />
 
-            <View style={tailwind('flex flex-row justify-between')}>
+            <View style={tailwind('my-2 flex flex-row justify-between')}>
 
-                <View style={tailwind('w-6/12 my-3 ml-3 p-3 bg-gray-700 opacity-80 rounded-xl')}>
+                <View style={tailwind('w-6/12 my-3 ml-3 p-3 bg-gray-700 opacity-90 rounded-xl')}>
                     <View style={tailwind('flex flex-row items-center')}>
                         <Ionicons
                             style={tailwind('mr-2 text-gray-300')}
@@ -133,7 +179,7 @@ function DApp({navigation}) {
                     </Text>
                 </View>
 
-                <View style={tailwind('w-5/12 m-2 p-3 bg-gray-700 opacity-80 rounded-xl')}>
+                <View style={tailwind('w-5/12 m-2 p-3 bg-gray-700 opacity-90 rounded-xl')}>
                     <View style={tailwind('flex flex-row items-center')}>
                         <Ionicons
                             style={tailwind('mr-2 text-gray-300')}
@@ -142,7 +188,7 @@ function DApp({navigation}) {
                         />
 
                         <Text style={tailwind('text-yellow-300 font-bold text-lg text-center uppercase')}>
-                            Global Markets
+                            Global Market
                         </Text>
                     </View>
 
