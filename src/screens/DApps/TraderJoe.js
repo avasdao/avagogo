@@ -80,7 +80,6 @@ function DApp({navigation}) {
                 onFocus={() => alert('Search is NOT enabled in this DEMO')}
                 value={searchText}
                 placeholder="Search token symbol"
-                keyboardType="text"
             />
 
             <Text style={tailwind('m-5 text-gray-600 text-2xl font-semibold text-center')}>

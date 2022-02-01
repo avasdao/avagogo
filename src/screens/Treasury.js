@@ -35,12 +35,6 @@ import moment from 'moment'
 
 import store from '../store'
 
-function waitforme(milisec) {
-    return new Promise(resolve => {
-        setTimeout(() => { resolve('') }, milisec);
-    })
-}
-
 /**
  * Treasury Screen
  */
