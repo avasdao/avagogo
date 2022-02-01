@@ -21,11 +21,10 @@ class Profile {
         makeObservable(this)
     }
 
-    /* Initialize ephemeral variables. */
-    wallet = null
-    metaWallet = null
+    /* Initialize (observable) variables. */
+    @observable wallet = null
 
-    /* Initialize local variables. */
+    /* Initialize (persistent) variables. */
     @persist @observable phone = ''
     @persist @observable firstName = ''
     @persist @observable lastName = ''
@@ -37,39 +36,24 @@ class Profile {
         console.log('\nSTART TIME', moment().unix())
 
         /* Set node URL. */
-        // const NODE_URL = 'https://speedy-nodes-nyc.moralis.io/39f5474b84a2f39277aea60a/avalanche/mainnet'
         const NODE_URL = 'wss://speedy-nodes-nyc.moralis.io/39f5474b84a2f39277aea60a/avalanche/mainnet/ws'
 
         /* Set provider. */
-        // const provider = new ethers.providers.JsonRpcProvider(NODE_URL)
         const provider = new ethers.providers.WebSocketProvider(NODE_URL)
-        // console.log('\nPROVIDER', provider)
-
+    
         /* Set signer. */
         const signer = provider.getSigner()
-        // console.log('\nSIGNER', signer)
-
+    
         /* Set mnemonic. */
         const mnemonic = require('../../.secrets').mnemonic
-        // console.log('\nMNEMONIC', mnemonic)
+    
+        const mnemonicWallet = Wallet.fromMnemonic(mnemonic)
+        // console.log('\nWALLET (mnemonic):', mnemonicWallet)
+        console.log('\nWALLET (mnemonic):', moment().unix())
 
-        // const node = utils.HDNode.fromMnemonic(mnemonic, `m/44'/60'/0'/0/0`)
-        // console.log('\nNODE', node, moment().unix())
-
-        // const secondAccount = hdNode.derivePath(`m/44'/60'/0'/0/1`); // This returns a new HDNode
-        // const thirdAccount = hdNode.derivePath(`m/44'/60'/0'/0/2`);
-
-        // const walletMnemonic = Wallet.fromMnemonic(mnemonic)
-        // console.log('\nWALLET MNEMONIC', walletMnemonic, moment().unix())
-
-        // const wallet = walletMnemonic.connect(provider)
-        // console.log('\nWALLET', walletMnemonic, moment().unix())
-
-        this.metaWallet = Wallet.fromMnemonic(mnemonic)
-        // console.log('\nWALLET (meta):', this.metaWallet, moment().unix())
-
-        this.wallet = this.metaWallet.connect(provider)
-        // console.log('\nWALLET (connected):', this.wallet, moment().unix())
+        this.wallet = mnemonicWallet.connect(provider)
+        // console.log('\nWALLET', this.wallet, moment().unix())
+        console.log('\nWALLET', moment().unix())
 
         // Querying the network
         const balance = await this.wallet.getBalance()
@@ -81,18 +65,6 @@ class Profile {
         console.log('\nTXS', txCount, moment().unix())
 
         return this.wallet
-    }
-
-    /* Save wallet. */
-    @action.bound
-    saveWallet(_wallet) {
-        this.wallet = _wallet
-    }
-
-    /* Save (meta) wallet. */
-    @action.bound
-    saveMetaWallet(_wallet) {
-        this.metaWallet = _wallet
     }
 
     /* Save (mobile) phone number. */

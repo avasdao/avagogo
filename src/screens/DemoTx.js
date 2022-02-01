@@ -22,6 +22,8 @@ import {
   View,
 } from 'react-native'
 
+import { observer } from 'mobx-react-lite'
+
 import { useNavigationContainerRef } from '@react-navigation/native'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -41,7 +43,8 @@ import store from '../store'
 /**
  * Demo Transaction Screen
  */
-function DemoTx({navigation}) {
+const DemoTx = observer(({navigation}) => {
+
     const [balance, setBalance] = React.useState(0)
 
     // https://reactnavigation.org/docs/navigation-container/#getcurrentroute
@@ -179,6 +182,6 @@ function DemoTx({navigation}) {
 
         </ScrollView>
     )
-}
+})
 
 export default DemoTx

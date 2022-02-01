@@ -8,8 +8,6 @@
 
 import React from 'react'
 
-import type {Node} from 'react'
-
 import {
   Pressable,
   SafeAreaView,
@@ -21,6 +19,8 @@ import {
   View,
 } from 'react-native'
 
+import { observer } from 'mobx-react-lite'
+
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import tailwind from 'tailwind-rn'
@@ -30,7 +30,7 @@ import LottieView from 'lottie-react-native'
 /**
  * Blank Screen
  */
-function Blank({navigation}) {
+const Blank = observer(({navigation}) => {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
     /* Handle onLoad scripts. */
@@ -80,6 +80,6 @@ function Blank({navigation}) {
 
         </ScrollView>
     )
-}
+})
 
 export default Blank
