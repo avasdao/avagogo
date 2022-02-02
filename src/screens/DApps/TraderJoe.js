@@ -54,13 +54,6 @@ function DApp({navigation}) {
         navigation.navigate('TxManager')
     }
 
-    /**
-     * Preview Message
-     */
-    const previewMsg = () => {
-        alert('Hackathon Preview ONLY\n_.~"~._.~"~._.~"~._.~"~._\nThanks for stopping by...')
-    }
-
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
@@ -130,7 +123,7 @@ function DApp({navigation}) {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => previewMsg()}
+                    onPress={() => navigation.navigate('EarlyPreview')}
                     style={tailwind('m-3 bg-blue-300 border-2 border-blue-500 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -146,7 +139,7 @@ function DApp({navigation}) {
 
             <View style={tailwind('flex flex-row my-3')}>
                 <Pressable
-                    onPress={() => previewMsg()}
+                    onPress={() => navigation.navigate('EarlyPreview')}
                     style={tailwind('m-3 bg-yellow-300 border-2 border-yellow-500 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -160,7 +153,7 @@ function DApp({navigation}) {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => previewMsg()}
+                    onPress={() => navigation.navigate('EarlyPreview')}
                     style={tailwind('m-3 bg-pink-300 border-2 border-pink-500 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -176,7 +169,7 @@ function DApp({navigation}) {
 
             <View style={tailwind('flex flex-row my-3')}>
                 <Pressable
-                    onPress={() => previewMsg()}
+                    onPress={() => navigation.navigate('EarlyPreview')}
                     style={tailwind('m-3 bg-purple-200 border-2 border-purple-400 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -190,7 +183,7 @@ function DApp({navigation}) {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => previewMsg()}
+                    onPress={() => navigation.navigate('EarlyPreview')}
                     style={tailwind('m-3 bg-indigo-300 border-2 border-indigo-500 rounded-xl items-center justify-center')}
                 >
                     <Image

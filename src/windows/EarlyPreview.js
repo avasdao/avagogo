@@ -9,6 +9,7 @@
 import React from 'react'
 
 import {
+  Linking,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -26,6 +27,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
+
+/**
+ * Open Web Home
+ */
+const openWebHome = async () => {
+    /* Set URL. */
+    const url = 'https://avagogo.io'
+
+    /* Open URL. */
+    await Linking.openURL(url)
+}
 
 /**
  * Early Preview
@@ -62,31 +74,45 @@ const EarlyPreview = observer(({navigation}) => {
                 </Pressable>
             </View>
 
-            <View style={tailwind('py-6 items-center')}>
-                <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
-                    <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                        THIS IS AN EARLY PREVIEW...
-                    </Text>
-                </View>
-            </View>
-
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 30 }}>
-                    Do <Text style={tailwind('font-bold')}>YOU</Text> need help?
+            <View style={tailwind('p-5')}>
+                <Text style={tailwind('text-2xl text-purple-700 text-center')}>
+                    Welcome to a very <Text style={tailwind('font-bold')}>EARLY (PREVIEW)</Text> of Ava GoGo: Premier Social DeFi Community
                 </Text>
 
-                <Pressable onPress={() => navigation.goBack()} title="No thanks" />
+                <Text style={tailwind('px-7 mt-5 text-xl font-bold text-center')}>
+                    Oops! The feature you selected isn't quite ready yet.
+                </Text>
+
+                <Text style={tailwind('mt-5 text-base font-semibold text-center')}>
+                    We <Text style={tailwind('font-bold')}>LOVE</Text> to hear from you.
+                    Don't hesitate to reach out to our team on social media to express which features are <Text style={tailwind('font-bold')}>MOST</Text> important to <Text style={tailwind('font-bold')}>YOU.</Text>
+                </Text>
             </View>
 
-            <View style={tailwind('py-5 bg-gray-50 items-center')}>
+            <View style={tailwind('-mt-5 items-center')}>
                 <LottieView
                     style={tailwind('h-48')}
-                    source={require('../assets/lottie/couple-talk.json')} autoPlay loop
+                    source={require('../assets/lottie/under-construction.json')} autoPlay loop
                 />
 
-                <Text style={tailwind('text-pink-500 font-semibold')}>
-                    24 Hour Cafe
+                <Text style={tailwind('-mt-3 mb-3 text-purple-500 text-sm font-bold')}>
+                    OUR TEAM IS VERY HARD @WORK
                 </Text>
+            </View>
+
+            <View style={tailwind('mt-5 items-center')}>
+                <Pressable
+                    onPress={openWebHome}
+                    style={tailwind('px-5 py-2 bg-blue-300 border-2 border-blue-500 rounded-xl')}
+                >
+                    <Text style={tailwind('text-gray-600 text-xl font-bold text-center')}>
+                        click here to visit our website
+                    </Text>
+
+                    <Text style={tailwind('text-red-700 text-lg font-medium text-center')}>
+                        https://avagogo.io
+                    </Text>
+                </Pressable>
             </View>
 
         </ScrollView>
