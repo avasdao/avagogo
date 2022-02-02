@@ -64,13 +64,13 @@ const TxManager = observer(({navigation}) => {
          * Fetch Info
          */
         const fetchInfo = async () => {
-            console.log('\nTX MANAGER (saved wallet):', wallet)
+            // console.log('\nTX MANAGER (saved wallet):', wallet)
 
             /* Validate wallet. */
             if (!wallet) {
                 /* Create new wallet. */
                 const returnedWallet = await createWallet()
-                console.log('\nTX MANAGER (new wallet)', returnedWallet)
+                // console.log('\nTX MANAGER (new wallet)', returnedWallet)
             }
         }
 

@@ -80,7 +80,7 @@ const EarlyPreview = observer(({navigation}) => {
                 </Text>
 
                 <Text style={tailwind('px-7 mt-5 text-xl font-bold text-center')}>
-                    Oops! The feature you selected isn't quite ready yet.
+                    Oops! That feature you selected isn't quite ready yet.
                 </Text>
 
                 <Text style={tailwind('mt-5 text-base font-semibold text-center')}>
@@ -109,8 +109,8 @@ const EarlyPreview = observer(({navigation}) => {
                         click here to visit our website
                     </Text>
 
-                    <Text style={tailwind('text-red-700 text-lg font-medium text-center')}>
-                        https://avagogo.io
+                    <Text style={tailwind('text-red-700 text-2xl font-medium text-center')}>
+                        AvaGoGo.io
                     </Text>
                 </Pressable>
             </View>

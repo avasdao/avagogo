@@ -50,6 +50,7 @@ const getTokenLabel = (_token) => {
     case 'TUS':
     case 'USDC':
     case 'USDT':
+    case 'WBTC':
     case 'WETH':
         return _token + '.e'
     default:
@@ -70,15 +71,30 @@ const PoolListItem = observer((_params) => {
 
     /* Set base pair. */
     const basePair = _params.basePair
-    // console.log('BASE PAIR', basePair)
 
     /* Set trade pair. */
     const tradePair = _params.tradePair
-    // console.log('TRADE PAIR', tradePair)
 
     /* Set platform. */
     const platform = _params.platform
-    // console.log('PLATFORM', platform)
+
+    /* Set (main) yield. */
+    // FIXME: What is the name for this?
+    const yieldMain = _params.yield
+
+    /* Set (other) yield. */
+    // FIXME: What is the name for this?
+    const yieldOther = _params.yieldOther
+
+    /* Set farming. */
+    const farming = _params.farming
+    // console.log('FARMING', farming);
+
+    /* Set fee. */
+    const fee = _params.fee
+
+    /* Set borrow. */
+    const borrow = _params.borrow
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
@@ -124,39 +140,39 @@ const PoolListItem = observer((_params) => {
 
             <View>
                 <Text style={tailwind('text-lg font-bold')}>
-                    206.23%
+                    {yieldMain}%
                 </Text>
 
                 <Text style={tailwind('text-base font-bold line-through')}>
-                    59.87%
+                    {yieldOther}%
                 </Text>
             </View>
 
             <View>
-                <Text style={tailwind('text-xs font-semibold')}>
+                <Text style={farming ? tailwind('text-xs font-semibold') : tailwind('hidden')}>
                     Yield Farming
                 </Text>
 
-                <Text style={tailwind('text-xs font-semibold')}>
+                <Text v-if="fee" style={fee ? tailwind('text-xs font-semibold') : tailwind('hidden')}>
                     Trading Fee
                 </Text>
 
-                <Text style={tailwind('text-xs font-semibold')}>
+                <Text v-if="borrow" style={borrow ? tailwind('text-xs font-semibold') : tailwind('hidden')}>
                     Borrow APY
                 </Text>
             </View>
 
             <View>
-                <Text style={tailwind('text-xs font-bold text-right')}>
-                    95.02%
+                <Text v-if="farming" style={farming ? tailwind('text-xs font-bold text-right') : tailwind('hidden')}>
+                    {farming}%
                 </Text>
 
-                <Text style={tailwind('text-xs font-bold text-right')}>
-                    156.77%
+                <Text v-if="fee" style={fee ? tailwind('text-xs font-bold text-right') : tailwind('hidden')}>
+                    {fee}%
                 </Text>
 
-                <Text style={tailwind('text-xs font-bold text-right')}>
-                    -45.56%
+                <Text v-if="borrow" style={borrow ? tailwind('text-xs font-bold text-right') : tailwind('hidden')}>
+                    {borrow}%
                 </Text>
             </View>
         </Pressable>
