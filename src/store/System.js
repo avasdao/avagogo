@@ -19,7 +19,7 @@ class System {
 
         /* Set quote update. */
         setInterval(() => {
-            console.log('Requesting AVAX quote..')
+            // console.log('Requesting AVAX quote..')
             this.requestQuote('AVAX')
         }, 30000)
     }

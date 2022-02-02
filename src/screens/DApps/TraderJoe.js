@@ -146,7 +146,7 @@ function DApp({navigation}) {
 
             <View style={tailwind('flex flex-row my-3')}>
                 <Pressable
-                    onPress={() => alert('Hackathon Preview ONLY\n_.~"~._.~"~._.~"~._.~"~._\nThanks for stopping by...')}
+                    onPress={() => previewMsg()}
                     style={tailwind('m-3 bg-yellow-300 border-2 border-yellow-500 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -160,7 +160,7 @@ function DApp({navigation}) {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => alert('Hackathon Preview ONLY\n_.~"~._.~"~._.~"~._.~"~._\nThanks for stopping by...')}
+                    onPress={() => previewMsg()}
                     style={tailwind('m-3 bg-pink-300 border-2 border-pink-500 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -176,7 +176,7 @@ function DApp({navigation}) {
 
             <View style={tailwind('flex flex-row my-3')}>
                 <Pressable
-                    onPress={() => alert('Hackathon Preview ONLY\n_.~"~._.~"~._.~"~._.~"~._\nThanks for stopping by...')}
+                    onPress={() => previewMsg()}
                     style={tailwind('m-3 bg-purple-200 border-2 border-purple-400 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -190,7 +190,7 @@ function DApp({navigation}) {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => alert('Hackathon Preview ONLY\n_.~"~._.~"~._.~"~._.~"~._\nThanks for stopping by...')}
+                    onPress={() => previewMsg()}
                     style={tailwind('m-3 bg-indigo-300 border-2 border-indigo-500 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -217,7 +217,7 @@ function DApp({navigation}) {
                     <View style={tailwind('flex flex-row items-center')}>
                         <Image
                             style={tailwind('w-4 h-4 mr-1')}
-                            source={require('../../assets/tokens/avax.png')}
+                            source={require('../../assets/tokens/AVAX.png')}
                         />
                         <Text>AVAX</Text>
                     </View>

@@ -31,6 +31,8 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
+import PoolListItem from '../../components/PoolListItem'
+
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
 
@@ -45,67 +47,29 @@ const Yield = () => {
         >
         <View style={tailwind('m-3')}>
 
-            <View style={tailwind('mt-3 px-3 py-2 flex flex-row justify-between bg-yellow-100 border-2 border-yellow-300 rounded-xl')}>
-                <View style={tailwind('flex flex-row items-center')}>
-                    <Image
-                        style={tailwind('w-4 h-4')}
-                        source={require('../../assets/tokens/avax.png')}
-                    />
+            <PoolListItem
+                basePair={'AVAX'}
+                tradePair={'USDT'}
+                platform={'Trader Joe'}
+            />
 
-                    <Image
-                        style={tailwind('w-4 h-4 relative -ml-1 mr-1')}
-                        source={require('../../assets/tokens/usdt.png')}
-                    />
+            <PoolListItem
+                basePair={'USDC'}
+                tradePair={'AVAX'}
+                platform={'Trader Joe'}
+            />
 
-                    <View>
-                        <Text style={tailwind('text-xs font-bold')}>
-                            Trader Joe
-                        </Text>
+            <PoolListItem
+                basePair={'WETH'}
+                tradePair={'AVAX'}
+                platform={'Trader Joe'}
+            />
 
-                        <Text style={tailwind('text-xs font-bold')}>
-                            AVAX/USDT.e
-                        </Text>
-                    </View>
-                </View>
-
-                <View>
-                    <Text style={tailwind('text-lg font-bold')}>
-                        206.23%
-                    </Text>
-
-                    <Text style={tailwind('text-base font-bold line-through')}>
-                        59.87%
-                    </Text>
-                </View>
-
-                <View>
-                    <Text style={tailwind('text-xs font-semibold')}>
-                        Yield Farming
-                    </Text>
-
-                    <Text style={tailwind('text-xs font-semibold')}>
-                        Trading Fee
-                    </Text>
-
-                    <Text style={tailwind('text-xs font-semibold')}>
-                        Borrow APY
-                    </Text>
-                </View>
-
-                <View>
-                    <Text style={tailwind('text-xs font-bold text-right')}>
-                        95.02%
-                    </Text>
-
-                    <Text style={tailwind('text-xs font-bold text-right')}>
-                        156.77%
-                    </Text>
-
-                    <Text style={tailwind('text-xs font-bold text-right')}>
-                        -45.56%
-                    </Text>
-                </View>
-            </View>
+            <PoolListItem
+                basePair={'AVAX'}
+                tradePair={'DAI'}
+                platform={'Trader Joe'}
+            />
 
         </View>
         </ScrollView>
@@ -122,7 +86,7 @@ const Liquidity = () => {
             style={tailwind('')}
         >
             <View style={tailwind('mt-10 items-center')}>
-                <Text style={tailwind('text-red-400 text-lg font-medium text-center uppercase')}>
+                <Text style={tailwind('text-gray-500 text-lg font-light text-center uppercase')}>
                     no liquidity providers found
                 </Text>
 

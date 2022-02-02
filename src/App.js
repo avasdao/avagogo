@@ -40,10 +40,12 @@ import TraderJoe from './screens/DApps/TraderJoe'
 import YieldYak from './screens/DApps/YieldYak'
 
 import CafeScreen from './screens/Cafe'
-import TxManagerScreen from './screens/TxManager'
 import HelpScreen from './screens/Help'
 import PortfolioScreen from './screens/Portfolio'
 import TreasuryScreen from './screens/Treasury'
+
+import EarlyPreviewWin from './windows/EarlyPreview'
+import TxManagerWin from './windows/TxManager'
 
 /**
  * Help & Support Button
@@ -219,7 +221,8 @@ const HomeStackScreen = () => {
             <HomeStack.Screen name="Help" component={HelpScreen} />
 
             <HomeStack.Group screenOptions={{ presentation: 'modal' }}>
-                <HomeStack.Screen name="TxManager" component={TxManagerScreen} />
+                <HomeStack.Screen name="EarlyPreview" component={EarlyPreviewWin} />
+                <HomeStack.Screen name="TxManager" component={TxManagerWin} />
             </HomeStack.Group>
         </HomeStack.Navigator>
     )
