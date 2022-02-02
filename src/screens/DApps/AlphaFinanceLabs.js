@@ -31,6 +31,10 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
+import {
+  LineChart,
+} from 'react-native-chart-kit'
+
 import PoolListItem from '../../components/PoolListItem'
 
 /* Initialize tab (navigation). */
@@ -249,6 +253,55 @@ function DApp({navigation}) {
                     <Text style={tailwind('mt-5 text-gray-50 text-2xl font-bold text-center')}>
                         $465,244,384
                     </Text>
+
+                    <LineChart
+                        data={{
+                            labels: ['Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Jan'],
+                            datasets: [
+                                {
+                                    data: [
+                                        Math.random() * (75 - 25) + 25,
+                                        Math.random() * (100 - 50) + 50,
+                                        Math.random() * (125 - 75) + 75,
+                                        Math.random() * (150 - 100) + 100,
+                                        Math.random() * (175 - 125) + 125,
+                                        Math.random() * (200 - 150) + 150,
+                                    ]
+                                }
+                            ]
+                        }}
+                        width={175}
+                        height={100}
+                        yAxisLabel="$"
+                        yAxisSuffix="k"
+                        yAxisInterval={1} // optional, defaults to 1
+                        chartConfig={{
+                            backgroundColor: "#e26a00",
+                            backgroundGradientFrom: "#7e89b7",
+                            backgroundGradientTo: "#b35a94",
+                            decimalPlaces: 1, // optional, defaults to 2dp
+                            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                            // style: {
+                            //     borderRadius: 16,
+                            //     padding: 10
+                            // },
+                            propsForDots: {
+                                r: "6",
+                                strokeWidth: "2",
+                                stroke: "#ffa726"
+                            }
+                        }}
+                        bezier
+                        style={{
+                            marginTop: 24,
+                            marginBottom: 8,
+                            borderRadius: 8,
+                            // paddingVertical: 5,
+                            // paddingHorizontal: 5,
+                        }}
+                    />
+
                 </View>
 
                 <View style={tailwind('w-5/12 m-2 p-3 bg-gray-700 opacity-90 rounded-xl')}>
