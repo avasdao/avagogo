@@ -11,6 +11,7 @@ import React from 'react'
 import {
   Dimensions,
   Image,
+  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -28,9 +29,32 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 /**
- * DApps Screen
+ * Welcome
  */
-function DApps({navigation}) {
+const Welcome = () => {
+    if (Platform.OS === 'ios') {
+        return (
+            <View style={tailwind('px-5 py-3')}>
+                <Text style={tailwind('text-2xl font-bold text-gray-800 text-center')}>
+                    Welcome to the Premier DeFi Experience on iOS
+                </Text>
+            </View>
+        )
+    } else {
+        return (
+            <View style={tailwind('px-5 py-3')}>
+                <Text style={tailwind('text-2xl font-bold text-gray-800 text-center')}>
+                    Welcome to the Premier DeFi Experience on Android
+                </Text>
+            </View>
+        )
+    }
+}
+
+/**
+ * Boards Screen
+ */
+function Boards({navigation}) {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
     return (
@@ -39,9 +63,25 @@ function DApps({navigation}) {
             style={tailwind('')}
         >
             {hasAgreed &&
-                <View style={tailwind('py-5')}>
+                <View style={tailwind('py-3')}>
+                    <Welcome />
+
+                    <View style={tailwind('px-10 pb-3')}>
+                        <Text style={tailwind('text-base font-medium text-red-600 text-center')}>
+                            ALL listed dashboards are custom-built
+                        </Text>
+
+                        <Text style={tailwind('text-xl font-medium text-red-600 text-center')}>
+                            100% "NATIVELY" IN-HOUSE
+                        </Text>
+
+                        <Text style={tailwind('text-base font-medium text-red-600 text-center')}>
+                            by our amazing Ava GoGo engineers
+                        </Text>
+                    </View>
+
                     <Pressable
-                        onPress={() => navigation.navigate('DAppsAlphaFinanceLabs')}
+                        onPress={() => navigation.navigate('BoardsAlphaFinanceLabs')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -52,7 +92,7 @@ function DApps({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('DAppsBENQI')}
+                        onPress={() => navigation.navigate('BoardsBENQI')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -63,7 +103,7 @@ function DApps({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('DAppsPangolin')}
+                        onPress={() => navigation.navigate('BoardsPangolin')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -74,7 +114,7 @@ function DApps({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('DAppsTraderJoe')}
+                        onPress={() => navigation.navigate('BoardsTraderJoe')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -85,7 +125,7 @@ function DApps({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('DAppsYieldYak')}
+                        onPress={() => navigation.navigate('BoardsYieldYak')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -94,6 +134,11 @@ function DApps({navigation}) {
                             resizeMode={'cover'}
                         />
                     </Pressable>
+
+                    <View style={tailwind('my-5 flex items-center')}>
+                        <Text style={tailwind('text-2xl font-bold')}>Polygon (MATIC)</Text>
+                        <Text style={tailwind('text-2xl font-bold')}>coming soon..</Text>
+                    </View>
 
                     <Pressable
                         onPress={() => alert('Our team is hard at work to make this happen. Check back soon..')}
@@ -116,6 +161,22 @@ function DApps({navigation}) {
                             resizeMode={'cover'}
                         />
                     </Pressable>
+
+                    <View style={tailwind('my-5 flex items-center')}>
+                        <Text style={tailwind('text-2xl font-bold')}>Smart Bitcoin (SBCH)</Text>
+                        <Text style={tailwind('text-2xl font-bold')}>coming soon..</Text>
+                    </View>
+
+                    <Pressable
+                        onPress={() => alert('Our team is hard at work to make this happen. Check back soon..')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/mist-swap.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
                 </View>
             }
 
@@ -134,7 +195,7 @@ function DApps({navigation}) {
                         />
 
                         <Text style={tailwind('text-pink-500 font-semibold')}>
-                            Avalanche Mobile DApp Store
+                            Avalanche DeFi Dashboards
                         </Text>
                     </View>
 
@@ -144,7 +205,7 @@ function DApps({navigation}) {
                         </Text>
 
                         <Text style={tailwind('mt-3 text-sm text-gray-800')}>
-                            The team at Ava GoGo are BUIDLing <Text style={tailwind('font-bold')}>native mobile</Text> experiences to the <Text style={tailwind('font-bold')}>TOP DApps</Text> found throughout the Avalanche ecosystem.
+                            The team at Ava GoGo are BUIDLing <Text style={tailwind('font-bold')}>native mobile</Text> experiences to the <Text style={tailwind('font-bold')}>TOP Boards</Text> found throughout the Avalanche ecosystem.
                         </Text>
 
                         <Text style={tailwind('mt-3 text-sm text-gray-800')}>
@@ -195,4 +256,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default DApps
+export default Boards

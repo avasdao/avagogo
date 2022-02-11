@@ -29,9 +29,9 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 /**
- * DApp Screen
+ * Dashboard Screen
  */
-function DApp({navigation}) {
+function Dashboard({navigation}) {
     const [searchText, onChangeSearchText] = React.useState(null)
 
     /* Handle onLoad scripts. */
@@ -238,4 +238,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default DApp
+export default Dashboard

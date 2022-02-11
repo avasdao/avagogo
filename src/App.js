@@ -30,14 +30,24 @@ import LottieView from 'lottie-react-native'
 
 import Bugsnag from '@bugsnag/react-native'
 
+import PushNotification from 'react-native-push-notification'
+import DeviceInfo from 'react-native-device-info'
+
+// import Moralis from 'moralis/react-native.js'
+
+import 'react-native-get-random-values' // required by uuid
+import { v4 as uuidv4 } from 'uuid'
+
 import store from './store'
 
-import DAppsStart from './screens/DApps'
-import AlphaFinanceLabs from './screens/DApps/AlphaFinanceLabs'
-import BENQI from './screens/DApps/BENQI'
-import Pangolin from './screens/DApps/Pangolin'
-import TraderJoe from './screens/DApps/TraderJoe'
-import YieldYak from './screens/DApps/YieldYak'
+import NotifService from './NotifService'
+
+import BoardsStart from './screens/Boards'
+import AlphaFinanceLabs from './screens/Boards/AlphaFinanceLabs'
+import BENQI from './screens/Boards/BENQI'
+import Pangolin from './screens/Boards/Pangolin'
+import TraderJoe from './screens/Boards/TraderJoe'
+import YieldYak from './screens/Boards/YieldYak'
 
 import CafeScreen from './screens/Cafe'
 import HelpScreen from './screens/Help'
@@ -75,22 +85,22 @@ const HomeStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
 /**
- * DApps Stack Screen
+ * Boards Stack Screen
  */
 const DappsStackScreen = () => {
     return (
         <DappsStack.Navigator>
             <DappsStack.Screen
-                name="DAppsStart"
-                component={DAppsStart}
+                name="BoardsStart"
+                component={BoardsStart}
                 options={{
-                    title: 'DApp Store',
+                    title: 'Dashboards',
                     headerRight: HelpButton,
                 }}
             />
 
             <DappsStack.Screen
-                name="DAppsAlphaFinanceLabs"
+                name="BoardsAlphaFinanceLabs"
                 component={AlphaFinanceLabs}
                 options={{
                     title: 'Alpha Finance Labs',
@@ -99,7 +109,7 @@ const DappsStackScreen = () => {
             />
 
             <DappsStack.Screen
-                name="DAppsBENQI"
+                name="BoardsBENQI"
                 component={BENQI}
                 options={{
                     title: 'BENQI',
@@ -108,7 +118,7 @@ const DappsStackScreen = () => {
             />
 
             <DappsStack.Screen
-                name="DAppsPangolin"
+                name="BoardsPangolin"
                 component={Pangolin}
                 options={{
                     title: 'Pangolin',
@@ -117,7 +127,7 @@ const DappsStackScreen = () => {
             />
 
             <DappsStack.Screen
-                name="DAppsTraderJoe"
+                name="BoardsTraderJoe"
                 component={TraderJoe}
                 options={{
                     title: 'Trader Joe',
@@ -126,7 +136,7 @@ const DappsStackScreen = () => {
             />
 
             <DappsStack.Screen
-                name="DAppsYieldYak"
+                name="BoardsYieldYak"
                 component={YieldYak}
                 options={{
                     title: 'Yield Yak',
@@ -147,7 +157,7 @@ const TabScreens = () => {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === 'DApps') {
+                    if (route.name === 'Boards') {
                         iconName = focused
                         ? 'ios-apps'
                         : 'ios-apps-outline'
@@ -199,7 +209,7 @@ const TabScreens = () => {
             />
 
             <Tab.Screen
-                name="DApps"
+                name="Boards"
                 component={DappsStackScreen}
                 options={{
                     headerShown: false,
