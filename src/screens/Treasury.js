@@ -160,6 +160,17 @@ function Treasury() {
                         <Text style={tailwind('text-gray-700 text-xl')}>Inbox</Text>
                     </Pressable>
 
+                    <View style={tailwind('mt-10 py-5 items-center')}>
+                        <LottieView
+                            style={tailwind('h-48')}
+                            source={require('../assets/lottie/finance-guru.json')} autoPlay loop
+                        />
+
+                        <Text style={tailwind('text-purple-700 font-light')}>
+                            This area is still under development
+                        </Text>
+                    </View>
+
                 </View>
             }
 

@@ -47,9 +47,20 @@ function Dashboard({navigation}) {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <Text style={tailwind('m-16 text-pink-800 text-2xl font-semibold')}>
+            <Text style={tailwind('my-16 text-purple-600 text-3xl font-semibold text-center uppercase')}>
                 Yield Yak
             </Text>
+
+            <View style={tailwind('py-5 items-center')}>
+                <LottieView
+                    style={tailwind('h-48')}
+                    source={require('../../assets/lottie/finance-guru.json')} autoPlay loop
+                />
+
+                <Text style={tailwind('text-purple-700 font-light')}>
+                    This area is still under development
+                </Text>
+            </View>
 
         </ScrollView>
     )

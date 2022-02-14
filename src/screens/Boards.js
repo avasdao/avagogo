@@ -68,7 +68,7 @@ function Boards({navigation}) {
 
                     <View style={tailwind('px-10 pb-3')}>
                         <Text style={tailwind('text-base font-medium text-red-600 text-center')}>
-                            ALL listed dashboards are custom-built
+                            ALL listed dashboards are being built
                         </Text>
 
                         <Text style={tailwind('text-xl font-medium text-red-600 text-center')}>
