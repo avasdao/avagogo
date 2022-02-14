@@ -10,18 +10,22 @@ https://avagogo.io
 
 Research and subscribe to the leading DeFi trading strategies.
 
-## Moralis + Avalanche Hackathon
+## ETHDenver
 
-https://moralis.io/avalanche-hackathon
+https://ethdenver.com
 
 ### Sponsor Submissions
 
-1. Alpha Finance Lab
-2. BENQI
-3. Chainlink
-4. Colony Index
-5. Covalent API
-6. Yield Yak
+1. Aleo
+2. HOPR
+3. Lit Protocol
+4. Livepeer
+5. Opolis
+6. ??
+7. ??
+8. ??
+9. ??
+10. Unstoppable Domains
 
 
 ### Our Event Team
