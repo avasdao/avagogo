@@ -48,11 +48,28 @@ const Support = () => {
                 <Text style={tailwind('mt-3 text-lg text-gray-800')}>
                     Culpa et arbitror e minim, hic quis nisi iis singulis, ne malis distinguantur,
                     occaecat reprehenderit aut voluptate. Hic illum ullamco est amet eu ex multos
-                    iudicem ea culpa ubi occaecat, velit est fabulas. Si nescius sed admodum, id
-                    aute senserit. Et e tamen minim irure.Summis hic in irure pariatur ne probant
-                    dolore sint consequat veniam e doctrina ut magna cupidatat te arbitror labore
-                    multos excepteur anim, ea nulla quibusdam nescius, e sint consequat, quem
+                    iudicem ea culpa ubi occaecat, velit est fabulas.
                 </Text>
+
+                <View style={tailwind('m-2 flex flex-row justify-around')}>
+                    <Pressable
+                        style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
+                        onPress={() => alert('hi there!')}
+                    >
+                        <Text style={tailwind('text-lg text-red-500 font-bold')}>
+                            Test notif #1
+                        </Text>
+                    </Pressable>
+
+                    <Pressable
+                        style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
+                        onPress={() => alert('hi again!')}
+                    >
+                        <Text style={tailwind('text-lg text-red-500 font-bold')}>
+                            Test notif #2
+                        </Text>
+                    </Pressable>
+                </View>
 
                 <Text style={tailwind('mt-3 text-lg text-gray-800')}>
                     Aut duis tempor eu incididunt. O dolor magna sint constias, de export

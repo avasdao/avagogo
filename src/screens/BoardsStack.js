@@ -23,18 +23,21 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 /* Add START screen. */
-import BoardsStart from './Boards'
+import Start from './Boards'
 
 /* Add BOARDS screens. */
 import _1inch from './Boards/1inch'
 import Aave from './Boards/Aave'
-import AlphaFinanceLabs from './Boards/AlphaFinanceLabs'
+import AlphaFinanceLab from './Boards/AlphaFinanceLab'
 import BENQI from './Boards/BENQI'
+import Compound from './Boards/Compound'
+import Cream from './Boards/Cream'
 import Curve from './Boards/Curve'
 import MistSwap from './Boards/MistSwap'
 import PancakeSwap from './Boards/PancakeSwap'
 import Pangolin from './Boards/Pangolin'
 import TraderJoe from './Boards/TraderJoe'
+import Yearn from './Boards/Yearn'
 import YieldYak from './Boards/YieldYak'
 
 import HelpButton from '../components/HelpButton'
@@ -49,8 +52,8 @@ const BoardsStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="BoardsStart"
-                component={BoardsStart}
+                name="Boards.Start"
+                component={Start}
                 options={{
                     title: 'Boards',
                     headerRight: HelpButton,
@@ -58,7 +61,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards1inch"
+                name="Boards.1inch"
                 component={_1inch}
                 options={{
                     title: '1inch Network',
@@ -67,7 +70,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="BoardsAave"
+                name="Boards.Aave"
                 component={Aave}
                 options={{
                     title: 'Aave',
@@ -76,16 +79,16 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="BoardsAlphaFinanceLabs"
-                component={AlphaFinanceLabs}
+                name="Boards.AlphaFinanceLab"
+                component={AlphaFinanceLab}
                 options={{
-                    title: 'Alpha Finance Labs',
+                    title: 'Alpha Finance Lab',
                     headerRight: HelpButton,
                 }}
             />
 
             <Stack.Screen
-                name="BoardsBENQI"
+                name="Boards.BENQI"
                 component={BENQI}
                 options={{
                     title: 'BENQI',
@@ -94,7 +97,25 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="BoardsCurve"
+                name="Boards.Compound"
+                component={Compound}
+                options={{
+                    title: 'Compound',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <Stack.Screen
+                name="Boards.Cream"
+                component={Cream}
+                options={{
+                    title: 'Cream',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <Stack.Screen
+                name="Boards.Curve"
                 component={Curve}
                 options={{
                     title: 'Curve',
@@ -103,7 +124,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="BoardsMistSwap"
+                name="Boards.MistSwap"
                 component={MistSwap}
                 options={{
                     title: 'MistSwap',
@@ -112,7 +133,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="BoardsPancakeSwap"
+                name="Boards.PancakeSwap"
                 component={PancakeSwap}
                 options={{
                     title: 'PancakeSwap',
@@ -121,7 +142,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="BoardsPangolin"
+                name="Boards.Pangolin"
                 component={Pangolin}
                 options={{
                     title: 'Pangolin',
@@ -130,7 +151,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="BoardsTraderJoe"
+                name="Boards.TraderJoe"
                 component={TraderJoe}
                 options={{
                     title: 'Trader Joe',
@@ -139,7 +160,16 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="BoardsYieldYak"
+                name="Boards.Yearn"
+                component={Yearn}
+                options={{
+                    title: 'Yearn Finance',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <Stack.Screen
+                name="Boards.YieldYak"
                 component={YieldYak}
                 options={{
                     title: 'Yield Yak',

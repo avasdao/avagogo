@@ -81,7 +81,7 @@ function Boards({navigation}) {
                     </View>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards1inch')}
+                        onPress={() => navigation.navigate('Boards.1inch')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -92,7 +92,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsAave')}
+                        onPress={() => navigation.navigate('Boards.Aave')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -103,7 +103,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsAlphaFinanceLabs')}
+                        onPress={() => navigation.navigate('Boards.AlphaFinanceLab')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -114,7 +114,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsBENQI')}
+                        onPress={() => navigation.navigate('Boards.BENQI')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -125,7 +125,29 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsCurve')}
+                        onPress={() => navigation.navigate('Boards.Compound')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/compound.png')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('Boards.Cream')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/cream-finance.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('Boards.Curve')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -136,7 +158,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsMistSwap')}
+                        onPress={() => navigation.navigate('Boards.MistSwap')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -147,7 +169,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsPancakeSwap')}
+                        onPress={() => navigation.navigate('Boards.PancakeSwap')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -158,7 +180,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsPangolin')}
+                        onPress={() => navigation.navigate('Boards.Pangolin')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -169,7 +191,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsTraderJoe')}
+                        onPress={() => navigation.navigate('Boards.TraderJoe')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -180,7 +202,18 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('BoardsYieldYak')}
+                        onPress={() => navigation.navigate('Boards.Yearn')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/yearn-finance.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('Boards.YieldYak')}
                         style={tailwind('items-center')}
                     >
                         <Image

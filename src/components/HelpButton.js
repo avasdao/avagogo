@@ -28,6 +28,8 @@ import tailwind from 'tailwind-rn'
 
 /**
  * Help & Support Button
+ *
+ * Loads a "context-sensitive" help screen.
  */
 const HelpButton = () => {
     /* Request navigation. */
@@ -36,7 +38,7 @@ const HelpButton = () => {
     return (
         <Pressable onPress={() => navigation.navigate('Help')}>
             <Ionicons
-                style={tailwind('mr-3')}
+                style={tailwind('mr-2')}
                 name={'information-circle'}
                 size={36}
                 color={'rgba(180, 90, 90, 0.8)'}

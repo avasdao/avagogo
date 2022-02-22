@@ -273,7 +273,7 @@ function Portfolio() {
                 <View>
                     <View style={tailwind('px-5 pt-5 items-center')}>
                         <Text style={tailwind('text-lg text-gray-800 font-bold')}>
-                            DeFi will NEVER been easier than this!
+                            DeFi will NEVER be easier than this!
                         </Text>
 
                         <Text style={tailwind('mt-3 text-lg text-gray-800')}>
