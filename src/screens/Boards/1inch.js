@@ -48,7 +48,7 @@ function Board({navigation}) {
             style={tailwind('')}
         >
             <Text style={tailwind('my-16 text-purple-600 text-3xl font-semibold text-center uppercase')}>
-                MistSwap
+                1inch Network
             </Text>
 
             <View style={tailwind('py-5 items-center')}>

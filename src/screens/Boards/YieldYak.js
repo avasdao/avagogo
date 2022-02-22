@@ -26,9 +26,9 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 /**
- * Dashboard Screen
+ * Board Screen
  */
-function Dashboard({navigation}) {
+function Board({navigation}) {
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         /**
@@ -66,4 +66,4 @@ function Dashboard({navigation}) {
     )
 }
 
-export default Dashboard
+export default Board

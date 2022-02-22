@@ -152,7 +152,7 @@ function Help({navigation}) {
 
             <View style={tailwind('py-5 bg-purple-200 items-center')}>
                 <LottieView
-                    style={tailwind('h-24 sm:h-10')}
+                    style={tailwind('h-24')}
                     source={require('../assets/lottie/customer-support.json')} autoPlay loop
                 />
 

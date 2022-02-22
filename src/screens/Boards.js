@@ -66,7 +66,7 @@ function Boards({navigation}) {
                 <View style={tailwind('py-3')}>
                     <Welcome />
 
-                    <View style={tailwind('px-10 pb-3')}>
+                    <View style={tailwind('hidden px-10 pb-3')}>
                         <Text style={tailwind('text-base font-medium text-red-600 text-center')}>
                             ALL listed dashboards are being built
                         </Text>
@@ -79,6 +79,28 @@ function Boards({navigation}) {
                             by our amazing Ava GoGo engineers
                         </Text>
                     </View>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('Boards1inch')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/1inch.png')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('BoardsAave')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/aave.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
 
                     <Pressable
                         onPress={() => navigation.navigate('BoardsAlphaFinanceLabs')}
@@ -98,6 +120,39 @@ function Boards({navigation}) {
                         <Image
                             style={styles.dappBanner}
                             source={require('../assets/banners/benqi.png')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('BoardsCurve')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/curve-finance.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('BoardsMistSwap')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/mist-swap.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('BoardsPancakeSwap')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/pancake-swap.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -135,48 +190,6 @@ function Boards({navigation}) {
                         />
                     </Pressable>
 
-                    <View style={tailwind('my-5 flex items-center')}>
-                        <Text style={tailwind('text-2xl font-bold')}>Polygon (MATIC)</Text>
-                        <Text style={tailwind('text-2xl font-bold')}>coming soon..</Text>
-                    </View>
-
-                    <Pressable
-                        onPress={() => alert('Our team is hard at work to make this happen. Check back soon..')}
-                        style={tailwind('items-center')}
-                    >
-                        <Image
-                            style={styles.dappBanner}
-                            source={require('../assets/banners/aave.jpg')}
-                            resizeMode={'cover'}
-                        />
-                    </Pressable>
-
-                    <Pressable
-                        onPress={() => alert('Our team is hard at work to make this happen. Check back soon..')}
-                        style={tailwind('items-center')}
-                    >
-                        <Image
-                            style={styles.dappBanner}
-                            source={require('../assets/banners/curve-finance.jpg')}
-                            resizeMode={'cover'}
-                        />
-                    </Pressable>
-
-                    <View style={tailwind('my-5 flex items-center')}>
-                        <Text style={tailwind('text-2xl font-bold')}>Smart Bitcoin (SBCH)</Text>
-                        <Text style={tailwind('text-2xl font-bold')}>coming soon..</Text>
-                    </View>
-
-                    <Pressable
-                        onPress={() => navigation.navigate('BoardsMistSwap')}
-                        style={tailwind('items-center')}
-                    >
-                        <Image
-                            style={styles.dappBanner}
-                            source={require('../assets/banners/mist-swap.jpg')}
-                            resizeMode={'cover'}
-                        />
-                    </Pressable>
                 </View>
             }
 
@@ -195,7 +208,7 @@ function Boards({navigation}) {
                         />
 
                         <Text style={tailwind('text-pink-500 font-semibold')}>
-                            Avalanche DeFi Dashboards
+                            TOP DeFi Boards
                         </Text>
                     </View>
 
@@ -236,7 +249,7 @@ function Boards({navigation}) {
 const styles = StyleSheet.create({
     dappBanner: {
         width: Dimensions.get('window').width - 20,
-        height: 150,
+        height: 120,
 
         marginTop: 10,
         marginBottom: 10,
