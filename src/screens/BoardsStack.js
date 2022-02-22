@@ -37,6 +37,7 @@ import MistSwap from './Boards/MistSwap'
 import PancakeSwap from './Boards/PancakeSwap'
 import Pangolin from './Boards/Pangolin'
 import TraderJoe from './Boards/TraderJoe'
+import Uniswap from './Boards/Uniswap'
 import Yearn from './Boards/Yearn'
 import YieldYak from './Boards/YieldYak'
 
@@ -155,6 +156,15 @@ const BoardsStack = () => {
                 component={TraderJoe}
                 options={{
                     title: 'Trader Joe',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <Stack.Screen
+                name="Boards.Uniswap"
+                component={Uniswap}
+                options={{
+                    title: 'Uniswap',
                     headerRight: HelpButton,
                 }}
             />

@@ -202,6 +202,17 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
+                        onPress={() => navigation.navigate('Boards.Uniswap')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/banners/uniswap.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
                         onPress={() => navigation.navigate('Boards.Yearn')}
                         style={tailwind('items-center')}
                     >
@@ -222,6 +233,13 @@ function Boards({navigation}) {
                             resizeMode={'cover'}
                         />
                     </Pressable>
+
+                    <View style={tailwind('m-3 p-3 bg-gray-700 rounded-xl')}>
+                        <Text style={tailwind('text-gray-400 text-xs')}>
+                            All product and company names are trademarks™ or registered® trademarks of their respective holders.
+                            Use of them does not imply any affiliation with or endorsement by them.
+                        </Text>
+                    </View>
 
                 </View>
             }

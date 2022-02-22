@@ -37,11 +37,25 @@ import DeviceInfo from 'react-native-device-info'
 import 'react-native-get-random-values' // required by uuid
 import { v4 as uuidv4 } from 'uuid'
 
+// import NotifService from './NotifService'
+import {createChannel} from './NotifManager'
+
 import store from './store'
 
-import NotifService from './NotifService'
-
 import HomeStack from './screens/Home'
+
+/* Create a new notification channels. */
+createChannel() // default-channel
+createChannel(
+    'sched-channel',
+    `Scheduled Channel`,
+    `A time-based channel for "scheduled" notifications.`
+)
+createChannel(
+    'priority-channel',
+    `High Priority Channel`,
+    `A high priority channel for "urgent" notifications.`
+)
 
 /**
  * Main Application

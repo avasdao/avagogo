@@ -7,7 +7,6 @@ import NotificationHandler from './NotificationHandler'
 export default class NotifService {
     /* Constructor. */
     constructor(onRegister, onNotification) {
-        console.log('NOTIF SERVICE CONTRCUTOR');
         this.lastId = 0
         this.lastChannelCounter = 0
 
@@ -29,7 +28,6 @@ export default class NotifService {
     }
 
     createDefaultChannels() {
-        console.log('CREATE DEFAULT CHANNELS');
         PushNotification.createChannel(
             {
                 channelId: 'default-channel-id', // (required)
