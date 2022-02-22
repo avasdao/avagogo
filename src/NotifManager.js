@@ -27,6 +27,13 @@ const localNotif = (_id = 'default-channel', _title, _message) => {
     /* Initialize message id. */
     let messageId = 0
 
+    /* Initialize large icon. */
+    let largeIcon = ''
+
+    /* Initialize small icon. */
+    // NOTE: https://stackoverflow.com/a/45318726
+    let smallIcon = 'ic_notification'
+
     /* Handle message id. */
     switch(_id) {
     case 'default-channel':
@@ -34,25 +41,26 @@ const localNotif = (_id = 'default-channel', _title, _message) => {
         break
     case 'priority-channel':
         messageId = 1
+        largeIcon = 'ic_launcher'
         break
     default:
         messageId = 0
     }
-    
+
     PushNotification.localNotification({
         /* Android Only Properties */
         channelId: _id, // (required) channelId, if the channel doesn't exist, notification will not trigger.
         // ticker: 'My Notification Ticker', // (optional)
         // showWhen: true, // (optional) default: true
         // autoCancel: true, // (optional) default: true
-        // largeIcon: 'ic_launcher', // (optional) default: 'ic_launcher'. Use '' for no large icon.
-        // largeIconUrl: 'https://www.example.tld/picture.jpg', // (optional) default: undefined
-        // smallIcon: 'ic_notification', // (optional) default: 'ic_notification' with fallback for 'ic_launcher'. Use '' for default small icon.
+        largeIcon, // (optional) default: 'ic_launcher'. Use '' for no large icon.
+        // largeIconUrl: 'https://avagogo.io/logo.png', // (optional) default: undefined
+        smallIcon, // (optional) default: 'ic_notification' with fallback for 'ic_launcher'. Use '' for default small icon.
         // bigText: 'My big text that will be shown when notification is expanded', // (optional) default: 'message' prop
         // subText: 'This is a subText', // (optional) default: none
-        // bigPictureUrl: 'https://www.example.tld/picture.jpg', // (optional) default: undefined
+        // bigPictureUrl: 'https://avagogo.io/logo.png', // (optional) default: undefined
         // bigLargeIcon: 'ic_launcher', // (optional) default: undefined
-        // bigLargeIconUrl: 'https://www.example.tld/bigicon.jpg', // (optional) default: undefined
+        // bigLargeIconUrl: 'https://avagogo.io/logo.png', // (optional) default: undefined
         // color: 'red', // (optional) default: system default
         // vibrate: true, // (optional) default: true
         // vibration: 300, // vibration length in milliseconds, ignored if vibrate=false, default: 1000
@@ -85,7 +93,7 @@ const localNotif = (_id = 'default-channel', _title, _message) => {
         userInfo: {}, // (optional) default: {} (using null throws a JSON value '<null>' error)
         playSound: false, // (optional) default: true
         soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
-        number: 10, // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
+        number: '10', // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
         // repeatType: 'day', // (optional) Repeating interval. Check 'Repeating Notifications' section for more info.
     })
 }
@@ -103,7 +111,7 @@ const schedNotif = (_title, _message, _date) => {
         title: _title,
         message: _message,
         autoCancel: true,
-        subText: 'Notification',
+        // subText: 'Notification',
         vibrate: true,
         vibration: 300,
         playSound: true,
