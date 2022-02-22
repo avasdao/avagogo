@@ -43,6 +43,10 @@ const localNotif = (_id = 'default-channel', _title, _message) => {
     // NOTE: (optional) default: 'ic_launcher'. Use '' for no large icon.
     let largeIcon = ''
 
+    /* Initialize large icon URL. */
+    // NOTE: (optional) default: undefined
+    let largeIconUrl = ''
+
     /* Initialize color. */
     // NOTE: (optional) default: system default
     // let color = '#D65DB1' // light purple
@@ -59,26 +63,29 @@ const localNotif = (_id = 'default-channel', _title, _message) => {
     switch(_id) {
     case 'community-channel':
         messageId = 0
+        largeIcon = 'ic_launcher'
+        largeIconUrl = 'https://i.imgur.com/zBMtLGa.png' // star
         break
     case 'portfolio-channel':
         messageId = 1
-        largeIcon = 'ic_launcher'
+        largeIconUrl = 'https://assets.telr.io/tokens/JOE.png'
         break
     case 'treasury-channel':
         messageId = 2
-        largeIcon = 'ic_launcher'
+        largeIconUrl = 'https://i.imgur.com/BZ3gkbd.png'
         break
     case 'cafe-channel':
         messageId = 3
-        largeIcon = 'ic_launcher'
+        largeIconUrl = 'https://i.imgur.com/rmDFQ6C.png'
         break
     case 'boards-channel':
         messageId = 4
-        largeIcon = 'ic_launcher'
+        largeIconUrl = 'https://i.imgur.com/891KdMb.png'
         break
     default:
         messageId = 0
     }
+    console.log('LARGE ICON', largeIcon);
 
     PushNotification.localNotification({
         /* Android Only Properties */
@@ -87,7 +94,7 @@ const localNotif = (_id = 'default-channel', _title, _message) => {
         // showWhen: true, // (optional) default: true
         // autoCancel: true, // (optional) default: true
         largeIcon,
-        // largeIconUrl: 'https://avagogo.io/logo.png', // (optional) default: undefined
+        largeIconUrl,
         smallIcon,
         // bigText: 'My big text that will be shown when notification is expanded', // (optional) default: 'message' prop
         subText,
@@ -144,7 +151,7 @@ const schedNotif = (_title, _message, _date) => {
     let color = '#EE4A84' // pink (earrings color)
 
     PushNotification.localNotificationSchedule({
-        channelId: 'sched-channel',
+        channelId: 'default-channel',
         title: _title,
         message: _message,
         subText: 'Reminder',

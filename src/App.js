@@ -45,6 +45,7 @@ import store from './store'
 import HomeStack from './screens/Home'
 
 /* Create a new notification channels. */
+createChannel() // default-channel
 createChannel(
     'community-channel',
     `Community/Platform Channel`,
@@ -70,11 +71,6 @@ createChannel(
     `Boards Channel`,
     `Support all notifications generated from the Boards area.`
 )
-// createChannel(
-//     'scheduled-channel',
-//     `Scheduled Channel`,
-//     `A time-based channel for "scheduled" notifications.`
-// )
 
 /**
  * Main Application

@@ -72,10 +72,10 @@ const Support = () => {
 
                     <Pressable
                         style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
-                        onPress={testBoards}
+                        onPress={testReminder}
                     >
                         <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
-                            Boards
+                            Reminder
                         </Text>
                     </Pressable>
                 </View>
@@ -92,10 +92,30 @@ const Support = () => {
 
                     <Pressable
                         style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
-                        onPress={testReminder}
+                        onPress={testTreasury}
                     >
                         <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
-                            Reminder
+                            Treasury
+                        </Text>
+                    </Pressable>
+                </View>
+
+                <View style={tailwind('m-2 flex flex-row justify-around')}>
+                    <Pressable
+                        style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
+                        onPress={testCafe}
+                    >
+                        <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
+                            Café
+                        </Text>
+                    </Pressable>
+
+                    <Pressable
+                        style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
+                        onPress={testBoards}
+                    >
+                        <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
+                            Boards
                         </Text>
                     </Pressable>
                 </View>

@@ -1,13 +1,13 @@
 import {localNotif} from '../../NotifManager'
 
 const test = () => {
-    const channel = 'community-channel'
+    const channel = 'cafe-channel'
 
-    const title = `Join Our Airdrop TODAY!`
+    const title = `You've got a new message!`
 
     const message = {
-        body: `We'd love to share some $GOGO with you ;-)`,
-        subText: 'Community Bulletin',
+        body: `Satoshi just sent you a message`,
+        subText: `Café`,
     }
 
     localNotif(channel, title, message)

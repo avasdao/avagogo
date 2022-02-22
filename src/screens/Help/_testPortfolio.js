@@ -4,8 +4,12 @@ const test = () => {
     // FOR DEVELOPMENT PURPOSES ONLY
     const _getFund = () => {
         const funds = [
+            `Ava Labs BUIDL Fund`,
             'COLONY Index',
-            `Shomari's DeFi Fund`,
+            `Elon's Crypto Index`,
+            `Modenero DAO Index`,
+            `Moralis DAO Fund`,
+            `Vitalik's Dev Fund`,
         ]
 
         return funds[Math.floor(Math.random() * funds.length)]
@@ -35,8 +39,8 @@ const test = () => {
 
     const channel = 'boards-channel'
 
-    // const title = `${market} • ${activity}`
-    const title = `${_getMarket()} | ${_getActivity()}`
+    const title = `${_getMarket()} ·•· ${_getActivity()}`
+    // const title = `${_getMarket()} | ${_getActivity()}`
 
     const message = {
         body: `This is just a (default) test.`,
