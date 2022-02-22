@@ -168,7 +168,7 @@ function Boards({navigation}) {
                     </View>
 
                     <Pressable
-                        onPress={() => alert('Our team is hard at work to make this happen. Check back soon..')}
+                        onPress={() => navigation.navigate('BoardsMistSwap')}
                         style={tailwind('items-center')}
                     >
                         <Image

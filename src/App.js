@@ -9,6 +9,7 @@
 import React from 'react'
 
 import {
+    Dimensions,
     Pressable,
     SafeAreaView,
     ScrollView,
@@ -42,18 +43,22 @@ import store from './store'
 
 import NotifService from './NotifService'
 
+/* Add MAIN screens. */
 import BoardsStart from './screens/Boards'
-import AlphaFinanceLabs from './screens/Boards/AlphaFinanceLabs'
-import BENQI from './screens/Boards/BENQI'
-import Pangolin from './screens/Boards/Pangolin'
-import TraderJoe from './screens/Boards/TraderJoe'
-import YieldYak from './screens/Boards/YieldYak'
-
 import CafeScreen from './screens/Cafe'
 import HelpScreen from './screens/Help'
 import PortfolioScreen from './screens/Portfolio'
 import TreasuryScreen from './screens/Treasury'
 
+/* Add BOARDS screens. */
+import AlphaFinanceLabs from './screens/Boards/AlphaFinanceLabs'
+import BENQI from './screens/Boards/BENQI'
+import MistSwap from './screens/Boards/MistSwap'
+import Pangolin from './screens/Boards/Pangolin'
+import TraderJoe from './screens/Boards/TraderJoe'
+import YieldYak from './screens/Boards/YieldYak'
+
+/* Add (modal) windows. */
 import EarlyPreviewWin from './windows/EarlyPreview'
 import TxManagerWin from './windows/TxManager'
 
@@ -94,7 +99,7 @@ const DappsStackScreen = () => {
                 name="BoardsStart"
                 component={BoardsStart}
                 options={{
-                    title: 'Dashboards',
+                    title: 'Boards',
                     headerRight: HelpButton,
                 }}
             />
@@ -113,6 +118,15 @@ const DappsStackScreen = () => {
                 component={BENQI}
                 options={{
                     title: 'BENQI',
+                    headerRight: HelpButton,
+                }}
+            />
+
+            <DappsStack.Screen
+                name="BoardsMistSwap"
+                component={MistSwap}
+                options={{
+                    title: 'MistSwap',
                     headerRight: HelpButton,
                 }}
             />
@@ -143,6 +157,7 @@ const DappsStackScreen = () => {
                     headerRight: HelpButton,
                 }}
             />
+
         </DappsStack.Navigator>
     )
 }
@@ -254,9 +269,22 @@ const App = () => {
         backgroundColor: isDarkMode ? 'rgba(30, 30, 30, 0.8)' : 'rgba(180, 180, 180, 0.8)',
     }
 
+    const _updateLayout = () => {
+        /* Retreive window width. */
+        const width = Dimensions.get('window').width
+
+        /* Retrieve window height. */
+        const height = Dimensions.get('window').height
+
+        alert(`new layout -> w:${width} / h:${height}`)
+    }
+
     return (
         <BugsnagNavigationContainer>
-            <SafeAreaView style={backgroundStyle, tailwind('h-full')}>
+            <SafeAreaView 
+                onLayout={_updateLayout}
+                style={backgroundStyle, tailwind('h-full')}
+            >
                 <HomeStackScreen />
             </SafeAreaView>
         </BugsnagNavigationContainer>

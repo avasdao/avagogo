@@ -10,6 +10,7 @@ import React from 'react'
 
 import {
   Button,
+  Dimensions,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -39,12 +40,12 @@ const Support = () => {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <View style={tailwind('mb-5')}>
+            <View style={tailwind('mb-5 p-3')}>
                 <Text style={tailwind('text-3xl text-pink-500')}>
                     Support Center
                 </Text>
 
-                <Text style={tailwind('text-lg m-3')}>
+                <Text style={tailwind('mt-3 text-lg text-gray-800')}>
                     Culpa et arbitror e minim, hic quis nisi iis singulis, ne malis distinguantur,
                     occaecat reprehenderit aut voluptate. Hic illum ullamco est amet eu ex multos
                     iudicem ea culpa ubi occaecat, velit est fabulas. Si nescius sed admodum, id
@@ -53,7 +54,7 @@ const Support = () => {
                     multos excepteur anim, ea nulla quibusdam nescius, e sint consequat, quem
                 </Text>
 
-                <Text style={tailwind('text-lg m-3')}>
+                <Text style={tailwind('mt-3 text-lg text-gray-800')}>
                     Aut duis tempor eu incididunt. O dolor magna sint constias, de export
                     despicationes, singulis an proident quo sunt proident ut efflorescere o aute
                     possumus singulis, de aliqua incurreret distinguantur non cupidatat export
@@ -78,9 +79,56 @@ const Settings = () => {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <View style={tailwind('m-5')}>
-                <Text>Customize your settings here</Text>
+            <View style={tailwind('p-3')}>
+                <Text style={tailwind('text-lg text-gray-800')}>
+                    Customize your settings here
+                </Text>
             </View>
+
+            <View style={tailwind('p-3')}>
+                <Text style={tailwind('text-base text-gray-800 font-light')}>
+                    Your window features:
+                </Text>
+
+                <Text style={tailwind('ml-3 text-sm text-gray-800')}>
+                    Width: {Dimensions.get('window').width}
+                </Text>
+
+                <Text style={tailwind('ml-3 text-sm text-gray-800')}>
+                    Height: {Dimensions.get('window').height}
+                </Text>
+
+                <Text style={tailwind('ml-3 text-sm text-gray-800')}>
+                    Scale: {Dimensions.get('window').scale}
+                </Text>
+
+                <Text style={tailwind('ml-3 text-sm text-gray-800')}>
+                    Font scale: {Dimensions.get('window').fontScale}
+                </Text>
+            </View>
+
+            <View style={tailwind('p-3')}>
+                <Text style={tailwind('text-base text-gray-800')}>
+                    Your screen features:
+                </Text>
+
+                <Text style={tailwind('ml-3 text-sm text-gray-800')}>
+                    Width: {Dimensions.get('screen').width}
+                </Text>
+
+                <Text style={tailwind('ml-3 text-sm text-gray-800')}>
+                    Height: {Dimensions.get('screen').height}
+                </Text>
+
+                <Text style={tailwind('ml-3 text-sm text-gray-800')}>
+                    Scale: {Dimensions.get('screen').scale}
+                </Text>
+
+                <Text style={tailwind('ml-3 text-sm text-gray-800')}>
+                    Font scale: {Dimensions.get('screen').fontScale}
+                </Text>
+            </View>
+
         </ScrollView>
     )
 }
@@ -102,13 +150,13 @@ function Help({navigation}) {
                 </Pressable>
             </View>
 
-            <View style={tailwind('py-5 bg-gray-50 items-center')}>
+            <View style={tailwind('py-5 bg-purple-200 items-center')}>
                 <LottieView
-                    style={tailwind('h-48')}
+                    style={tailwind('h-24 sm:h-10')}
                     source={require('../assets/lottie/customer-support.json')} autoPlay loop
                 />
 
-                <Text style={tailwind('text-pink-500 font-semibold')}>
+                <Text style={tailwind('text-purple-500 font-semibold')}>
                     24 Customer Support Center
                 </Text>
             </View>
