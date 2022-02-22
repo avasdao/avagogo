@@ -45,17 +45,36 @@ import store from './store'
 import HomeStack from './screens/Home'
 
 /* Create a new notification channels. */
-createChannel() // default-channel
 createChannel(
-    'sched-channel',
-    `Scheduled Channel`,
-    `A time-based channel for "scheduled" notifications.`
+    'community-channel',
+    `Community/Platform Channel`,
+    `A private channel for "community/platform" notifications.`
 )
 createChannel(
-    'priority-channel',
-    `High Priority Channel`,
-    `A high priority channel for "urgent" notifications.`
+    'portfolio-channel',
+    `Portfolio Channel`,
+    `Support all notifications generated from the Portfolio area.`
 )
+createChannel(
+    'treasury-channel',
+    `Treasury Channel`,
+    `Support all notifications generated from the Treasury area.`
+)
+createChannel(
+    'cafe-channel',
+    `Café Channel`,
+    `Support all notifications generated from the Café area.`
+)
+createChannel(
+    'boards-channel',
+    `Boards Channel`,
+    `Support all notifications generated from the Boards area.`
+)
+// createChannel(
+//     'scheduled-channel',
+//     `Scheduled Channel`,
+//     `A time-based channel for "scheduled" notifications.`
+// )
 
 /**
  * Main Application

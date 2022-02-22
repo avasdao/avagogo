@@ -33,6 +33,13 @@ import LottieView from 'lottie-react-native'
 
 import { localNotif, schedNotif } from '../NotifManager'
 
+import testBoards from './Help/_testBoards'
+import testCafe from './Help/_testCafe'
+import testCommunity from './Help/_testCommunity'
+import testPortfolio from './Help/_testPortfolio'
+import testReminder from './Help/_testReminder'
+import testTreasury from './Help/_testTreasury'
+
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
 
@@ -56,19 +63,19 @@ const Support = () => {
                 <View style={tailwind('m-2 flex flex-row justify-around')}>
                     <Pressable
                         style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
-                        onPress={() => localNotif('default-channel', `Sample Message`, `This is just a (default) test.`)}
+                        onPress={testCommunity}
                     >
-                        <Text style={tailwind('text-lg text-red-500 font-bold')}>
-                            Default Notif
+                        <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
+                            Community
                         </Text>
                     </Pressable>
 
                     <Pressable
                         style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
-                        onPress={() => localNotif('priority-channel', `Urgent Message`, `Something requires your attention, NOW!`)}
+                        onPress={testBoards}
                     >
-                        <Text style={tailwind('text-lg text-red-500 font-bold')}>
-                            Priority Notif
+                        <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
+                            Boards
                         </Text>
                     </Pressable>
                 </View>
@@ -76,10 +83,19 @@ const Support = () => {
                 <View style={tailwind('m-2 flex flex-row justify-around')}>
                     <Pressable
                         style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
-                        onPress={() => schedNotif(`Scheduled Message`, `This is just a (scheduled) 5sec test.`, new Date(Date.now() + 5000))}
+                        onPress={testPortfolio}
                     >
-                        <Text style={tailwind('text-lg text-red-500 font-bold')}>
-                            Sched Notif
+                        <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
+                            Portfolio
+                        </Text>
+                    </Pressable>
+
+                    <Pressable
+                        style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
+                        onPress={testReminder}
+                    >
+                        <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
+                            Reminder
                         </Text>
                     </Pressable>
                 </View>

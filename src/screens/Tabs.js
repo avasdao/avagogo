@@ -99,7 +99,7 @@ const Tabs = () => {
             />
 
             <Tab.Screen
-                name="Cafe"
+                name="Café"
                 component={CafeScreen}
                 options={{
                     headerRight: HelpButton,

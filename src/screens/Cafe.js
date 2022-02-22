@@ -156,7 +156,7 @@ function Cafe() {
                         />
 
                         <Text style={tailwind('text-pink-500 font-semibold')}>
-                            Ava GoGo's 24 Hour Cafe
+                            Ava GoGo's 24 Hour Café
                         </Text>
                     </View>
 
