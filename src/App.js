@@ -29,7 +29,6 @@ import tailwind from 'tailwind-rn'
 
 import Bugsnag from '@bugsnag/react-native'
 
-import PushNotification from 'react-native-push-notification'
 import DeviceInfo from 'react-native-device-info'
 
 // import Moralis from 'moralis/react-native.js'
@@ -38,39 +37,39 @@ import 'react-native-get-random-values' // required by uuid
 import { v4 as uuidv4 } from 'uuid'
 
 // import NotifService from './NotifService'
-import {createChannel} from './NotifManager'
+// import {createChannel} from './NotifManager'
 
 import store from './store'
 
 import HomeStack from './screens/Home'
 
 /* Create a new notification channels. */
-createChannel() // default-channel
-createChannel(
-    'community-channel',
-    `Community/Platform Channel`,
-    `A private channel for "community/platform" notifications.`
-)
-createChannel(
-    'portfolio-channel',
-    `Portfolio Channel`,
-    `Support all notifications generated from the Portfolio area.`
-)
-createChannel(
-    'treasury-channel',
-    `Treasury Channel`,
-    `Support all notifications generated from the Treasury area.`
-)
-createChannel(
-    'cafe-channel',
-    `Café Channel`,
-    `Support all notifications generated from the Café area.`
-)
-createChannel(
-    'boards-channel',
-    `Boards Channel`,
-    `Support all notifications generated from the Boards area.`
-)
+// createChannel() // default-channel
+// createChannel(
+//     'community-channel',
+//     `Community/Platform Channel`,
+//     `A private channel for "community/platform" notifications.`
+// )
+// createChannel(
+//     'portfolio-channel',
+//     `Portfolio Channel`,
+//     `Support all notifications generated from the Portfolio area.`
+// )
+// createChannel(
+//     'treasury-channel',
+//     `Treasury Channel`,
+//     `Support all notifications generated from the Treasury area.`
+// )
+// createChannel(
+//     'cafe-channel',
+//     `Café Channel`,
+//     `Support all notifications generated from the Café area.`
+// )
+// createChannel(
+//     'boards-channel',
+//     `Boards Channel`,
+//     `Support all notifications generated from the Boards area.`
+// )
 
 /**
  * Main Application

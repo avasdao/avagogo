@@ -31,14 +31,14 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
-import { localNotif, schedNotif } from '../NotifManager'
+// import { localNotif, schedNotif } from '../NotifManager'
 
-import testBoards from './Help/_testBoards'
-import testCafe from './Help/_testCafe'
-import testCommunity from './Help/_testCommunity'
-import testPortfolio from './Help/_testPortfolio'
-import testReminder from './Help/_testReminder'
-import testTreasury from './Help/_testTreasury'
+// import testBoards from './Help/_testBoards'
+// import testCafe from './Help/_testCafe'
+// import testCommunity from './Help/_testCommunity'
+// import testPortfolio from './Help/_testPortfolio'
+// import testReminder from './Help/_testReminder'
+// import testTreasury from './Help/_testTreasury'
 
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
