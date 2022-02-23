@@ -32,7 +32,9 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 // import { localNotif, schedNotif } from '../NotifManager'
-import {Notifications} from 'react-native-notifications'
+// import {Notifications} from 'react-native-notifications'
+
+import PushNotificationIOS from '@react-native-community/push-notification-ios'
 
 // import testBoards from './Help/_testBoards'
 // import testCafe from './Help/_testCafe'
@@ -41,16 +43,29 @@ import {Notifications} from 'react-native-notifications'
 // import testReminder from './Help/_testReminder'
 // import testTreasury from './Help/_testTreasury'
 
-const testBoards = testCafe = testCommunity = testPortfolio = testReminder = testTreasury = () => {
-    Notifications.postLocalNotification({
+import moment from 'moment'
+
+const testBoards = testCafe = testCommunity = testPortfolio = testReminder = testTreasury = async () => {
+    const details = details = {
+        id: '1',
         body: `Yeah, so we're starting over..`,
         title: 'Hi there!',
         // sound: "chime.aiff",
-        // silent: false,
+        silent: false,
         // category: "SOME_CATEGORY",
-        userInfo: {},
-        fireDate: new Date(),
+        // userInfo: {},
+        // fireDate: new Date(),
+        // fireDate: moment().format("YYYY-MM-DDTHH:mm:ss.sssZ"),
+    }
+
+    PushNotificationIOS.checkPermissions((_permissions) => {
+        console.log('\nIOS PERMISSIONS', _permissions)
     })
+    
+    // await PushNotificationIOS.requestPermissions()
+
+    PushNotificationIOS.addNotificationRequest(request)
+    // Notifications.postLocalNotification(details)
 }
 
 /* Initialize tab (navigation). */
