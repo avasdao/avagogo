@@ -32,6 +32,7 @@ import tailwind from 'tailwind-rn'
 import LottieView from 'lottie-react-native'
 
 // import { localNotif, schedNotif } from '../NotifManager'
+import {Notifications} from 'react-native-notifications'
 
 // import testBoards from './Help/_testBoards'
 // import testCafe from './Help/_testCafe'
@@ -39,6 +40,18 @@ import LottieView from 'lottie-react-native'
 // import testPortfolio from './Help/_testPortfolio'
 // import testReminder from './Help/_testReminder'
 // import testTreasury from './Help/_testTreasury'
+
+const testBoards = testCafe = testCommunity = testPortfolio = testReminder = testTreasury = () => {
+    Notifications.postLocalNotification({
+        body: `Yeah, so we're starting over..`,
+        title: 'Hi there!',
+        // sound: "chime.aiff",
+        // silent: false,
+        // category: "SOME_CATEGORY",
+        userInfo: {},
+        fireDate: new Date(),
+    })
+}
 
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()

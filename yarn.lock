@@ -6873,6 +6873,11 @@ react-native-lightbox@^0.8.1:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-notifications@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-notifications/-/react-native-notifications-4.2.1.tgz#532e0efb7e04cb9711a2307abd65d13b9cf90df4"
+  integrity sha512-Jp41+iQx5W/Va7CblNJKX/5KGfPdPC8zAMd97cs5nwxBqrSEAvGr5Yxpzw3/46bwTybT5Vi5Fg99RJfwn5JSsw==
+
 react-native-pager-view@5.4.9:
   version "5.4.9"
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.9.tgz#c0d40847cfeda5a4e729b53271b0ee0fedff3eb5"
