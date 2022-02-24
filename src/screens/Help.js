@@ -39,14 +39,14 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios'
 
 // import testBoards from './Help/_testBoards'
 // import testCafe from './Help/_testCafe'
-// import testCommunity from './Help/_testCommunity'
+import testCommunity from './Help/_testCommunity'
 // import testPortfolio from './Help/_testPortfolio'
 // import testReminder from './Help/_testReminder'
 // import testTreasury from './Help/_testTreasury'
 
 import moment from 'moment'
 
-const testBoards = testCafe = testCommunity = testPortfolio = testReminder = testTreasury = () => {
+const testBoards = testCafe = testPortfolio = testReminder = testTreasury = () => {
     const details = request = {
         id: '1',
         body: `Yeah, so we're starting over..`,
@@ -84,7 +84,7 @@ const testBoards = testCafe = testCommunity = testPortfolio = testReminder = tes
         }
 
     })
-    
+
 }
 
 /* Initialize tab (navigation). */
