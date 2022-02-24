@@ -11,6 +11,7 @@ import React from 'react'
 import {
   Button,
   Dimensions,
+  Linking,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -45,8 +46,8 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios'
 
 import moment from 'moment'
 
-const testBoards = testCafe = testCommunity = testPortfolio = testReminder = testTreasury = async () => {
-    const details = details = {
+const testBoards = testCafe = testCommunity = testPortfolio = testReminder = testTreasury = () => {
+    const details = request = {
         id: '1',
         body: `Yeah, so we're starting over..`,
         title: 'Hi there!',
@@ -58,14 +59,32 @@ const testBoards = testCafe = testCommunity = testPortfolio = testReminder = tes
         // fireDate: moment().format("YYYY-MM-DDTHH:mm:ss.sssZ"),
     }
 
-    PushNotificationIOS.checkPermissions((_permissions) => {
+    PushNotificationIOS.checkPermissions(async (_permissions) => {
+        /* Set permissions. */
+        // permissions = _permissions
         console.log('\nIOS PERMISSIONS', _permissions)
+
+        /* Handle permissions authorization. */
+        if (_permissions.authorizationStatus === 0) {
+            const response = await PushNotificationIOS.requestPermissions()
+            console.log('Newly requested permissions', response)
+
+            // TODO: Do something upon success or failure.
+        } else if (_permissions.authorizationStatus === 1) {
+            console.log('Abandoning permissions.')
+            // PushNotificationIOS.abandonPermissions()
+
+            // FIXME: How do we re-request permission?
+            Linking.openURL('app-settings:')
+
+        } else {
+            console.log('Making notification request.')
+            PushNotificationIOS.addNotificationRequest(request)
+            // Notifications.postLocalNotification(details)
+        }
+
     })
     
-    // await PushNotificationIOS.requestPermissions()
-
-    PushNotificationIOS.addNotificationRequest(request)
-    // Notifications.postLocalNotification(details)
 }
 
 /* Initialize tab (navigation). */
