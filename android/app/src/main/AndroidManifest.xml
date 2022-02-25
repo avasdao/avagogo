@@ -24,6 +24,13 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="com.bugsnag.android.API_KEY" android:value="91bb5b15020621e909b242dbc53eff62" />
+        <meta-data
+            android:name="com.bugsnag.android.API_KEY"
+            android:value="91bb5b15020621e909b242dbc53eff62" />
+
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
+<!--            android:value="@string/default_notification_channel_id" />-->
+
     </application>
 </manifest>

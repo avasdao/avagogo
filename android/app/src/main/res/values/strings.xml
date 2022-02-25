@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Ava GoGo</string>
+    <string name="default_notification_channel_id">default-channel</string>
     <color name="white">#FFF</color>
 </resources>

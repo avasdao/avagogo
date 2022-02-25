@@ -21,30 +21,24 @@ import {
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 
-// import Ionicons from 'react-native-vector-icons/Ionicons'
-
 import tailwind from 'tailwind-rn'
-
-// import LottieView from 'lottie-react-native'
 
 import Bugsnag from '@bugsnag/react-native'
 
 import DeviceInfo from 'react-native-device-info'
 
-// import Moralis from 'moralis/react-native.js'
-
 import 'react-native-get-random-values' // required by uuid
 import { v4 as uuidv4 } from 'uuid'
 
-// import NotifService from './NotifService'
-// import {createChannel} from './NotifManager'
+import {createChannel} from './NotifManager'
+import messaging from '@react-native-firebase/messaging'
 
 import store from './store'
 
 import HomeStack from './screens/Home'
 
 /* Create a new notification channels. */
-// createChannel() // default-channel
+createChannel() // default-channel
 // createChannel(
 //     'community-channel',
 //     `Community/Platform Channel`,
@@ -75,6 +69,27 @@ import HomeStack from './screens/Home'
  * Main Application
  */
 const App = () => {
+    React.useEffect(() => {
+        // Get the device token
+        console.log('REQUESTING TOKEN...');
+        messaging()
+            .getToken()
+            .then(_token => {
+                console.log('MESSAGING (getToken):', _token)
+                // return saveTokenToDatabase(_token)
+            })
+
+        // If using other push notification providers (ie Amazon SNS, etc)
+        // you may need to get the APNs token instead for iOS:
+        // if(Platform.OS == 'ios') { messaging().getAPNSToken().then(token => { return saveTokenToDatabase(token); }); }
+
+        // Listen to whether the token changes
+        return messaging().onTokenRefresh(_token => {
+            console.log('MESSAGING (onTokenRefresh):', _token)
+            // saveTokenToDatabase(_token)
+        })
+    }, [])
+
     /* Initialize Bugsnag. */
     const { createNavigationContainer } = Bugsnag.getPlugin('reactNavigation')
     const BugsnagNavigationContainer = createNavigationContainer(

@@ -85,7 +85,6 @@ const localNotif = (_id = 'default-channel', _title, _message) => {
     default:
         messageId = 0
     }
-    console.log('LARGE ICON', largeIcon);
 
     PushNotification.localNotification({
         /* Android Only Properties */
