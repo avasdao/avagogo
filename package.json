@@ -13,6 +13,7 @@
     "@bugsnag/plugin-react-navigation": "7.16.0",
     "@bugsnag/react-native": "7.16.0",
     "@ethersproject/shims": "5.5.0",
+    "@notifee/react-native": "4.1.0",
     "@react-native-async-storage/async-storage": "1.15.17",
     "@react-native-community/push-notification-ios": "1.10.1",
     "@react-native-firebase/app": "14.5.0",
