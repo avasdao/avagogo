@@ -18,6 +18,7 @@ import {
     StatusBar,
     StyleSheet,
     Text,
+    TouchableOpacity,
     useColorScheme,
     View,
 } from 'react-native'
@@ -35,6 +36,7 @@ import LottieView from 'lottie-react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 import Masonry from '../components/Masonry'
+import { RNCamera, FaceDetector } from 'react-native-camera'
 
 /* Ignore GiftedChat warnings. */
 LogBox.ignoreLogs([
@@ -180,6 +182,64 @@ function Cafe() {
             });
     }
 
+    /**
+     * Studio
+     */
+    const Studio = () => {
+        return (
+            <View style={styles.camContainer}>
+        <RNCamera
+          style={styles.preview}
+          type={RNCamera.Constants.Type.back}
+          flashMode={RNCamera.Constants.FlashMode.on}
+          androidCameraPermissionOptions={{
+            title: 'Permission to use camera',
+            message: 'We need your permission to use your camera',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+          androidRecordAudioPermissionOptions={{
+            title: 'Permission to use audio recording',
+            message: 'We need your permission to use your audio',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+        >
+          {({ camera, status, recordAudioPermissionStatus }) => {
+            if (status !== 'READY') return <PendingView />;
+            return (
+              <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+                <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
+                  <Text style={{ fontSize: 14 }}> SNAP </Text>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        </RNCamera>
+      </View>
+        )
+    }
+
+    const PendingView = () => (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: 'lightgreen',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text>Waiting</Text>
+      </View>
+    );
+
+    takePicture = async function(camera) {
+    const options = { quality: 0.5, base64: true };
+    const data = await camera.takePictureAsync(options);
+    //  eslint-disable-next-line
+    console.log(data.uri);
+  };
+
     if (hasAgreed) {
         return (
             <Tab.Navigator>
@@ -187,7 +247,7 @@ function Cafe() {
                     name="Newsroom"
                     component={Newsroom}
                     options={{
-                        title: 'Newsroom'
+                        title: 'News'
                     }}
                 />
 
@@ -195,7 +255,7 @@ function Cafe() {
                     name="Chatrooms"
                     component={Chatrooms}
                     options={{
-                        title: 'Chatrooms'
+                        title: 'Chat'
                     }}
                 />
 
@@ -203,7 +263,15 @@ function Cafe() {
                     name="Marketplace"
                     component={Marketplace}
                     options={{
-                        title: 'Marketplace'
+                        title: 'Market'
+                    }}
+                />
+
+                <Tab.Screen
+                    name="Studio"
+                    component={Studio}
+                    options={{
+                        title: 'Studio'
                     }}
                 />
             </Tab.Navigator>
@@ -277,6 +345,11 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center'
     },
+    camContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'black',
+  },
     card: {
         margin: 8,
         width: vpWidth *.5 - 15,
@@ -294,7 +367,21 @@ const styles = StyleSheet.create({
     img: {
         borderRadius: 5,
         flex: 1,
-    }
+    },
+    preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20,
+  },
 })
 
 export default Cafe
