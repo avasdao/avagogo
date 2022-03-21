@@ -34,7 +34,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 // import store from '../store'
 
 /* Add (top-level) screens. */
-import HelpScreen from './Help'
+import InfoScreen from './Info'
 import TabsScreen from './Tabs'
 
 /* Add (modal) windows. */
@@ -53,7 +53,7 @@ const Home = () => {
             screenOptions={{ headerShown: false }}
         >
             <HomeStack.Screen name="Start" component={TabsScreen} />
-            <HomeStack.Screen name="Help" component={HelpScreen} />
+            <HomeStack.Screen name="Info" component={InfoScreen} />
 
             <HomeStack.Group screenOptions={{ presentation: 'modal' }}>
                 <HomeStack.Screen name="EarlyPreview" component={EarlyPreviewWin} />

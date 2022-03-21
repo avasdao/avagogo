@@ -41,7 +41,7 @@ import Uniswap from './Boards/Uniswap'
 import Yearn from './Boards/Yearn'
 import YieldYak from './Boards/YieldYak'
 
-import HelpButton from '../components/HelpButton'
+import InfoButton from '../components/InfoButton'
 
 /* Initialize navigators. */
 const Stack = createNativeStackNavigator()
@@ -57,7 +57,7 @@ const BoardsStack = () => {
                 component={Start}
                 options={{
                     title: 'Boards',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -66,7 +66,7 @@ const BoardsStack = () => {
                 component={_1inch}
                 options={{
                     title: '1inch Network',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -75,7 +75,7 @@ const BoardsStack = () => {
                 component={Aave}
                 options={{
                     title: 'Aave',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -84,7 +84,7 @@ const BoardsStack = () => {
                 component={AlphaFinanceLab}
                 options={{
                     title: 'Alpha Finance Lab',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -93,7 +93,7 @@ const BoardsStack = () => {
                 component={BENQI}
                 options={{
                     title: 'BENQI',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -102,7 +102,7 @@ const BoardsStack = () => {
                 component={Compound}
                 options={{
                     title: 'Compound',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -111,7 +111,7 @@ const BoardsStack = () => {
                 component={Cream}
                 options={{
                     title: 'Cream',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -120,7 +120,7 @@ const BoardsStack = () => {
                 component={Curve}
                 options={{
                     title: 'Curve',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -129,7 +129,7 @@ const BoardsStack = () => {
                 component={MistSwap}
                 options={{
                     title: 'MistSwap',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -138,7 +138,7 @@ const BoardsStack = () => {
                 component={PancakeSwap}
                 options={{
                     title: 'PancakeSwap',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -147,7 +147,7 @@ const BoardsStack = () => {
                 component={Pangolin}
                 options={{
                     title: 'Pangolin',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -156,7 +156,7 @@ const BoardsStack = () => {
                 component={TraderJoe}
                 options={{
                     title: 'Trader Joe',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -165,7 +165,7 @@ const BoardsStack = () => {
                 component={Uniswap}
                 options={{
                     title: 'Uniswap',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -174,7 +174,7 @@ const BoardsStack = () => {
                 component={Yearn}
                 options={{
                     title: 'Yearn Finance',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -183,7 +183,7 @@ const BoardsStack = () => {
                 component={YieldYak}
                 options={{
                     title: 'Yield Yak',
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 

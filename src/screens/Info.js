@@ -37,12 +37,12 @@ import LottieView from 'lottie-react-native'
 
 import PushNotificationIOS from '@react-native-community/push-notification-ios'
 
-// import testBoards from './Help/_testBoards'
-// import testCafe from './Help/_testCafe'
-import testCommunity from './Help/_testCommunity'
-// import testPortfolio from './Help/_testPortfolio'
-// import testReminder from './Help/_testReminder'
-// import testTreasury from './Help/_testTreasury'
+// import testBoards from './Info/_testBoards'
+// import testCafe from './Info/_testCafe'
+import testCommunity from './Info/_testCommunity'
+// import testPortfolio from './Info/_testPortfolio'
+// import testReminder from './Info/_testReminder'
+// import testTreasury from './Info/_testTreasury'
 
 import moment from 'moment'
 
@@ -247,9 +247,9 @@ const Settings = () => {
 }
 
 /**
- * Help Screen
+ * Info Screen
  */
-function Help({navigation}) {
+function Info({navigation}) {
     return (
         <View style={tailwind('h-full')}>
             <View style={tailwind('bg-gray-800 items-end py-1')}>
@@ -295,4 +295,4 @@ function Help({navigation}) {
     )
 }
 
-export default Help
+export default Info

@@ -27,16 +27,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import tailwind from 'tailwind-rn'
 
 /**
- * Help & Support Button
+ * Information Center Button
  *
- * Loads a "context-sensitive" help screen.
+ * Loads a "context-sensitive" information screen.
  */
-const HelpButton = () => {
+const InfoButton = () => {
     /* Request navigation. */
     const navigation = useNavigation()
 
     return (
-        <Pressable onPress={() => navigation.navigate('Help')}>
+        <Pressable onPress={() => navigation.navigate('Info')}>
             <Ionicons
                 style={tailwind('mr-2')}
                 name={'information-circle'}
@@ -47,4 +47,4 @@ const HelpButton = () => {
     )
 }
 
-export default HelpButton
+export default InfoButton

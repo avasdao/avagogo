@@ -41,7 +41,7 @@ import CafeScreen from './Cafe'
 import PortfolioScreen from './Portfolio'
 import TreasuryScreen from './Treasury'
 
-import HelpButton from '../components/HelpButton'
+import InfoButton from '../components/InfoButton'
 
 /* Initialize navigators. */
 const Tab = createBottomTabNavigator()
@@ -60,7 +60,7 @@ const Tabs = () => {
                         iconName = focused
                         ? 'ios-apps'
                         : 'ios-apps-outline'
-                    } else if (route.name === 'Cafe') {
+                    } else if (route.name === 'Café') {
                         iconName = focused
                         ? 'ios-cafe'
                         : 'ios-cafe-outline'
@@ -86,7 +86,7 @@ const Tabs = () => {
                 name="Portfolio"
                 component={PortfolioScreen}
                 options={{
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -94,7 +94,7 @@ const Tabs = () => {
                 name="Treasury"
                 component={TreasuryScreen}
                 options={{
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                 }}
             />
 
@@ -102,7 +102,7 @@ const Tabs = () => {
                 name="Café"
                 component={CafeScreen}
                 options={{
-                    headerRight: HelpButton,
+                    headerRight: InfoButton,
                     tabBarBadge: 3,
                 }}
             />
