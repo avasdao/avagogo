@@ -9,15 +9,17 @@
 import React from 'react'
 
 import {
-  LogBox,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Dimensions,
+    Image,
+    LogBox,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 import {
@@ -32,6 +34,8 @@ import LottieView from 'lottie-react-native'
 
 import { GiftedChat } from 'react-native-gifted-chat'
 
+import Masonry from '../components/Masonry'
+
 /* Ignore GiftedChat warnings. */
 LogBox.ignoreLogs([
     'keyboardWillShow',
@@ -42,6 +46,8 @@ LogBox.ignoreLogs([
 
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
+
+const vpWidth = Dimensions.get('window').width
 
 /**
  * Cafe Screen
@@ -111,6 +117,69 @@ function Cafe() {
         )
     }
 
+    /**
+     * Marketplace
+     */
+    const Marketplace = () => {
+        return (
+            <SafeAreaView style={styles.container}>
+                <Masonry
+                    itemsProvider={dataItemProvider}
+                    renderItem={Item}
+                    pageSize={10}
+                />
+            </SafeAreaView>
+        )
+    }
+
+    // Individual card's provider to be rendered by Masonry
+    function Item(dataItem, key){
+        return (
+            <View
+                key={key}
+                style={{
+                    ...styles.card,
+                    height: dataItem.height
+                  }}
+             >
+                <Image
+                    style={styles.img}
+                    source={{uri: dataItem.image_url}}
+                />
+            </View>
+        );
+    }
+
+    // Card's data provider
+    function dataItemProvider(pageSize=10) {
+
+        // https://picsum.photos/id/108/300/400.jpg
+        const loremPicsum = [
+            'https://i.picsum.photos/id/100/300/400.jpg?hmac=lZTFLF-tp01AB8Pb7LBE3b1JeXakcx2xlCiLBnPyh1s',
+            'https://i.picsum.photos/id/101/300/400.jpg?hmac=ch7txyMwf-n4VLw9uAv9YKLlqpTYFg5FKqMafqSDwP0',
+            'https://i.picsum.photos/id/102/300/400.jpg?hmac=rTNVOy6bNkT5X7hx8_yDmqY-SpeyvueEf9bEtAiOefo',
+            'https://i.picsum.photos/id/103/300/400.jpg?hmac=H4N6Nc3foGUeG61Vj40rDWT4fNPbF3CV0IfI1Ob1cZc',
+            'https://i.picsum.photos/id/104/300/400.jpg?hmac=dS6zoESDavxmsYYPtnrbWIvaCkYJCtKgIrrgCgT7dlo',
+            'https://i.picsum.photos/id/106/300/400.jpg?hmac=SLpWD_VPIFZRRo64PcV75byzYp_mc9YzN3OExGvm5L8',
+            'https://i.picsum.photos/id/107/300/400.jpg?hmac=GXH-AOBiu9QcYyA4roBAaije8FMJi2Qt8HhdPDLUm24',
+            'https://i.picsum.photos/id/108/300/400.jpg?hmac=laQOCDySHOUAHhy8eeD3fRNXm43MdmM8U_3MlXq6VHU',
+            'https://i.picsum.photos/id/129/300/400.jpg?hmac=LYI71sOAHqgGyT8yThCBWbz5EaghHFA0D74syRwXHNg',
+            'https://i.picsum.photos/id/130/300/400.jpg?hmac=mRMhK0E29oMB3MleH7vNPK5mECbC3_Vy9hxC9PhuHC8',
+        ]
+
+        return [...Array(pageSize).keys()].map((i) => {
+            // const image_url = `https://picsum.photos/id/${parseInt(Math.random() * 200)}/300/400.jpg`
+            const image_url = loremPicsum[parseInt(Math.random() * 10)]
+            console.log('IMAGE URL', image_url)
+
+            return {
+                image_url,
+                height: parseInt(Math.max(0.3, Math.random()) * vpWidth),
+                key:i
+              };
+            });
+    }
+
     if (hasAgreed) {
         return (
             <Tab.Navigator>
@@ -121,11 +190,20 @@ function Cafe() {
                         title: 'Newsroom'
                     }}
                 />
+
                 <Tab.Screen
                     name="Chatrooms"
                     component={Chatrooms}
                     options={{
                         title: 'Chatrooms'
+                    }}
+                />
+
+                <Tab.Screen
+                    name="Marketplace"
+                    component={Marketplace}
+                    options={{
+                        title: 'Marketplace'
                     }}
                 />
             </Tab.Navigator>
@@ -193,5 +271,30 @@ function Cafe() {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignContent: 'center',
+        alignItems: 'center'
+    },
+    card: {
+        margin: 8,
+        width: vpWidth *.5 - 15,
+        shadowColor: "#0000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        backgroundColor: 'white',
+        borderRadius: 5,
+    },
+    img: {
+        borderRadius: 5,
+        flex: 1,
+    }
+})
 
 export default Cafe
