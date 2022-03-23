@@ -37,6 +37,7 @@ import { GiftedChat } from 'react-native-gifted-chat'
 
 import Masonry from '../components/Masonry'
 import { RNCamera, FaceDetector } from 'react-native-camera'
+import { NodeCameraView, NodePlayerView } from 'react-native-nodemediaclient'
 
 /* Ignore GiftedChat warnings. */
 LogBox.ignoreLogs([
@@ -50,13 +51,54 @@ LogBox.ignoreLogs([
 const Tab = createMaterialTopTabNavigator()
 
 const vpWidth = Dimensions.get('window').width
+const { width, height } = Dimensions.get("window")
+
+const config = {
+    cameraConfig: {
+        cameraId: 1,
+        cameraFrontMirror: true,
+    },
+    audioConfig: {
+        bitrate: 32000, profile: 1, samplerate: 44100
+    },
+    videoConfig: {
+        preset: 12,
+        bitrate: 400000,
+        profile: 1,
+        fps: 15,
+        videoFrontMirror: false,
+    },
+}
+
+// const config = {
+//   cameraConfig: {
+//     cameraId: 1,
+//     cameraFrontMirror: false
+//   },
+//   videoConfig: {
+//     preset: 4,
+//     bitrate: 2000000,
+//     profile: 2,
+//     fps: 30,
+//     videoFrontMirror: true,
+//   },
+//   audioConfig: {
+//     bitrate: 128000,
+//     profile: 1,
+//     samplerate: 44100,
+//   }
+// }
 
 /**
  * Cafe Screen
  */
 function Cafe() {
     const [hasAgreed, setHasAgreed] = React.useState(false)
+    const [isStreaming, setStreaming] = React.useState(false)
     const [messages, setMessages] = React.useState([])
+
+    const cameraViewRef = React.useRef(null)
+
 
     React.useEffect(() => {
         setMessages([
@@ -157,16 +199,17 @@ function Cafe() {
 
         // https://picsum.photos/id/108/300/400.jpg
         const loremPicsum = [
-            'https://i.picsum.photos/id/100/300/400.jpg?hmac=lZTFLF-tp01AB8Pb7LBE3b1JeXakcx2xlCiLBnPyh1s',
-            'https://i.picsum.photos/id/101/300/400.jpg?hmac=ch7txyMwf-n4VLw9uAv9YKLlqpTYFg5FKqMafqSDwP0',
-            'https://i.picsum.photos/id/102/300/400.jpg?hmac=rTNVOy6bNkT5X7hx8_yDmqY-SpeyvueEf9bEtAiOefo',
-            'https://i.picsum.photos/id/103/300/400.jpg?hmac=H4N6Nc3foGUeG61Vj40rDWT4fNPbF3CV0IfI1Ob1cZc',
-            'https://i.picsum.photos/id/104/300/400.jpg?hmac=dS6zoESDavxmsYYPtnrbWIvaCkYJCtKgIrrgCgT7dlo',
-            'https://i.picsum.photos/id/106/300/400.jpg?hmac=SLpWD_VPIFZRRo64PcV75byzYp_mc9YzN3OExGvm5L8',
-            'https://i.picsum.photos/id/107/300/400.jpg?hmac=GXH-AOBiu9QcYyA4roBAaije8FMJi2Qt8HhdPDLUm24',
-            'https://i.picsum.photos/id/108/300/400.jpg?hmac=laQOCDySHOUAHhy8eeD3fRNXm43MdmM8U_3MlXq6VHU',
-            'https://i.picsum.photos/id/129/300/400.jpg?hmac=LYI71sOAHqgGyT8yThCBWbz5EaghHFA0D74syRwXHNg',
-            'https://i.picsum.photos/id/130/300/400.jpg?hmac=mRMhK0E29oMB3MleH7vNPK5mECbC3_Vy9hxC9PhuHC8',
+            'https://i.imgur.com/tTnauOe.png',
+            'https://i.imgur.com/5HZZv3K.png',
+            'https://i.imgur.com/UCsdH2J.png',
+            'https://i.imgur.com/G1SONLS.png',
+            'https://i.imgur.com/B2IVv3n.png',
+            'https://i.imgur.com/KUaM5eX.png',
+            'https://i.imgur.com/ssIjjDE.png',
+            'https://i.imgur.com/26whmO4.png',
+            'https://i.imgur.com/SkPmbdg.png',
+            'https://i.imgur.com/qkxONZd.png',
+            // '',
         ]
 
         return [...Array(pageSize).keys()].map((i) => {
@@ -188,37 +231,101 @@ function Cafe() {
     const Studio = () => {
         return (
             <View style={styles.camContainer}>
-        <RNCamera
-          style={styles.preview}
-          type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.on}
-          androidCameraPermissionOptions={{
-            title: 'Permission to use camera',
-            message: 'We need your permission to use your camera',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-          androidRecordAudioPermissionOptions={{
-            title: 'Permission to use audio recording',
-            message: 'We need your permission to use your audio',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-        >
-          {({ camera, status, recordAudioPermissionStatus }) => {
-            if (status !== 'READY') return <PendingView />;
-            return (
-              <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-                <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
-                  <Text style={{ fontSize: 14 }}> SNAP </Text>
-                </TouchableOpacity>
-              </View>
-            );
-          }}
-        </RNCamera>
-      </View>
+                <RNCamera
+                    style={styles.preview}
+                    type={RNCamera.Constants.Type.back}
+                    flashMode={RNCamera.Constants.FlashMode.on}
+                    androidCameraPermissionOptions={{
+                        title: 'Permission to use camera',
+                        message: 'We need your permission to use your camera',
+                        buttonPositive: 'Ok',
+                        buttonNegative: 'Cancel',
+                    }}
+
+                    androidRecordAudioPermissionOptions={{
+                        title: 'Permission to use audio recording',
+                        message: 'We need your permission to use your audio',
+                        buttonPositive: 'Ok',
+                        buttonNegative: 'Cancel',
+                    }}
+                >
+                    {({ camera, status, recordAudioPermissionStatus }) => {
+                        if (status !== 'READY') return <PendingView />
+
+                        return (
+                            <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+                                <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
+                                    <Text style={{ fontSize: 14 }}> SNAP </Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    }}
+                </RNCamera>
+            </View>
         )
     }
+
+    const toggleStream = () => {
+        if (!isStreaming) {
+            setStreaming(true)
+            cameraViewRef.current.start()
+
+        } else {
+            setStreaming(false)
+            cameraViewRef.current.stop()
+
+        }
+    }
+
+    /**
+     * Streamer
+     */
+     const BroadcastScreen = () => {
+       const streamKey = '7057-uby1-a6mg-nhiu'
+       const url = `rtmp://rtmp.livepeer.com/live/${streamKey}`
+
+       return (
+         <View style={{flex: 1}}>
+             <TouchableOpacity onPress={toggleStream} style={styles.capture}>
+                 <Text style={{ fontSize: 14 }}> STREAM </Text>
+             </TouchableOpacity>
+
+             <Text style={tailwind('text-gray-800')}>
+                isStreaming: {isStreaming ? 'STREAMING' : 'NOT STREAMING'}
+            </Text>
+
+           <NodeCameraView
+             style={{width, height}}
+             ref={cameraViewRef}
+             outputUrl={url}
+             camera={config.cameraConfig}
+             audio={config.audioConfig}
+             video={config.videoConfig}
+             autopreview={true}
+           />
+         </View>
+       );
+     }
+
+    /**
+     * Streamer
+     */
+     const BroadcastView = () => {
+         const streamKey = '7057-uby1-a6mg-nhiu'
+         const url = `rtmp://rtmp.livepeer.com/live/${streamKey}`
+
+       return (
+           <NodePlayerView
+           style={{width, height}}
+             ref={cameraViewRef}
+             inputUrl={url}
+             scaleMode={"ScaleAspectFit"}
+             bufferTime={300}
+             maxBufferTime={1000}
+             autoplay={true}
+           />
+       );
+     }
 
     const PendingView = () => (
       <View
@@ -269,7 +376,7 @@ function Cafe() {
 
                 <Tab.Screen
                     name="Studio"
-                    component={Studio}
+                    component={BroadcastScreen}
                     options={{
                         title: 'Studio'
                     }}
