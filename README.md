@@ -1,8 +1,6 @@
 # Ava GoGo
 
-> NOTE: This branch is specifically for ETHDenver 2022.
-
-https://avagogo.io/hackathon
+https://avagogo.io
 
 Ava GoGo is introducing the ULTIMATE crypto experience on ANY iOS / Android phone or tablet; and is designed to onboard newcomers and seasoned investors alike to the world of GameFi, DeFi and SocialFi by offering exclusive content and features found no where else.
 
@@ -15,21 +13,6 @@ Join a growing community of experienced traders to help guide you through the ch
 ## For Daytraders & Professionals
 
 Now you can trade on your favorite platforms, while on-the-go. Our push notification system will keep you up-to-date on ANY critical smart contract or platform activity.
-
-## For our Sponsors
-
-We've prepared customized pages for each of our targeted sponsors:
-
-1. 1Inch - https://avagogo.io/hackathon/1inch
-2. Aave - https://avagogo.io/hackathon/aave
-3. API3 - https://avagogo.io/hackathon/api3
-4. Ceramic - https://avagogo.io/hackathon/ceramic
-5. Harmony - https://avagogo.io/hackathon/harmony
-6. Lit Protocol - https://avagogo.io/hackathon/lit
-7. Livepeer Inc. - https://avagogo.io/hackathon/livepeer
-8. Rarible DAO - https://avagogo.io/hackathon/rarible
-9. Tableland (Textile) - https://avagogo.io/hackathon/tableland
-10. Yearn Finance - https://avagogo.io/hackathon/yearn
 
 ## Why Ava GoGo?
 
