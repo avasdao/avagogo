@@ -101,22 +101,79 @@ function Cafe() {
 
 
     React.useEffect(() => {
-        setMessages([
-            {
-                _id: 1,
-                text: 'Hello developer',
-                createdAt: new Date(),
-                user: {
-                    _id: 2,
-                    name: 'React Native',
-                    avatar: 'https://placeimg.com/140/140/any',
+        /**
+         * Fetch Messages
+         */
+        const fetchMessages = async () => {
+            const userid = 'TestUser' // FOR DEV ONLY
+
+            const url = `https://api.avagogo.io/v1/cafe/${userid}`
+            console.log('URL', url)
+
+            /* Request cafe data. */
+            const response = await fetch(url)
+                .catch(err => console.error(err))
+
+            /* Validate response. */
+            if (!response) {
+                return console.error('No response from API server.')
+            }
+
+            /* Decode messages. */
+            const messages = await response.json()
+                .catch(err => console.error(err))
+            console.log('MESSAGES (api):', messages)
+
+            // this.quotes[_asset] = quote
+
+            /* Set messages. */
+            setMessages([
+                {
+                    _id: 1,
+                    text: 'Hello developer',
+                    createdAt: new Date(),
+                    user: {
+                        _id: 2,
+                        name: 'React Native',
+                        avatar: 'https://placeimg.com/140/140/any',
+                    },
                 },
-            },
-        ])
+            ])
+        }
+
+        /* Fetch messages. */
+        fetchMessages()
     }, [])
 
-    const onSend = React.useCallback((messages = []) => {
-        setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+    const onSend = React.useCallback(async (messages = []) => {
+        // console.log('ON SEND (messages):', messages)
+
+        // return setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+
+        setMessages(previousMessages => {
+            console.log('PREVIOUS MESSAGES (onSend):', previousMessages)
+            console.log('MESSAGES (onSend):', messages)
+
+            return GiftedChat.append(previousMessages, messages)
+        })
+
+        /* Build session package. */
+        // const pkg = {
+        //     hi: 'there',
+        //     body: messages[0],
+        // }
+        // console.log('SESSION (pkg):', JSON.stringify(pkg, null, 4))
+
+        const response = await fetch('https://api.avagogo.io/v1/messages', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(messages[0])
+        })
+        .catch(err => console.error(err))
+        // console.log('SESSION RESPONSE:', response)
     }, [])
 
     /**
@@ -153,7 +210,12 @@ function Cafe() {
         return (
             <GiftedChat
                 messages={messages}
-                onSend={messages => onSend(messages)}
+                onSend={_messages => {
+                    console.log('NEW MESSAGE(S):', _messages)
+
+                    /* Send new message(s). */
+                    onSend(_messages)
+                }}
                 user={{
                     _id: 1,
                 }}
@@ -198,7 +260,7 @@ function Cafe() {
     function dataItemProvider(pageSize=10) {
 
         // https://picsum.photos/id/108/300/400.jpg
-        const loremPicsum = [
+        const gallery = [
             'https://i.imgur.com/tTnauOe.png',
             'https://i.imgur.com/5HZZv3K.png',
             'https://i.imgur.com/UCsdH2J.png',
@@ -214,8 +276,8 @@ function Cafe() {
 
         return [...Array(pageSize).keys()].map((i) => {
             // const image_url = `https://picsum.photos/id/${parseInt(Math.random() * 200)}/300/400.jpg`
-            const image_url = loremPicsum[parseInt(Math.random() * 10)]
-            console.log('IMAGE URL', image_url)
+            const image_url = gallery[parseInt(Math.random() * 10)]
+            // console.log('IMAGE URL', image_url)
 
             return {
                 image_url,
