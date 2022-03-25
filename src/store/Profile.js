@@ -25,6 +25,7 @@ class Profile {
     @observable balance = 0
     @observable txCount = 0
     @observable wallet = null
+    @observable userid = null
 
     /* Initialize (persistent) variables. */
     @persist @observable phone = ''
@@ -34,7 +35,7 @@ class Profile {
 
     /* Create wallet. */
     @action.bound
-    async createWallet() {
+    async createWallet(_seed) {
         /* Set node URL. */
         const NODE_URL = 'wss://speedy-nodes-nyc.moralis.io/39f5474b84a2f39277aea60a/avalanche/mainnet/ws'
 
@@ -48,12 +49,21 @@ class Profile {
         // const mnemonicWallet = Wallet.fromMnemonic(mnemonic)
         // console.log('\nWALLET (mnemonic):')
 
+        let privateKey = null
+
         /* Set private key. */
         // FIXME: We need to provide an optimal UX for retrieving this private key.
-        const privateKey = require('../../.secrets').privateKey
+        if (_seed) {
+            privateKey = ethers.utils.id(_seed)
+        } else {
+            privateKey = require('../../.secrets').privateKey
+        }
+        console.log('SEED', _seed)
+        console.log('PRIVATE KEY', privateKey)
 
         /* Initialize wallet. */
         const _wallet = new Wallet(privateKey, provider)
+        // console.log('WALLET', _wallet)
 
         /* Save wallet. */
         this.saveWallet(_wallet)
@@ -101,6 +111,12 @@ class Profile {
     @action.bound
     saveWallet(_wallet) {
         this.wallet = _wallet
+    }
+
+    /* Save userid. */
+    @action.bound
+    saveUserid(_userid) {
+        this.userid = _userid
     }
 
     /* Save (mobile) phone number. */

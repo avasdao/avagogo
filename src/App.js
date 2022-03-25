@@ -69,6 +69,12 @@ createChannel() // default-channel
  * Main Application
  */
 const App = () => {
+    /* Initialize PROFILE context. */
+    const {
+        userid,
+        saveUserid,
+    } = React.useContext(store.Profile)
+
     /**
      * Start Session
      *
@@ -145,6 +151,9 @@ const App = () => {
                     version,
                 }
                 // console.log('SESSION (pkg):', JSON.stringify(pkg, null, 4))
+
+                /* Save userid. */
+                saveUserid(uid)
 
                 const response = await fetch('https://api.avagogo.io/v1/sessions', {
                     method: 'POST',

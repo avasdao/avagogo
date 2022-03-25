@@ -14,13 +14,17 @@ class System {
     constructor() {
         makeObservable(this)
 
-        /* Request AVAX quote. */
-        this.requestQuote('AVAX')
+        /* Request quotes. */
+        this.requestQuote('AVAX') // Avalanche
+        this.requestQuote('BTC') // Bitcoin
+        this.requestQuote('ETH') // Ethereum
 
         /* Set quote update. */
         setInterval(() => {
-            // console.log('Requesting AVAX quote..')
-            this.requestQuote('AVAX')
+            /* Request quotes. */
+            this.requestQuote('AVAX') // Avalanche
+            this.requestQuote('BTC') // Bitcoin
+            this.requestQuote('ETH') // Ethereum
         }, 30000)
     }
 
@@ -31,13 +35,26 @@ class System {
     @persist @observable sessionid = null
     @persist @observable darkMode = false
 
+    /**
+     * Request Quote
+     *
+     * Retrieves the latest USD quote.
+     */
     @action.bound
     async requestQuote(_asset) {
-        const response = await fetch(`https://api.telr.io/v1/ticker/quote/${_asset}`)
+        /* Set URL. */
+        const url = `https://api.telr.io/v1/ticker/quote/${_asset}`
 
+        /* Request quote. */
+        const response = await fetch(url)
+            .catch(err => console.error(err))
+
+        /* Decode response. */
         const quote = await response.json()
+            .catch(err => console.error(err))
         // console.log('QUOTE', quote)
 
+        /* Save quote. */
         this.quotes[_asset] = quote
     }
 

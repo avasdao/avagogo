@@ -39,6 +39,8 @@ import Masonry from '../components/Masonry'
 import { RNCamera, FaceDetector } from 'react-native-camera'
 import { NodeCameraView, NodePlayerView } from 'react-native-nodemediaclient'
 
+import store from '../store'
+
 /* Ignore GiftedChat warnings. */
 LogBox.ignoreLogs([
     'keyboardWillShow',
@@ -99,15 +101,42 @@ function Cafe() {
 
     const cameraViewRef = React.useRef(null)
 
+    /* Initialize PROFILE context. */
+    const {
+        userid,
+        wallet,
+        createWallet,
+    } = React.useContext(store.Profile)
 
     React.useEffect(() => {
         /**
          * Fetch Messages
          */
         const fetchMessages = async () => {
-            const userid = 'TestUser' // FOR DEV ONLY
+            console.log('WALLET (saved):', wallet)
 
-            const url = `https://api.avagogo.io/v1/cafe/${userid}`
+            /* Initialize address. */
+            let address = null
+
+            if (wallet) {
+                /* Set address. */
+                address = wallet.address
+            } else {
+                /* Create wallet. */
+                const created = await createWallet(userid)
+                    .catch(err => console.error(err))
+
+                /* Validaet created. */
+                if (!created) {
+                    throw new Error('Wallet could NOT be created.')
+                }
+
+                /* Set address. */
+                address = created.wallet.address
+                console.log('WALLET (created):', created.wallet)
+            }
+
+            const url = `https://api.avagogo.io/v1/cafe/${address}`
             console.log('URL', url)
 
             /* Request cafe data. */
@@ -133,8 +162,8 @@ function Cafe() {
                     text: 'Hello developer',
                     createdAt: new Date(),
                     user: {
-                        _id: 2,
-                        name: 'React Native',
+                        _id: 1337,
+                        name: 'Ava Nakamoto',
                         avatar: 'https://placeimg.com/140/140/any',
                     },
                 },
@@ -217,7 +246,7 @@ function Cafe() {
                     onSend(_messages)
                 }}
                 user={{
-                    _id: 1,
+                    _id: userid,
                 }}
             />
         )
