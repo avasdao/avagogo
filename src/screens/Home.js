@@ -38,6 +38,7 @@ import InfoScreen from './Info'
 import TabsScreen from './Tabs'
 
 /* Add (modal) windows. */
+import BoostedFarmCalcWin from '../windows/BoostedFarmCalc'
 import EarlyPreviewWin from '../windows/EarlyPreview'
 import TxManagerWin from '../windows/TxManager'
 
@@ -56,6 +57,7 @@ const Home = () => {
             <HomeStack.Screen name="Info" component={InfoScreen} />
 
             <HomeStack.Group screenOptions={{ presentation: 'modal' }}>
+                <HomeStack.Screen name="BoostedFarmCalc" component={BoostedFarmCalcWin} />
                 <HomeStack.Screen name="EarlyPreview" component={EarlyPreviewWin} />
                 <HomeStack.Screen name="TxManager" component={TxManagerWin} />
             </HomeStack.Group>

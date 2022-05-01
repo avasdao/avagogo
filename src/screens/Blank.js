@@ -25,6 +25,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import tailwind from 'tailwind-rn'
 
+import { ethers, utils, Wallet } from 'ethers'
+
 import LottieView from 'lottie-react-native'
 
 /**

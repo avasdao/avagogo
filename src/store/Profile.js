@@ -54,7 +54,7 @@ class Profile {
         /* Set private key. */
         // FIXME: We need to provide an optimal UX for retrieving this private key.
         if (_seed) {
-            privateKey = ethers.utils.id(_seed)
+            privateKey = utils.id(_seed)
         } else {
             privateKey = require('../../.secrets').privateKey
         }

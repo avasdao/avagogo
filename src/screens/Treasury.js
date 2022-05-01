@@ -42,8 +42,8 @@ function Treasury() {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
     const [balance, setBalance] = React.useState(0)
-    const [displayBalance, setDisplayBalance] = React.useState(null)
-    const [displayUsdBalance, setDisplayUsdBalance] = React.useState(null)
+    const [balanceDisplay, setBalanceDisplay] = React.useState(null)
+    const [usdBalanceDisplay, setUsdBalanceDisplay] = React.useState(null)
 
     /* Initialize PROFILE context. */
     const {
@@ -61,15 +61,15 @@ function Treasury() {
 
             setBalance(wei)
 
-            const _displayBalance = ethers.utils.formatUnits(wei, 18)
+            const _balanceDisplay = utils.formatUnits(wei, 18)
 
-            const formattedBalance = numeral(_displayBalance).format('0,0.0000')
+            const formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
 
-            setDisplayBalance(formattedBalance)
+            setBalanceDisplay(formattedBalance)
 
-            const formattedUsdBalance = numeral(_displayBalance * 55).format('$0,0.00[00]')
+            const formattedUsdBalance = numeral(_balanceDisplay * 55).format('$0,0.00[00]')
 
-            setDisplayUsdBalance(formattedUsdBalance)
+            setUsdBalanceDisplay(formattedUsdBalance)
 
             const txCount = await _wallet.getTransactionCount()
                 .catch(err => console.error(err))
@@ -119,7 +119,7 @@ function Treasury() {
                         </Text>
 
                         <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                            {displayBalance}
+                            {balanceDisplay}
                         </Text>
                     </View>
 
@@ -129,7 +129,7 @@ function Treasury() {
                         </Text>
 
                         <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                            {displayUsdBalance}
+                            {usdBalanceDisplay}
                         </Text>
                     </View>
 

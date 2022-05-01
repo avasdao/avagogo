@@ -26,7 +26,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import tailwind from 'tailwind-rn'
 
-import { ethers } from 'ethers'
+import { ethers, utils, Wallet } from 'ethers'
 
 import numeral from 'numeral'
 
@@ -67,7 +67,7 @@ function Board({navigation}) {
             console.log('JOE/USD:', wei)
 
             /* Convert to USD. */
-            const usd = ethers.utils.formatUnits(wei, 18)
+            const usd = utils.formatUnits(wei, 18)
 
             /* Format USD. */
             const formattedUsd = numeral(usd).format('$0,0.00[00]')
@@ -85,7 +85,7 @@ function Board({navigation}) {
             console.log('Circulating supply:', wei)
 
             /* Convert to circulating supply. */
-            const _circulatingSupply = ethers.utils.formatUnits(wei, 18)
+            const _circulatingSupply = utils.formatUnits(wei, 18)
 
             /* Format circulating supply. */
             const formattedSupply = numeral(_circulatingSupply).format('0,0')
@@ -103,7 +103,7 @@ function Board({navigation}) {
             console.log('Maximum supply:', wei)
 
             /* Convert to max supply. */
-            const maxSupply = ethers.utils.formatUnits(wei, 18)
+            const maxSupply = utils.formatUnits(wei, 18)
 
             /* Calculate circulating percentage. */
             const _circulatingPct = _circulatingSupply / maxSupply
@@ -241,7 +241,7 @@ function Board({navigation}) {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => navigation.navigate('TraderJoeStake')}
+                    onPress={() => navigation.navigate('Boards.TraderJoeStake')}
                     style={tailwind('m-3 bg-pink-300 border-2 border-pink-500 rounded-xl items-center justify-center')}
                 >
                     <Image
