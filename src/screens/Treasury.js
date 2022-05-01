@@ -31,6 +31,8 @@ import { ethers, utils, Wallet } from 'ethers'
 
 import moment from 'moment'
 
+import numeral from 'numeral'
+
 import store from '../store'
 
 /**
@@ -38,7 +40,10 @@ import store from '../store'
  */
 function Treasury() {
     const [hasAgreed, setHasAgreed] = React.useState(false)
+
     const [balance, setBalance] = React.useState(0)
+    const [displayBalance, setDisplayBalance] = React.useState(null)
+    const [displayUsdBalance, setDisplayUsdBalance] = React.useState(null)
 
     /* Initialize PROFILE context. */
     const {
@@ -48,36 +53,53 @@ function Treasury() {
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
+        const _setWallet = async (_wallet) => {
+            // Querying the network
+            const wei = await _wallet.getBalance()
+                .catch(err => console.error(err))
+            console.log('\nWallet balance (wei):', wei, moment().unix())
+
+            setBalance(wei)
+
+            const _displayBalance = ethers.utils.formatUnits(wei, 18)
+
+            const formattedBalance = numeral(_displayBalance).format('0,0.0000')
+
+            setDisplayBalance(formattedBalance)
+
+            const formattedUsdBalance = numeral(_displayBalance * 55).format('$0,0.00[00]')
+
+            setDisplayUsdBalance(formattedUsdBalance)
+
+            const txCount = await _wallet.getTransactionCount()
+                .catch(err => console.error(err))
+            console.log('\nWallet # txs:', txCount, moment().unix())
+
+        }
+
         /**
          * Fetch Info
          */
         const fetchInfo = async () => {
-            console.log('\nTREASURY (wallet):', wallet)
+            console.log('\nSaved wallet:', wallet)
 
             /* Validate wallet. */
             if (!wallet) {
                 /* Create new wallet. */
                 const returnedWallet = await createWallet()
-                console.log('\nTREASURY (returned wallet)', returnedWallet)
-            }
-
-            if (wallet) {
-                // Querying the network
-                const balance = await wallet.getBalance()
                     .catch(err => console.error(err))
-                console.log('\nTREASURY (balance):', balance, moment().unix())
+                console.log('\nTreasury created a NEW wallet:', returnedWallet)
 
-                setBalance(balance)
-
-                const txCount = await wallet.getTransactionCount()
-                    .catch(err => console.error(err))
-                console.log('\nTREASURY (txs):', txCount, moment().unix())
+                /* Set wallet. */
+                _setWallet(returnedWallet)
+            } else {
+                /* Set wallet. */
+                _setWallet(wallet)
             }
         }
 
         /* Fetch info. */
-        // fetchInfo()
-
+        fetchInfo()
     }, [wallet])
 
     return (
@@ -86,34 +108,78 @@ function Treasury() {
             style={tailwind('')}
         >
             {hasAgreed &&
-                <View style={tailwind('py-6 items-center')}>
-                    <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
-                        <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                            {balance ? ethers.BigNumber.from(balance).toString() : '0.00' }
+                <>
+                    <Text style={tailwind('m-5 text-gray-600 text-2xl font-semibold text-center')}>
+                        One-stop-shop decentralized trading on Avalanche
+                    </Text>
+
+                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-800 text-lg font-semibold')}>
+                            My Account Balance
                         </Text>
-                        <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                            $0.00
-                        </Text>
-                    </View>
 
-                    <Pressable
-                        style={tailwind('flex')}
-                        onPress={alert('testNotif')}>
-                        <Text style={tailwind('text-gray-700 text-xl')}>Inbox</Text>
-                    </Pressable>
-
-                    <View style={tailwind('mt-10 py-5 items-center')}>
-                        <LottieView
-                            style={tailwind('h-48')}
-                            source={require('../assets/lottie/finance-guru.json')} autoPlay loop
-                        />
-
-                        <Text style={tailwind('text-purple-700 font-light')}>
-                            This area is still under development
+                        <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                            {displayBalance}
                         </Text>
                     </View>
 
-                </View>
+                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-800 text-lg font-semibold')}>
+                            My USD Balance
+                        </Text>
+
+                        <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                            {displayUsdBalance}
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('px-5 flex flex-row justify-between items-center hidden')}>
+                        <Text style={tailwind('text-gray-800 text-base font-bold')}>
+                            Market Cap
+                        </Text>
+
+                        <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                            123,456
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('px-5 flex flex-row justify-between items-center hidden')}>
+                        <Text style={tailwind('text-gray-800 text-base font-bold')}>
+                            Circulating Supply
+                        </Text>
+
+                        <View style={tailwind('flex flex-row items-end')}>
+                            <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                                888,888
+                            </Text>
+
+                            <Text style={tailwind('ml-1 mb-1 text-gray-500 text-xs font-bold')}>
+                                12%
+                            </Text>
+                        </View>
+                    </View>
+
+                    <View style={tailwind('py-6 items-center')}>
+
+                        <Pressable
+                            style={tailwind('flex')}
+                            onPress={() => alert('testNotif')}>
+                            <Text style={tailwind('text-gray-700 text-xl')}>Inbox</Text>
+                        </Pressable>
+
+                        <View style={tailwind('mt-10 py-5 items-center')}>
+                            <LottieView
+                                style={tailwind('h-48')}
+                                source={require('../assets/lottie/finance-guru.json')} autoPlay loop
+                            />
+
+                            <Text style={tailwind('text-purple-700 font-light')}>
+                                This area is still under development
+                            </Text>
+                        </View>
+
+                    </View>
+                </>
             }
 
             {!hasAgreed &&
