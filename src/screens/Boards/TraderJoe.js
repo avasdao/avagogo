@@ -153,7 +153,7 @@ function Board({navigation}) {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => navigation.navigate('EarlyPreview')}
+                    onPress={() => navigation.navigate('TraderJoeStake')}
                     style={tailwind('m-3 bg-pink-300 border-2 border-pink-500 rounded-xl items-center justify-center')}
                 >
                     <Image
@@ -210,7 +210,7 @@ function Board({navigation}) {
                     <View style={tailwind('flex flex-row items-center')}>
                         <Image
                             style={tailwind('w-4 h-4 mr-1')}
-                            source={require('../../assets/tokens/AVAX.png')}
+                            source={require('../../assets/images/tokens/AVAX.png')}
                         />
                         <Text>AVAX</Text>
                     </View>

@@ -1,0 +1,373 @@
+{
+    "name": "MasterChefV2 Farms",
+    "version": {
+        "major": 1,
+        "minor": 0,
+        "patch": 0
+    },
+    "timestamp": "2022-4-04T17:11:00+00:00",
+    "avaxFarms": [
+        {
+            "id": 0,
+            "name": "JOE-AVAX",
+            "pair": "0x454e67025631c065d3cfad6d71e6892f74487a15",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 6,
+            "name": "PNG-AVAX",
+            "pair": "0x3dAF1C6268362214eBB064647555438c6f365F96",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 7,
+            "name": "XAVA-AVAX",
+            "pair": "0x72c3438cf1c915EcF5D9F17A6eD346B273d5bF71",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 8,
+            "name": "SNOB-AVAX",
+            "pair": "0x8fB5bD3aC8eFD05DACae82F512dD03e14aAdAb73",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 9,
+            "name": "PEFI-AVAX",
+            "pair": "0xb78c8238bD907c42BE45AeBdB4A8C8a5D7B49755",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 11,
+            "name": "VSO-AVAX",
+            "pair": "0x00979Bd14bD5Eb5c456c5478d3BF4b6E9212bA7d",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 12,
+            "name": "ELK-AVAX",
+            "pair": "0x88D000E853d03E7D59CE602dff736Dc39aD118fb",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 15,
+            "name": "HUSKY-AVAX",
+            "pair": "0x91B62FB52C9fdF27aD18BBe1c4a8fF52df6104CC",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 22,
+            "name": "WET-AVAX",
+            "pair": "0xee25009c093a06896acf29cf93386ecc00b1714b",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 23,
+            "name": "SHERPA-AVAX",
+            "pair": "0xf0d7ec33147ec3befd24b880472307bf3a01bb8a",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 24,
+            "name": "xJOE",
+            "pair": "0x57319d41F71E81F3c65F2a47CA4e001EbAFd4F33",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 25,
+            "name": "YAK-AVAX",
+            "pair": "0xb5c9e891AF3063004a441BA4FaB4cA3D6DEb5626",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 26,
+            "name": "WETH.e-AVAX",
+            "pair": "0xFE15c2695F1F920da45C30AAE47d11dE51007AF9",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 27,
+            "name": "WBTC.e-AVAX",
+            "pair": "0xd5a37dC5C9A396A03dd1136Fc76A1a02B1c88Ffa",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 28,
+            "name": "AVAX-USDT.e",
+            "pair": "0xeD8CBD9F0cE3C6986b22002F03c6475CEb7a6256",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 29,
+            "name": "LINK.e-AVAX",
+            "pair": "0x6F3a0C89f611Ef5dC9d96650324ac633D02265D3",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 30,
+            "name": "JOE-USDT.e",
+            "pair": "0x1643de2efB8e35374D796297a9f95f64C082a8ce",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 31,
+            "name": "USDT.e-DAI.e",
+            "pair": "0xa6908C7E3Be8F4Cd2eB704B5cB73583eBF56Ee62",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 32,
+            "name": "WBTC.e-USDT.e",
+            "pair": "0xB8D5E8a9247db183847c7D79af9C67F6aeF759f7",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 33,
+            "name": "WETH.e-USDT.e",
+            "pair": "0xbe1b87f47fDE3F338Aa3AA98b85435e1709dFD06",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 34,
+            "name": "LINK.e-USDT.e",
+            "pair": "0x59E4e5501764a293B829902D9CF01967FA80eff2",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 37,
+            "name": "AVAX-DAI.e",
+            "pair": "0x87Dee1cC9FFd464B79e058ba20387c1984aed86a",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 38,
+            "name": "SHIBX-AVAX",
+            "pair": "0x9A053bc937fD1660fCFdA4e6604021E6c2Be36a5",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 39,
+            "name": "AVAX-USDC.e",
+            "pair": "0xa389f9430876455c36478deea9769b7ca4e3ddb1",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 40,
+            "name": "USDC.e-DAI.e",
+            "pair": "0x63abe32d0ee76c05a11838722a63e012008416e6",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 41,
+            "name": "QI-AVAX",
+            "pair": "0x2774516897AC629aD3ED9dCac7e375Dda78412b9",
+            "allocPoint": 100,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 42,
+            "name": "ELE-AVAX",
+            "pair": "0x0A6f6F504245BdC36b47d72d8718c09D6c0461de",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 43,
+            "name": "MIM-AVAX",
+            "pair": "0x781655d802670bbA3c89aeBaaEa59D3182fD755D",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 44,
+            "name": "SYN-AVAX",
+            "pair": "0x20ABdC20758990b6afc90dA2f2D30CD0aa3F73c6",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 45,
+            "name": "TIME-AVAX",
+            "pair": "0xf64e1c5b6e17031f5504481ac8145f4c3eab4917",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 46,
+            "name": "FRAX-AVAX",
+            "pair": "0x0d84595e8638dbc631076c51000b2d31120d8aa1",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 47,
+            "name": "miMATIC-USDC.e",
+            "pair": "0x58f75d7745ec383491053947cd2ae6ee7fc8b8f8",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 48,
+            "name": "SPELL-AVAX",
+            "pair": "0x62cf16bf2bc053e7102e2ac1dee5029b94008d99",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 49,
+            "name": "USDC.e-USDT.e",
+            "pair": "0x2E02539203256c83c7a9F6fA6f8608A32A2b1Ca2",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 50,
+            "name": "GB-AVAX",
+            "pair": "0x7ec396ecbe2186bc7d624527c776a66c55aa86d6",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 51,
+            "name": "mYAK-AVAX",
+            "pair": "0xad3afde5b6b8c353078fd368f508c97d593353cc",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 52,
+            "name": "BNB-AVAX",
+            "pair": "0xeb8eB6300c53C3AddBb7382Ff6c6FbC4165B0742",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 53,
+            "name": "BIFI-AVAX",
+            "pair": "0x361221991b3b6282ff3a62bc874d018bfaf1f8c8",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 54,
+            "name": "WBTC.e-USDC.e",
+            "pair": "0x62475f52add016a06b398aa3b2c2f2e540d36859",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 55,
+            "name": "WETH.e-USDC.e",
+            "pair": "0x199fb78019a08af2cb6a078409d0c8233eba8a0c",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 56,
+            "name": "LINK.e-USDC.e",
+            "pair": "0xb9f425bc9af072a91c423e31e9eb7e04f226b39d",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 57,
+            "name": "miMATIC-AVAX",
+            "pair": "0xd6d03fe131db3de3af5e6326036bac4c1cf8c80d",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 58,
+            "name": "JOE-USDC.e",
+            "pair": "0x67926d973cd8ee876ad210faaf7dffa99e414acf",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 59,
+            "name": "RELAY-WAVAX",
+            "pair": "0x41f3092d6dd8db25ec0f7395f56cac107ecb7a12",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 60,
+            "name": "CHART-WAVAX",
+            "pair": "0x8724a15d8b760bb72545488429a4032228382bda",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 61,
+            "name": "KLO-AVAX",
+            "pair": "0xb2ff0817ad078c92c3afb82326592e06c92581b8",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 62,
+            "name": "AAVE.e-AVAX",
+            "pair": "0xc3e6d9f7a3a5e3e223356383c7c055ee3f26a34f",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 63,
+            "name": "TSD-AVAX",
+            "pair": "0x2d16af2D7f1edB4bC5DBAdF3ffF04670B4BcD0BB",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 64,
+            "name": "TEDDY-AVAX",
+            "pair": "0x91f0963873bbcA2e58d21bB0941c0D859Db3ca31",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        },
+        {
+            "id": 65,
+            "name": "ROCO-AVAX",
+            "pair": "0x8C28394Ed230cD6cAF0DAA0E51680fD57826DEE3",
+            "allocPoint": 0,
+            "masterChef": "0xd6a4F121CA35509aF06A0Be99093d08462f53052"
+        }
+    ],
+    "rinkebyFarms": [
+        {
+            "id": 0,
+            "pair": "0x961Ef01283b7f90B2346f3dCeC9d8291bdacaE92",
+            "allocPoint": 100,
+            "rewarder": "0xBa4d45568CbeC9d9357655b65405768CE22245a6",
+            "masterChef": "0x1F51b7697A1919cF301845c93D4843FD620ad7Cc",
+            "token0": "0xce347E069B68C53A9ED5e7DA5952529cAF8ACCd4",
+            "token1": "0x5b8470fbc6B31038aa07aBD3010aCffCA6E36611",
+            "name": "JOE-fUSDT"
+        }
+    ]
+}

@@ -32,7 +32,7 @@ import LottieView from 'lottie-react-native'
 
 import store from '../store'
 
-import Tokens from '../assets/tokens'
+import Tokens from '../assets/images/tokens'
 
 /**
  * Token Label

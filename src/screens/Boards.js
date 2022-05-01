@@ -86,7 +86,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/1inch.png')}
+                            source={require('../assets/images/banners/1inch.png')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -97,7 +97,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/aave.jpg')}
+                            source={require('../assets/images/banners/aave.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -108,7 +108,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/alpha-finance-lab.jpg')}
+                            source={require('../assets/images/banners/alpha-finance-lab.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -119,7 +119,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/benqi.png')}
+                            source={require('../assets/images/banners/benqi.png')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -130,7 +130,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/compound.png')}
+                            source={require('../assets/images/banners/compound.png')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -141,7 +141,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/cream-finance.jpg')}
+                            source={require('../assets/images/banners/cream-finance.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -152,7 +152,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/curve-finance.jpg')}
+                            source={require('../assets/images/banners/curve-finance.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -163,7 +163,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/mist-swap.jpg')}
+                            source={require('../assets/images/banners/mist-swap.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -174,7 +174,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/pancake-swap.jpg')}
+                            source={require('../assets/images/banners/pancake-swap.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -185,7 +185,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/pangolin.png')}
+                            source={require('../assets/images/banners/pangolin.png')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -196,7 +196,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/trader-joe.png')}
+                            source={require('../assets/images/banners/trader-joe.png')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -207,7 +207,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/uniswap.jpg')}
+                            source={require('../assets/images/banners/uniswap.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -218,7 +218,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/yearn-finance.jpg')}
+                            source={require('../assets/images/banners/yearn-finance.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -229,7 +229,7 @@ function Boards({navigation}) {
                     >
                         <Image
                             style={styles.dappBanner}
-                            source={require('../assets/banners/yield-yak.png')}
+                            source={require('../assets/images/banners/yield-yak.png')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
