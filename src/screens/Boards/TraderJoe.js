@@ -41,6 +41,7 @@ function Board({navigation}) {
     const [joeTokenPrice, setJoeTokenPrice] = React.useState(false)
     const [marketCap, setMarketCap] = React.useState(false)
     const [circulatingSupply, setCirculatingSupply] = React.useState(false)
+    const [circulatingPct, setCirculatingPct] = React.useState(false)
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
@@ -48,28 +49,80 @@ function Board({navigation}) {
          * Fetch Info
          */
         const fetchInfo = async () => {
+            /* Initialize handlers. */
+            let response
+            let wei
 
             const ENDPOINT_JOE_USD = 'https://api.traderjoexyz.com/priceusd/0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd'
+            const ENDPOINT_CIRCULATING_SUPPLY = 'https://api.traderjoexyz.com/supply/circulating'
+            const ENDPOINT_MAX_SUPPLY = 'https://api.traderjoexyz.com/supply/max'
 
             /* Request JOE/USD price. */
-            const response = await fetch(ENDPOINT_JOE_USD)
+            response = await fetch(ENDPOINT_JOE_USD)
                 .catch(err => console.error(err))
-            // console.log('RESPONSE:', response)
 
-            /* Decode response. */
-            const quote = await response.text()
+            /* Decode (quote) response. */
+            wei = await response.text()
                 .catch(err => console.error(err))
-            console.log('JOE/USD:', quote)
+            console.log('JOE/USD:', wei)
 
-            const usd = ethers.utils.formatUnits(quote, 18)
+            /* Convert to USD. */
+            const usd = ethers.utils.formatUnits(wei, 18)
 
+            /* Format USD. */
             const formattedUsd = numeral(usd).format('$0,0.00[00]')
 
+            /* Set token price. */
             setJoeTokenPrice(formattedUsd)
 
-            setMarketCap('$210,752,067')
+            /* Request circulating supply. */
+            response = await fetch(ENDPOINT_CIRCULATING_SUPPLY)
+                .catch(err => console.error(err))
 
-            setCirculatingSupply('161,881,958')
+            /* Decode circulating supply. */
+            wei = await response.text()
+                .catch(err => console.error(err))
+            console.log('Circulating supply:', wei)
+
+            /* Convert to circulating supply. */
+            const _circulatingSupply = ethers.utils.formatUnits(wei, 18)
+
+            /* Format circulating supply. */
+            const formattedSupply = numeral(_circulatingSupply).format('0,0')
+
+            /* Set circulating supply. */
+            setCirculatingSupply(formattedSupply)
+
+            /* Request max supply. */
+            response = await fetch(ENDPOINT_MAX_SUPPLY)
+                .catch(err => console.error(err))
+
+            /* Decode max supply. */
+            wei = await response.text()
+                .catch(err => console.error(err))
+            console.log('Maximum supply:', wei)
+
+            /* Convert to max supply. */
+            const maxSupply = ethers.utils.formatUnits(wei, 18)
+
+            /* Calculate circulating percentage. */
+            const _circulatingPct = _circulatingSupply / maxSupply
+            console.log('Circulating percentage (of max):', _circulatingPct)
+
+            /* Format circulating percentage. */
+            const formattedPct = numeral(_circulatingPct).format('0.00%')
+
+            /* Set circulating percentage. */
+            setCirculatingPct(formattedPct)
+
+            /* Calculate (circulating) market cap. */
+            const marketCap = _circulatingSupply * usd
+
+            /* Format (circulating) market cap. */
+            const formattedCap = numeral(marketCap).format('$0,0')
+
+            /* Set (circulating) market cap. */
+            setMarketCap(formattedCap)
         }
 
         /* Fetch info. */
@@ -117,7 +170,7 @@ function Board({navigation}) {
             </View>
 
             <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
-                <Text style={tailwind('text-gray-800 text-base font-semibold')}>
+                <Text style={tailwind('text-gray-800 text-base font-bold')}>
                     Market Cap
                 </Text>
 
@@ -127,13 +180,19 @@ function Board({navigation}) {
             </View>
 
             <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
-                <Text style={tailwind('text-gray-800 text-base font-semibold')}>
+                <Text style={tailwind('text-gray-800 text-base font-bold')}>
                     Circulating Supply
                 </Text>
 
-                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                    {circulatingSupply}
-                </Text>
+                <View style={tailwind('flex flex-row items-end')}>
+                    <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                        {circulatingSupply}
+                    </Text>
+
+                    <Text style={tailwind('ml-1 mb-1 text-gray-500 text-xs font-bold')}>
+                        {circulatingPct}
+                    </Text>
+                </View>
             </View>
 
             <View style={tailwind('flex flex-row my-3')}>
