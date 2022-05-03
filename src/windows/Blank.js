@@ -9,25 +9,31 @@
 import React from 'react'
 
 import {
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 import { observer } from 'mobx-react-lite'
 
-import Ionicons from 'react-native-vector-icons/Ionicons'
-
 import tailwind from 'tailwind-rn'
+
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import LottieView from 'lottie-react-native'
 
 import { ethers, utils, Wallet } from 'ethers'
 
-import LottieView from 'lottie-react-native'
+import store from '../store'
+
+/* Initialize SYSTEM context. */
+const {
+    DEBUG,
+} = React.useContext(store.System)
 
 /**
  * Blank Screen

@@ -29,11 +29,18 @@ import { ethers, utils, Wallet } from 'ethers'
 
 import LottieView from 'lottie-react-native'
 
+import store from '../store'
+
 /**
  * Blank Screen
  */
 const Blank = observer(({navigation}) => {
     const [hasAgreed, setHasAgreed] = React.useState(false)
+
+    /* Initialize SYSTEM context. */
+    const {
+        DEBUG,
+    } = React.useContext(store.System)
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
