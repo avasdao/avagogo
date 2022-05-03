@@ -9,17 +9,17 @@
 import React from 'react'
 
 import {
-  Button,
-  Dimensions,
-  Linking,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Button,
+    Dimensions,
+    Linking,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 import {

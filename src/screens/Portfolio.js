@@ -9,15 +9,15 @@
 import React from 'react'
 
 import {
-  Dimensions,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Dimensions,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 import {

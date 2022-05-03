@@ -9,15 +9,15 @@
 import React from 'react'
 
 import {
-  Image,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Image,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 // import { useNavigation } from '@react-navigation/native'

@@ -9,15 +9,15 @@
 import React from 'react'
 
 import {
-  Linking,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Linking,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 import { observer } from 'mobx-react-lite'

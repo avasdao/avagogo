@@ -39,6 +39,8 @@ import store from '../store'
  * Will shorten the length of the address.
  */
 const _abbr = (_address) => {
+    if (!_address) return '0x0'
+
     return _address.slice(0, 10) + ' ... ' + _address.slice(-10)
 }
 
@@ -70,6 +72,11 @@ const BoostedFarmCalc = observer(({navigation}) => {
     /* Initialize pending reward handlers. */
     const [pendingReward, setPendingReward] = React.useState(0)
     const [pendingRewardDisplay, setPendingRewardDisplay] = React.useState(0)
+
+    /* Initialize PLATFORM context. */
+    const {
+        currentPool,
+    } = React.useContext(store.Platform)
 
     /* Initialize PROFILE context. */
     const {
@@ -228,6 +235,19 @@ const BoostedFarmCalc = observer(({navigation}) => {
                     {_abbr(acctAddress)}
                 </Text>
             </View>
+
+            <Pressable
+                onPress={() => navigation.navigate('Pools')}
+                style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}
+            >
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    Pool
+                </Text>
+
+                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                    {currentPool || 'no pool selected'}
+                </Text>
+            </Pressable>
 
             <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>

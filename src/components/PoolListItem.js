@@ -9,15 +9,15 @@
 import React from 'react'
 
 import {
-  Image,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Image,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
@@ -65,6 +65,13 @@ const PoolListItem = observer((_params) => {
     /* Initialize navigation. */
     const navigation = useNavigation()
 
+    /* Initialize PLATFORM context. */
+    const {
+        currentPool,
+        saveCurrentPool,
+    } = React.useContext(store.Platform)
+
+    /* Initialize SYSTEM context. */
     const {
         openPreview,
     } = React.useContext(store.System)
@@ -109,9 +116,26 @@ const PoolListItem = observer((_params) => {
         fetchInfo()
     }, [])
 
+    /**
+     * Save Pool
+     *
+     * Will save the user-selected pool to the Platform context.
+     */
+    const _savePool = () => {
+        /* Set pool */
+        const pool = `${basePair}/${tradePair}`
+        // console.log('USER SELECTED POOL', pool)
+
+        /* Save selected pool. */
+        saveCurrentPool(pool)
+
+        /* Close modal. */
+        navigation.goBack()
+    }
+
     return (
         <Pressable
-            onPress={() => navigation.navigate('EarlyPreview')}
+            onPress={_savePool}
             style={tailwind('mt-3 px-3 py-2 flex flex-row justify-between bg-yellow-100 border-2 border-yellow-300 rounded-xl')}
         >
             <View style={tailwind('flex flex-row items-center')}>

@@ -9,17 +9,17 @@
 import React from 'react'
 
 import {
-  Dimensions,
-  Image,
-  Platform,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Dimensions,
+    Image,
+    Platform,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'

@@ -9,15 +9,15 @@
 import React from 'react'
 
 import {
-  Image,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+    Image,
+    Pressable,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    useColorScheme,
+    View,
 } from 'react-native'
 
 // import { useNavigation } from '@react-navigation/native'
@@ -40,6 +40,7 @@ import TabsScreen from './Tabs'
 /* Add (modal) windows. */
 import BoostedFarmCalcWin from '../windows/BoostedFarmCalc'
 import EarlyPreviewWin from '../windows/EarlyPreview'
+import PoolsWin from '../windows/Pools'
 import TxManagerWin from '../windows/TxManager'
 
 /* Initialize navigators. */
@@ -59,6 +60,7 @@ const Home = () => {
             <HomeStack.Group screenOptions={{ presentation: 'modal' }}>
                 <HomeStack.Screen name="BoostedFarmCalc" component={BoostedFarmCalcWin} />
                 <HomeStack.Screen name="EarlyPreview" component={EarlyPreviewWin} />
+                <HomeStack.Screen name="Pools" component={PoolsWin} />
                 <HomeStack.Screen name="TxManager" component={TxManagerWin} />
             </HomeStack.Group>
         </HomeStack.Navigator>
