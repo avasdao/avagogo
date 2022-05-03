@@ -107,42 +107,55 @@ const BoostedFarmCalc = observer(({navigation}) => {
         wallet,
     } = React.useContext(store.Profile)
 
-    /* Initialize handlers. */
-    let abi
-    let address
-    let contract
-    let _balanceDisplay
-    let formattedBalance
-    let timestamp
-    let wei
-
     /* Handle onLoad scripts. */
     React.useEffect(() => {
+        /* Initialize handlers. */
+        let _balanceDisplay
+        let formattedBalance
+        let timestamp
+        let wei
+
         /* Set contract address. */
         // NOTE: Trader Joe - VeJoeToken
-        address = '0x3cabf341943Bc8466245e4d6F1ae0f8D071a1456'
+        const address = '0x3cabf341943Bc8466245e4d6F1ae0f8D071a1456'
 
         /* Set contract ABI. */
-        abi = require('../assets/abis/trader-joe/VeJoeToken')
+        const abi = require('../assets/abis/trader-joe/VeJoeToken')
 
         /* Initialize contract. */
-        contract = new ethers.Contract(address, abi, wallet)
+        const contract = new ethers.Contract(address, abi, wallet)
 
         /**
          * Fetch Info
          */
         const fetchInfo = async () => {
-            const wei = await contract.balanceOf(wallet.address)
+            wei = await contract
+                .balanceOf(wallet.address)
+                .catch(err => console.error(err))
             // console.log('veJOE BALANCE', wei);
 
             setVeJoeBalance(wei)
 
-            const _balanceDisplay = utils.formatUnits(wei, 18)
+            _balanceDisplay = utils.formatUnits(wei, 18)
             // console.log('veJOE BALANCE (display)', typeof _balanceDisplay, _balanceDisplay);
 
-            const formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
+            formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
 
             setVeJoeBalanceDisplay(formattedBalance)
+
+            wei = await contract
+                .totalSupply()
+                .catch(err => console.error(err))
+            // console.log('Total supply:', wei)
+
+            setVeJoeTotalSupply(wei)
+
+            _balanceDisplay = utils.formatUnits(wei, 18)
+            // console.log('Pending rewards (balance):', typeof _balanceDisplay, _balanceDisplay);
+
+            formattedBalance = numeral(_balanceDisplay).format('0,0')
+
+            setVeJoeTotalSupplyDisplay(formattedBalance)
         }
 
         /* Fetch info. */
@@ -151,15 +164,21 @@ const BoostedFarmCalc = observer(({navigation}) => {
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
+        /* Initialize handlers. */
+        let _balanceDisplay
+        let formattedBalance
+        let timestamp
+        let wei
+
         /* Set contract address. */
         // NOTE: Trader Joe - VeJoeStaking (proxy)
-        address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
+        const address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
 
         /* Set contract ABI. */
-        abi = require('../assets/abis/trader-joe/VeJoeStaking')
+        const abi = require('../assets/abis/trader-joe/VeJoeStaking')
 
         /* Initialize contract. */
-        contract = new ethers.Contract(address, abi, wallet)
+        const contract = new ethers.Contract(address, abi, wallet)
 
         /**
          * Fetch Info
@@ -172,7 +191,9 @@ const BoostedFarmCalc = observer(({navigation}) => {
             setAcctAddress(wallet.address)
 
             /* Request user infos. */
-            const userInfos = await contract.userInfos(wallet.address)
+            const userInfos = await contract
+                .userInfos(wallet.address)
+                .catch(err => console.error(err))
             // console.log('User infos:', JSON.stringify(userInfos, null, 2))
 
             /* Retrieve balance (in wei). */

@@ -63,10 +63,12 @@ const Stake = observer(({navigation}) => {
     /* Initialize last claim handlers. */
     const [lastClaim, setLastClaim] = React.useState(0)
     const [lastClaimDisplay, setLastClaimDisplay] = React.useState(0)
+    const [lastClaimSinceDisplay, setLastClaimSinceDisplay] = React.useState(0)
 
     /* Initialize speed-up handlers. */
     const [speedUpEnd, setSpeedUpEnd] = React.useState(0)
     const [speedUpEndDisplay, setSpeedUpEndDisplay] = React.useState(0)
+    const [speedUpUntilEndDisplay, setSpeedUpUntilEndDisplay] = React.useState(0)
 
     /* Initialize pending reward handlers. */
     const [pendingVeJoe, setPendingVeJoe] = React.useState(0)
@@ -77,31 +79,24 @@ const Stake = observer(({navigation}) => {
         wallet,
     } = React.useContext(store.Profile)
 
-    /* Initialize handlers. */
-    let address
-    let abi
-    let _balanceDisplay
-    let contract
-    let formattedBalance
-    let timestamp
-    let wei
-
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         /* Set token address. */
-        address = '0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd' // JOE
+        const address = '0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd' // JOE
 
         /* Set ABI. */
-        abi = require('../../../assets/abis/trader-joe/JOE')
+        const abi = require('../../../assets/abis/trader-joe/JOE')
 
         /* Initialize contract. */
-        contract = new ethers.Contract(address, abi, wallet)
+        const contract = new ethers.Contract(address, abi, wallet)
 
         /**
          * Fetch Info
          */
         const fetchInfo = async () => {
-            const wei = await contract.balanceOf(wallet.address)
+            const wei = await contract
+                .balanceOf(wallet.address)
+                .catch(err => console.error(err))
             // console.log('JOE BALANCE', wei);
 
             setJoeBalance(wei)
@@ -122,19 +117,21 @@ const Stake = observer(({navigation}) => {
     React.useEffect(() => {
         /* Set contract address. */
         // NOTE: Trader Joe - VeJoeToken
-        address = '0x3cabf341943Bc8466245e4d6F1ae0f8D071a1456'
+        const address = '0x3cabf341943Bc8466245e4d6F1ae0f8D071a1456'
 
         /* Set contract ABI. */
-        abi = require('../../../assets/abis/trader-joe/VeJoeToken')
+        const abi = require('../../../assets/abis/trader-joe/VeJoeToken')
 
         /* Initialize contract. */
-        contract = new ethers.Contract(address, abi, wallet)
+        const contract = new ethers.Contract(address, abi, wallet)
 
         /**
          * Fetch Info
          */
         const fetchInfo = async () => {
-            const wei = await contract.balanceOf(wallet.address)
+            const wei = await contract
+                .balanceOf(wallet.address)
+                .catch(err => console.error(err))
             // console.log('veJOE BALANCE', wei);
 
             setVeJoeBalance(wei)
@@ -153,49 +150,29 @@ const Stake = observer(({navigation}) => {
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
+        /* Initialize handlers. */
+        let _balanceDisplay
+        let formattedBalance
+        let timestamp
+        let wei
+
         /* Set contract address. */
         // NOTE: Trader Joe - VeJoeStaking (proxy)
-        address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
+        const address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
 
         /* Set contract ABI. */
-        abi = require('../../../assets/abis/trader-joe/VeJoeStaking')
+        const abi = require('../../../assets/abis/trader-joe/VeJoeStaking')
 
         /* Initialize contract. */
-        contract = new ethers.Contract(address, abi, wallet)
+        const contract = new ethers.Contract(address, abi, wallet)
 
-        /**
-         * Handle Pending Rewards
-         *
-         * Will regularly update to reflect the last rewards in the UI.
-         */
-        const handlePendingRewards = async () => {
-            wei = await contract
-                .getPendingVeJoe(wallet.address)
-                .catch(err => console.error(err))
-            // console.log('Pending rewards:', wei)
-
-            setPendingVeJoe(wei)
-
-            _balanceDisplay = utils.formatUnits(wei, 18)
-            // console.log('Pending veJOE BALANCE:', typeof _balanceDisplay, _balanceDisplay);
-
-            formattedBalance = numeral(_balanceDisplay).format('0,0.000000000000')
-
-            setPendingVeJoeDisplay(formattedBalance)
-        }
-
-        /* Start pending rewards interval. */
-        // setInterval(handlePendingRewards, 1000)
-    }, [])
-
-    /* Handle onLoad scripts. */
-    React.useEffect(() => {
         /**
          * Fetch Info
          */
         const fetchInfo = async () => {
-            // const balance = await contract.balanceOf(wallet.getAddress())
-            const userInfos = await contract.userInfos(wallet.address)
+            const userInfos = await contract
+                .userInfos(wallet.address)
+                .catch(err => console.error(err))
             // console.log('USER INFOS', userInfos);
 
             wei = userInfos[0]
@@ -229,6 +206,10 @@ const Stake = observer(({navigation}) => {
 
             setLastClaimDisplay(_lastClaimDisplay)
 
+            const _lastClaimSinceDisplay = moment.unix(timestamp).fromNow()
+
+            setLastClaimSinceDisplay(_lastClaimSinceDisplay)
+
             timestamp = userInfos[3]
             // console.log('SPEED UP END', timestamp);
 
@@ -238,10 +219,38 @@ const Stake = observer(({navigation}) => {
 
             setSpeedUpEndDisplay(_speedUpEndDisplay)
 
+            const _speedUpUntilEndDisplay = moment.unix(timestamp).fromNow()
+
+            setSpeedUpUntilEndDisplay(_speedUpUntilEndDisplay)
+        }
+
+        /**
+         * Handle Pending Rewards
+         *
+         * Will regularly update to reflect the last rewards in the UI.
+         */
+        const handlePendingRewards = async () => {
+            wei = await contract
+                .getPendingVeJoe(wallet.address)
+                .catch(err => console.error(err))
+            // console.log('Pending rewards:', wei)
+
+            setPendingVeJoe(wei)
+
+            _balanceDisplay = utils.formatUnits(wei, 18)
+            // console.log('Pending veJOE BALANCE:', typeof _balanceDisplay, _balanceDisplay);
+
+            formattedBalance = numeral(_balanceDisplay).format('0,0.000000000000')
+
+            setPendingVeJoeDisplay(formattedBalance)
         }
 
         /* Fetch info. */
-        // fetchInfo()
+        fetchInfo()
+
+        /* Start pending rewards interval. */
+        // setInterval(handlePendingRewards, 1000)
+        handlePendingRewards()
     }, [])
 
     return (
@@ -252,7 +261,7 @@ const Stake = observer(({navigation}) => {
             <View style={tailwind('mt-5 mb-3 px-3 border-4 border-purple-300 bg-purple-200 rounded-xl')}>
                 <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
                     <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                        JOE Balance
+                        Staked JOE Balance
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -319,6 +328,10 @@ const Stake = observer(({navigation}) => {
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
                     {lastClaimDisplay}
                 </Text>
+
+                <Text style={tailwind('text-red-500 text-lg font-bold')}>
+                    {lastClaimSinceDisplay}
+                </Text>
             </View>
 
             <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
@@ -328,6 +341,10 @@ const Stake = observer(({navigation}) => {
 
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
                     {speedUpEndDisplay}
+                </Text>
+
+                <Text style={tailwind('text-red-500 text-lg font-bold')}>
+                    {speedUpUntilEndDisplay}
                 </Text>
             </View>
 
