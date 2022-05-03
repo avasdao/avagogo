@@ -10,7 +10,6 @@ import React from 'react'
 
 import {
     Pressable,
-    SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,

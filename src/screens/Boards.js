@@ -13,7 +13,6 @@ import {
     Image,
     Platform,
     Pressable,
-    SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,

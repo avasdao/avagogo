@@ -11,7 +11,6 @@ import React from 'react'
 import {
     Image,
     Pressable,
-    SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,

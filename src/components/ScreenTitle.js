@@ -12,7 +12,6 @@ import {
     Dimensions,
     Image,
     Pressable,
-    SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,

@@ -12,7 +12,6 @@ import {
     Dimensions,
     Image,
     Pressable,
-    SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,
@@ -26,10 +25,8 @@ import { useNavigation } from '@react-navigation/native'
 import { observer } from 'mobx-react-lite'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
-import tailwind from 'tailwind-rn'
-
 import LottieView from 'lottie-react-native'
+import tailwind from 'tailwind-rn'
 
 import store from '../store'
 

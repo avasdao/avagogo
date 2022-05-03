@@ -13,7 +13,6 @@ import {
     Image,
     LogBox,
     Pressable,
-    SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,
@@ -262,13 +261,13 @@ function Cafe() {
      */
     const Marketplace = () => {
         return (
-            <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
                 <Masonry
                     itemsProvider={dataItemProvider}
                     renderItem={Item}
                     pageSize={10}
                 />
-            </SafeAreaView>
+            </View>
         )
     }
 
@@ -548,10 +547,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     camContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black',
-  },
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: 'black',
+    },
     card: {
         margin: 8,
         width: vpWidth *.5 - 15,
@@ -571,19 +570,19 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20,
-  },
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    capture: {
+        flex: 0,
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        padding: 15,
+        paddingHorizontal: 20,
+        alignSelf: 'center',
+        margin: 20,
+    },
 })
 
 export default Cafe

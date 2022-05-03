@@ -10,7 +10,6 @@ import React from 'react'
 
 import {
     Pressable,
-    SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,
@@ -22,12 +21,10 @@ import {
 import { observer } from 'mobx-react-lite'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
+import LottieView from 'lottie-react-native'
 import tailwind from 'tailwind-rn'
 
 import { ethers, utils, Wallet } from 'ethers'
-
-import LottieView from 'lottie-react-native'
 
 import store from '../store'
 

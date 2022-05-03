@@ -11,7 +11,6 @@ import React from 'react'
 import {
     Linking,
     Pressable,
-    SafeAreaView,
     ScrollView,
     StatusBar,
     StyleSheet,
@@ -61,7 +60,7 @@ const Pools = observer(({navigation}) => {
          * Fetch Info
          */
         const fetchInfo = async () => {
-            // 
+            //
         }
 
         /* Fetch info. */
