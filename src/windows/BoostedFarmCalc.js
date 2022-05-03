@@ -100,6 +100,8 @@ const BoostedFarmCalc = observer(({navigation}) => {
     /* Initialize PLATFORM context. */
     const {
         currentPool,
+        basePairBalances,
+        tradePairBalances,
     } = React.useContext(store.Platform)
 
     /* Initialize PROFILE context. */
@@ -356,6 +358,42 @@ const BoostedFarmCalc = observer(({navigation}) => {
                     </View>
                 }
             </Pressable>
+
+            <View style={tailwind('p-3 flex flex-row justify-between')}>
+                <View style={tailwind('flex flex-grow mr-1 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+                    <View style={tailwind('flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                            {_parsePool(currentPool).basePair} Balance
+                        </Text>
+
+                        <Image
+                            style={tailwind('w-6 h-6')}
+                            source={Tokens[_parsePool(currentPool).basePair]}
+                        />
+                    </View>
+
+                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                        {basePairBalances ? basePairBalances.display : 0}
+                    </Text>
+                </View>
+
+                <View style={tailwind('flex flex-grow ml-1 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+                <View style={tailwind('flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                        {_parsePool(currentPool).tradePair} Balance
+                    </Text>
+
+                    <Image
+                        style={tailwind('w-6 h-6')}
+                        source={Tokens[_parsePool(currentPool).tradePair]}
+                    />
+                </View>
+
+                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                        {tradePairBalances ? tradePairBalances.display : 0}
+                    </Text>
+                </View>
+            </View>
 
             <Text style={tailwind('m-5 text-gray-400 text-2xl font-semibold text-center')}>
                 Boost Your JOE Farm Rewards
