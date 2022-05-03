@@ -40,21 +40,35 @@ import store from '../../../store'
 const Stake = observer(({navigation}) => {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
+    /* Initialize JOE balance handlers. */
     const [joeBalance, setJoeBalance] = React.useState(0)
     const [joeBalanceDisplay, setJoeBalanceDisplay] = React.useState(0)
+
+    /* Initialize sJOE balance handlers. */
     const [sJoeBalance, setSJoeBalance] = React.useState(0)
     const [sJoeBalanceDisplay, setSJoeBalanceDisplay] = React.useState(0)
+
+    /* Initialize rJOE balance handlers. */
     const [rJoeBalance, setRJoeBalance] = React.useState(0)
     const [rJoeBalanceDisplay, setRJoeBalanceDisplay] = React.useState(0)
+
+    /* Initialize veJOE balance handlers. */
     const [veJoeBalance, setVeJoeBalance] = React.useState(0)
     const [veJoeBalanceDisplay, setVeJoeBalanceDisplay] = React.useState(0)
 
+    /* Initialize reward debt handlers. */
     const [rewardDebt, setRewardDebt] = React.useState(0)
     const [rewardDebtDisplay, setRewardDebtDisplay] = React.useState(0)
+
+    /* Initialize last claim handlers. */
     const [lastClaim, setLastClaim] = React.useState(0)
     const [lastClaimDisplay, setLastClaimDisplay] = React.useState(0)
+
+    /* Initialize speed-up handlers. */
     const [speedUpEnd, setSpeedUpEnd] = React.useState(0)
     const [speedUpEndDisplay, setSpeedUpEndDisplay] = React.useState(0)
+
+    /* Initialize pending reward handlers. */
     const [pendingVeJoe, setPendingVeJoe] = React.useState(0)
     const [pendingVeJoeDisplay, setPendingVeJoeDisplay] = React.useState(0)
 
@@ -63,6 +77,7 @@ const Stake = observer(({navigation}) => {
         wallet,
     } = React.useContext(store.Profile)
 
+    /* Initialize handlers. */
     let address
     let abi
     let _balanceDisplay
@@ -87,16 +102,49 @@ const Stake = observer(({navigation}) => {
          */
         const fetchInfo = async () => {
             const wei = await contract.balanceOf(wallet.address)
-            console.log('JOE BALANCE', wei);
+            // console.log('JOE BALANCE', wei);
 
             setJoeBalance(wei)
 
             const _balanceDisplay = utils.formatUnits(wei, 18)
-            console.log('JOE BALANCE (display)', typeof _balanceDisplay, _balanceDisplay);
+            // console.log('JOE BALANCE (display)', typeof _balanceDisplay, _balanceDisplay);
 
             const formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
 
             setJoeBalanceDisplay(formattedBalance)
+        }
+
+        /* Fetch info. */
+        fetchInfo()
+    }, [])
+
+    /* Handle onLoad scripts. */
+    React.useEffect(() => {
+        /* Set contract address. */
+        // NOTE: Trader Joe - VeJoeToken
+        address = '0x3cabf341943Bc8466245e4d6F1ae0f8D071a1456'
+
+        /* Set contract ABI. */
+        abi = require('../../../assets/abis/trader-joe/VeJoeToken')
+
+        /* Initialize contract. */
+        contract = new ethers.Contract(address, abi, wallet)
+
+        /**
+         * Fetch Info
+         */
+        const fetchInfo = async () => {
+            const wei = await contract.balanceOf(wallet.address)
+            // console.log('veJOE BALANCE', wei);
+
+            setVeJoeBalance(wei)
+
+            const _balanceDisplay = utils.formatUnits(wei, 18)
+            // console.log('veJOE BALANCE (display)', typeof _balanceDisplay, _balanceDisplay);
+
+            const formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
+
+            setVeJoeBalanceDisplay(formattedBalance)
         }
 
         /* Fetch info. */
@@ -124,12 +172,12 @@ const Stake = observer(({navigation}) => {
             wei = await contract
                 .getPendingVeJoe(wallet.address)
                 .catch(err => console.error(err))
-            console.log('Pending rewards:', wei)
+            // console.log('Pending rewards:', wei)
 
             setPendingVeJoe(wei)
 
             _balanceDisplay = utils.formatUnits(wei, 18)
-            console.log('Pending veJOE BALANCE:', typeof _balanceDisplay, _balanceDisplay);
+            // console.log('Pending veJOE BALANCE:', typeof _balanceDisplay, _balanceDisplay);
 
             formattedBalance = numeral(_balanceDisplay).format('0,0.000000000000')
 
@@ -148,14 +196,14 @@ const Stake = observer(({navigation}) => {
         const fetchInfo = async () => {
             // const balance = await contract.balanceOf(wallet.getAddress())
             const userInfos = await contract.userInfos(wallet.address)
-            console.log('USER INFOS', userInfos);
+            // console.log('USER INFOS', userInfos);
 
             wei = userInfos[0]
 
             setVeJoeBalance(wei)
 
             _balanceDisplay = utils.formatUnits(wei, 18)
-            console.log('veJOE BALANCE:', typeof _balanceDisplay, _balanceDisplay);
+            // console.log('veJOE BALANCE:', typeof _balanceDisplay, _balanceDisplay);
 
             formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
 
@@ -166,14 +214,14 @@ const Stake = observer(({navigation}) => {
             setRewardDebt(wei)
 
             _balanceDisplay = utils.formatUnits(wei, 18)
-            console.log('REWARD DEBT:', typeof _balanceDisplay, _balanceDisplay);
+            // console.log('REWARD DEBT:', typeof _balanceDisplay, _balanceDisplay);
 
             formattedBalance = numeral(_balanceDisplay).format('0,0.0000[0000]')
 
             setRewardDebtDisplay(formattedBalance)
 
             timestamp = userInfos[2]
-            console.log('LAST CLAIM', timestamp);
+            // console.log('LAST CLAIM', timestamp);
 
             setLastClaim(timestamp)
 
@@ -182,7 +230,7 @@ const Stake = observer(({navigation}) => {
             setLastClaimDisplay(_lastClaimDisplay)
 
             timestamp = userInfos[3]
-            console.log('SPEED UP END', timestamp);
+            // console.log('SPEED UP END', timestamp);
 
             setSpeedUpEnd(timestamp)
 
@@ -199,10 +247,10 @@ const Stake = observer(({navigation}) => {
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={tailwind('')}
+            style={tailwind('px-3')}
         >
-            <View style={tailwind('mx-3 mt-5 mb-3 border-4 border-purple-300 bg-purple-200 rounded-xl')}>
-                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
+            <View style={tailwind('mt-5 mb-3 px-3 border-4 border-purple-300 bg-purple-200 rounded-xl')}>
+                <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
                     <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                         JOE Balance
                     </Text>
@@ -212,7 +260,7 @@ const Stake = observer(({navigation}) => {
                     </Text>
                 </View>
 
-                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
+                <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
                     <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                         sJOE Balance
                     </Text>
@@ -222,7 +270,7 @@ const Stake = observer(({navigation}) => {
                     </Text>
                 </View>
 
-                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
+                <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
                     <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                         rJOE Balance
                     </Text>
@@ -232,7 +280,7 @@ const Stake = observer(({navigation}) => {
                     </Text>
                 </View>
 
-                <View style={tailwind('mx-3 my-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
+                <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
                     <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                         veJOE Balance
                     </Text>
@@ -243,7 +291,7 @@ const Stake = observer(({navigation}) => {
                 </View>
             </View>
 
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+            <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                     Pending veJOE Balance
                 </Text>
@@ -253,7 +301,7 @@ const Stake = observer(({navigation}) => {
                 </Text>
             </View>
 
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+            <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                     Reward Debt
                 </Text>
@@ -263,7 +311,7 @@ const Stake = observer(({navigation}) => {
                 </Text>
             </View>
 
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+            <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                     Last Claim Time
                 </Text>
@@ -273,7 +321,7 @@ const Stake = observer(({navigation}) => {
                 </Text>
             </View>
 
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+            <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                     Speed-up End Time
                 </Text>
@@ -285,7 +333,7 @@ const Stake = observer(({navigation}) => {
 
             <Pressable
                 onPress={() => navigation.navigate('BoostedFarmCalc')}
-                style={tailwind('m-3 bg-yellow-200 border-2 border-yellow-400 rounded-xl items-center justify-center')}
+                style={tailwind('mt-3 mb-7 bg-yellow-200 border-2 border-yellow-400 rounded-xl items-center justify-center')}
             >
                 <Text style={tailwind('py-3 text-yellow-500 text-2xl font-bold')}>
                     Boosted Farm Calculator

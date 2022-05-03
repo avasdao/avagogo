@@ -71,6 +71,16 @@ const BoostedFarmCalc = observer(({navigation}) => {
     const [balance, setBalance] = React.useState(0)
     const [balanceDisplay, setBalanceDisplay] = React.useState(0)
 
+    /* Initialize veJOE balance handlers. */
+    // FIXME: How can we make this generic.
+    const [veJoeBalance, setVeJoeBalance] = React.useState(0)
+    const [veJoeBalanceDisplay, setVeJoeBalanceDisplay] = React.useState(0)
+
+    /* Initialize veJOE total supply handlers. */
+    // FIXME: How can we make this generic.
+    const [veJoeTotalSupply, setVeJoeTotalSupply] = React.useState(0)
+    const [veJoeTotalSupplyDisplay, setVeJoeTotalSupplyDisplay] = React.useState(0)
+
     /* Initialize reward debt handlers. */
     const [rewardDebt, setRewardDebt] = React.useState(0)
     const [rewardDebtDisplay, setRewardDebtDisplay] = React.useState(0)
@@ -97,51 +107,60 @@ const BoostedFarmCalc = observer(({navigation}) => {
         wallet,
     } = React.useContext(store.Profile)
 
+    /* Initialize handlers. */
+    let abi
+    let address
+    let contract
     let _balanceDisplay
     let formattedBalance
     let timestamp
     let wei
 
-    /* Set contract address. */
-    // NOTE: Trader Joe - VeJoeStaking (proxy)
-    address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
-
-    /* Set contract ABI. */
-    const abi = require('../assets/abis/trader-joe/VeJoeStaking')
-
-    /* Initialize contract. */
-    const contract = new ethers.Contract(address, abi, wallet)
-
     /* Handle onLoad scripts. */
     React.useEffect(() => {
+        /* Set contract address. */
+        // NOTE: Trader Joe - VeJoeToken
+        address = '0x3cabf341943Bc8466245e4d6F1ae0f8D071a1456'
+
+        /* Set contract ABI. */
+        abi = require('../assets/abis/trader-joe/VeJoeToken')
+
+        /* Initialize contract. */
+        contract = new ethers.Contract(address, abi, wallet)
+
         /**
-         * Handle Pending Rewards
-         *
-         * Will regularly update to reflect the last rewards in the UI.
+         * Fetch Info
          */
-        const handlePendingRewards = async () => {
-            wei = await contract
-                .getPendingVeJoe(wallet.address)
-                .catch(err => console.error(err))
-            console.log('Pending rewards:', wei)
+        const fetchInfo = async () => {
+            const wei = await contract.balanceOf(wallet.address)
+            // console.log('veJOE BALANCE', wei);
 
-            setPendingReward(wei)
+            setVeJoeBalance(wei)
 
-            _balanceDisplay = utils.formatUnits(wei, 18)
-            console.log('Pending rewards (balance):', typeof _balanceDisplay, _balanceDisplay);
+            const _balanceDisplay = utils.formatUnits(wei, 18)
+            // console.log('veJOE BALANCE (display)', typeof _balanceDisplay, _balanceDisplay);
 
-            formattedBalance = numeral(_balanceDisplay).format('0,0.000000000000')
+            const formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
 
-            setPendingRewardDisplay(formattedBalance)
+            setVeJoeBalanceDisplay(formattedBalance)
         }
 
-        /* Start pending rewards interval. */
-        // setInterval(handlePendingRewards, 1000)
-        handlePendingRewards()
+        /* Fetch info. */
+        fetchInfo()
     }, [])
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
+        /* Set contract address. */
+        // NOTE: Trader Joe - VeJoeStaking (proxy)
+        address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
+
+        /* Set contract ABI. */
+        abi = require('../assets/abis/trader-joe/VeJoeStaking')
+
+        /* Initialize contract. */
+        contract = new ethers.Contract(address, abi, wallet)
+
         /**
          * Fetch Info
          */
@@ -154,7 +173,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
 
             /* Request user infos. */
             const userInfos = await contract.userInfos(wallet.address)
-            console.log('User infos:', JSON.stringify(userInfos, null, 2))
+            // console.log('User infos:', JSON.stringify(userInfos, null, 2))
 
             /* Retrieve balance (in wei). */
             wei = userInfos[0]
@@ -163,7 +182,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
             setBalance(wei)
 
             _balanceDisplay = utils.formatUnits(wei, 18)
-            console.log('Balance:', typeof _balanceDisplay, _balanceDisplay);
+            // console.log('Balance:', typeof _balanceDisplay, _balanceDisplay);
 
             formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
 
@@ -177,14 +196,14 @@ const BoostedFarmCalc = observer(({navigation}) => {
             setRewardDebt(wei)
 
             _balanceDisplay = utils.formatUnits(wei, 18)
-            console.log('Reward debt:', typeof _balanceDisplay, _balanceDisplay);
+            // console.log('Reward debt:', typeof _balanceDisplay, _balanceDisplay);
 
             formattedBalance = numeral(_balanceDisplay).format('0,0.0000[0000]')
 
             setRewardDebtDisplay(formattedBalance)
 
             timestamp = userInfos[2]
-            console.log('Last claim', timestamp);
+            // console.log('Last claim', timestamp);
 
             /* Set last (rewards) claim. */
             setLastClaim(timestamp)
@@ -194,7 +213,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
             setLastClaimDisplay(_lastClaimDisplay)
 
             timestamp = userInfos[3]
-            console.log('Speed-up end', timestamp);
+            // console.log('Speed-up end', timestamp);
 
             /* Set speed-up end. */
             setSpeedUpEnd(timestamp)
@@ -205,8 +224,34 @@ const BoostedFarmCalc = observer(({navigation}) => {
 
         }
 
+        /**
+         * Handle Pending Rewards
+         *
+         * Will regularly update to reflect the last rewards in the UI.
+         */
+        const handlePendingRewards = async () => {
+            wei = await contract
+                .getPendingVeJoe(wallet.address)
+                .catch(err => console.error(err))
+            // console.log('Pending rewards:', wei)
+
+            setPendingReward(wei)
+
+            _balanceDisplay = utils.formatUnits(wei, 18)
+            // console.log('Pending rewards (balance):', typeof _balanceDisplay, _balanceDisplay);
+
+            formattedBalance = numeral(_balanceDisplay).format('0,0.000000000000')
+
+            setPendingRewardDisplay(formattedBalance)
+        }
+
         /* Fetch info. */
         fetchInfo()
+
+        /* Start pending rewards interval. */
+        // setInterval(handlePendingRewards, 1000)
+        handlePendingRewards()
+
     }, [])
 
     return (
@@ -232,7 +277,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
             </View>
 
             <View style={tailwind('flex flex-row justify-between items-center')}>
-                <View style={tailwind('flex flex-col mx-4')}>
+                <View style={tailwind('flex flex-col mx-4 mb-2')}>
                     <Text style={tailwind('text-sm text-gray-400 font-bold uppercase')}>
                         Current Asset
                     </Text>
@@ -301,7 +346,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 </Text>
 
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    0.015515830733128148
+                    {veJoeBalanceDisplay}
                 </Text>
             </View>
 
@@ -311,7 +356,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 </Text>
 
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    28921690.857080936
+                    {veJoeTotalSupplyDisplay}
                 </Text>
             </View>
 
