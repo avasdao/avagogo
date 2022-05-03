@@ -120,7 +120,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
          */
         const handlePendingRewards = async () => {
             wei = await contract
-                .getPendingVeJoe('0x335C7182638fD5b71f175f633F64106a54Bda60C')
+                .getPendingVeJoe(wallet.address)
                 .catch(err => console.error(err))
             console.log('Pending rewards:', wei)
 
