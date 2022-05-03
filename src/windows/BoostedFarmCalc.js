@@ -135,14 +135,16 @@ const BoostedFarmCalc = observer(({navigation}) => {
             setAssetName('VeJOE')
 
             /* Set account address. */
-            setAcctAddress(await wallet.getAddress())
+            setAcctAddress(wallet.address)
 
-            // const balance = await contract.balanceOf(wallet.getAddress())
-            const userInfos = await contract.userInfos('0x335C7182638fD5b71f175f633F64106a54Bda60C')
-            console.log('USER INFOS', userInfos);
+            /* Request user infos. */
+            const userInfos = await contract.userInfos(wallet.address)
+            console.log('User infos:', JSON.stringify(userInfos, null, 2))
 
+            /* Retrieve balance (in wei). */
             wei = userInfos[0]
 
+            /* Set balance. */
             setBalance(wei)
 
             _balanceDisplay = utils.formatUnits(wei, 18)
@@ -150,10 +152,13 @@ const BoostedFarmCalc = observer(({navigation}) => {
 
             formattedBalance = numeral(_balanceDisplay).format('0,0.0000[00]')
 
+            /* Set (display) balance. */
             setBalanceDisplay(formattedBalance)
 
+            /* Retrieve reward debt (in wei). */
             wei = userInfos[1]
 
+            /* Set reward debt. */
             setRewardDebt(wei)
 
             _balanceDisplay = utils.formatUnits(wei, 18)
@@ -166,6 +171,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
             timestamp = userInfos[2]
             console.log('Last claim', timestamp);
 
+            /* Set last (rewards) claim. */
             setLastClaim(timestamp)
 
             const _lastClaimDisplay = moment.unix(timestamp).format('llll')
@@ -175,6 +181,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
             timestamp = userInfos[3]
             console.log('Speed-up end', timestamp);
 
+            /* Set speed-up end. */
             setSpeedUpEnd(timestamp)
 
             const _speedUpEndDisplay = moment.unix(timestamp).format('llll')
@@ -203,7 +210,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 </Pressable>
             </View>
 
-            <View style={tailwind('w-full mb-4 py-4 bg-purple-200 items-center')}>
+            <View style={tailwind('w-full mb-4 py-4 bg-purple-200 border-b-2 border-purple-300 items-center')}>
                 <Text style={tailwind('text-purple-600 text-2xl font-bold')}>
                     Boosted Farm Calculator
                 </Text>
@@ -241,7 +248,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}
             >
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Pool
+                    Selected Pool
                 </Text>
 
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -249,53 +256,55 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 </Text>
             </Pressable>
 
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Balance
+            <Text style={tailwind('m-5 text-gray-400 text-2xl font-semibold text-center')}>
+                Boost Your JOE Farm Rewards
+            </Text>
+
+            <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
+                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                    Pool Share
                 </Text>
 
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {balanceDisplay}
-                </Text>
-            </View>
-
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Pending Balance
-                </Text>
-
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {pendingRewardDisplay}
+                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                    0.00000515%
                 </Text>
             </View>
 
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Reward Debt
+            <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
+                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                    veJOE Share
                 </Text>
 
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {rewardDebtDisplay}
-                </Text>
-            </View>
-
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Last Claim Time
-                </Text>
-
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {lastClaimDisplay}
+                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                    5.36e-8%
                 </Text>
             </View>
 
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Speed-up End Time
+            <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
+                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                    Base APR (Joe Per Year)
                 </Text>
 
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {speedUpEndDisplay}
+                <View style={tailwind('flex flex-row items-end')}>
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        15.3%
+                    </Text>
+
+                    <Text style={tailwind('ml-1 mb-1 text-gray-500 text-sm font-bold')}>
+                        0.569%
+                    </Text>
+                </View>
+            </View>
+
+            <View style={tailwind('border-t-2 border-purple-300 my-2')} />
+
+            <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
+                <Text style={tailwind('text-green-500 text-xl font-bold')}>
+                    Est. Boosted APR
+                </Text>
+
+                <Text style={tailwind('text-green-500 text-2xl font-bold')}>
+                    0.569%
                 </Text>
             </View>
 

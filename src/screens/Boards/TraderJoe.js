@@ -160,7 +160,7 @@ function Board({navigation}) {
             </Text>
 
             <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
-                <Text style={tailwind('text-gray-800 text-xl font-semibold')}>
+                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
                     JOE Token
                 </Text>
 
