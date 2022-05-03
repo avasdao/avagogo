@@ -63,34 +63,29 @@ const Stake = observer(({navigation}) => {
         wallet,
     } = React.useContext(store.Profile)
 
+    let address
+    let abi
     let _balanceDisplay
+    let contract
     let formattedBalance
     let timestamp
     let wei
 
-    /* Set contract address. */
-    const address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
-
-    /* Set contract ABI. */
-    const abi = [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Claim","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"maxCapPct","type":"uint256"}],"name":"UpdateMaxCapPct","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"lastRewardTimestamp","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"accVeJoePerShare","type":"uint256"}],"name":"UpdateRewardVars","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"speedUpThreshold","type":"uint256"}],"name":"UpdateSpeedUpThreshold","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"veJoePerSharePerSec","type":"uint256"}],"name":"UpdateVeJoePerSharePerSec","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"withdrawAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"burnAmount","type":"uint256"}],"name":"Withdraw","type":"event"},{"inputs":[],"name":"ACC_VEJOE_PER_SHARE_PRECISION","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"VEJOE_PER_SHARE_PER_SEC_PRECISION","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"accVeJoePerShare","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"claim","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_user","type":"address"}],"name":"getPendingVeJoe","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"contract IERC20Upgradeable","name":"_joe","type":"address"},{"internalType":"contract VeJoeToken","name":"_veJoe","type":"address"},{"internalType":"uint256","name":"_veJoePerSharePerSec","type":"uint256"},{"internalType":"uint256","name":"_speedUpVeJoePerSharePerSec","type":"uint256"},{"internalType":"uint256","name":"_speedUpThreshold","type":"uint256"},{"internalType":"uint256","name":"_speedUpDuration","type":"uint256"},{"internalType":"uint256","name":"_maxCapPct","type":"uint256"}],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"joe","outputs":[{"internalType":"contract IERC20Upgradeable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lastRewardTimestamp","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxCapPct","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_maxCapPct","type":"uint256"}],"name":"setMaxCapPct","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_speedUpThreshold","type":"uint256"}],"name":"setSpeedUpThreshold","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_veJoePerSharePerSec","type":"uint256"}],"name":"setVeJoePerSharePerSec","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"speedUpDuration","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"speedUpThreshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"speedUpVeJoePerSharePerSec","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"updateRewardVars","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"upperLimitMaxCapPct","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"upperLimitVeJoePerSharePerSec","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"userInfos","outputs":[{"internalType":"uint256","name":"balance","type":"uint256"},{"internalType":"uint256","name":"rewardDebt","type":"uint256"},{"internalType":"uint256","name":"lastClaimTimestamp","type":"uint256"},{"internalType":"uint256","name":"speedUpEndTimestamp","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"veJoe","outputs":[{"internalType":"contract VeJoeToken","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"veJoePerSharePerSec","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]
-
-    /* Initialize contract. */
-    const contract = new ethers.Contract(address, abi, wallet)
-
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         /* Set token address. */
-        const address = '0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd' // JOE
+        address = '0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd' // JOE
 
         /* Set ABI. */
-        const abi = require('../assets/abis/trader-joe/JOE')
+        abi = require('../../../assets/abis/trader-joe/JOE')
+
+        /* Initialize contract. */
+        contract = new ethers.Contract(address, abi, wallet)
 
         /**
          * Fetch Info
          */
         const fetchInfo = async () => {
-            const contract = new ethers.Contract(address, abi, wallet)
-
             const wei = await contract.balanceOf(wallet.address)
             console.log('JOE BALANCE', wei);
 
@@ -110,6 +105,16 @@ const Stake = observer(({navigation}) => {
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
+        /* Set contract address. */
+        // NOTE: Trader Joe - VeJoeStaking (proxy)
+        address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
+
+        /* Set contract ABI. */
+        abi = require('../../../assets/abis/trader-joe/VeJoeStaking')
+
+        /* Initialize contract. */
+        contract = new ethers.Contract(address, abi, wallet)
+
         /**
          * Handle Pending Rewards
          *
@@ -196,10 +201,10 @@ const Stake = observer(({navigation}) => {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <View style={tailwind('mx-3 mt-5 mb-3 border-2 border-indigo-300 rounded-xl')}>
-                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold')}>
-                        JOE BALANCE
+            <View style={tailwind('mx-3 mt-5 mb-3 border-4 border-purple-300 bg-purple-200 rounded-xl')}>
+                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
+                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                        JOE Balance
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -207,9 +212,9 @@ const Stake = observer(({navigation}) => {
                     </Text>
                 </View>
 
-                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold')}>
-                        sJOE BALANCE
+                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
+                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                        sJOE Balance
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -217,9 +222,9 @@ const Stake = observer(({navigation}) => {
                     </Text>
                 </View>
 
-                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold')}>
-                        rJOE BALANCE
+                <View style={tailwind('mx-3 mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
+                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                        rJOE Balance
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -227,9 +232,9 @@ const Stake = observer(({navigation}) => {
                     </Text>
                 </View>
 
-                <View style={tailwind('mx-3 my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold')}>
-                        veJOE BALANCE
+                <View style={tailwind('mx-3 my-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
+                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                        veJOE Balance
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -239,8 +244,8 @@ const Stake = observer(({navigation}) => {
             </View>
 
             <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold')}>
-                    PENDING VEJOE BALANCE
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    Pending veJOE Balance
                 </Text>
 
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -249,8 +254,8 @@ const Stake = observer(({navigation}) => {
             </View>
 
             <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold')}>
-                    REWARD DEBT
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    Reward Debt
                 </Text>
 
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -259,8 +264,8 @@ const Stake = observer(({navigation}) => {
             </View>
 
             <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold')}>
-                    LAST CLAIM TIME
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    Last Claim Time
                 </Text>
 
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -269,8 +274,8 @@ const Stake = observer(({navigation}) => {
             </View>
 
             <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold')}>
-                    SPEED-UP END TIME
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    Speed-up End Time
                 </Text>
 
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
@@ -280,24 +285,17 @@ const Stake = observer(({navigation}) => {
 
             <Pressable
                 onPress={() => navigation.navigate('BoostedFarmCalc')}
-                style={tailwind('m-3 bg-purple-200 border-2 border-purple-400 rounded-xl items-center justify-center')}
+                style={tailwind('m-3 bg-yellow-200 border-2 border-yellow-400 rounded-xl items-center justify-center')}
             >
-                <Text style={tailwind('py-3 text-purple-500 text-2xl font-bold')}>
+                <Text style={tailwind('py-3 text-yellow-500 text-2xl font-bold')}>
                     Boosted Farm Calculator
                 </Text>
-            </Pressable>
 
-            <View style={tailwind('py-5 bg-gray-50 items-center')}>
                 <LottieView
-                    style={tailwind('h-48')}
-                    source={require('../../../assets/lottie/couple-talk.json')} autoPlay loop
+                    style={tailwind('h-32')}
+                    source={require('../../../assets/lottie/96208-carbon-calculator.json')} autoPlay loop
                 />
-
-                <Text style={tailwind('text-pink-500 font-semibold')}>
-                    24 Hour Cafe
-                </Text>
-            </View>
-
+            </Pressable>
         </ScrollView>
     )
 })

@@ -103,10 +103,11 @@ const BoostedFarmCalc = observer(({navigation}) => {
     let wei
 
     /* Set contract address. */
-    address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341' // Trader Joe - veJOE
+    // NOTE: Trader Joe - VeJoeStaking (proxy)
+    address = '0x25D85E17dD9e544F6E9F8D44F99602dbF5a97341'
 
     /* Set contract ABI. */
-    const abi = require('../assets/abis/trader-joe/veJOE')
+    const abi = require('../assets/abis/trader-joe/VeJoeStaking')
 
     /* Initialize contract. */
     const contract = new ethers.Contract(address, abi, wallet)
@@ -146,7 +147,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
          */
         const fetchInfo = async () => {
             // TEMP: FOR DEV ONLY
-            setAssetName('VeJOE')
+            setAssetName('veJOE')
 
             /* Set account address. */
             setAcctAddress(wallet.address)
@@ -314,56 +315,58 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 </Text>
             </View>
 
-            <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
-                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                    Pool Share
-                </Text>
+            <View style={tailwind('px-5 mb-7')}>
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                        Pool Share
+                    </Text>
 
-                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                    0.00000515%
-                </Text>
-            </View>
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        0.00000515%
+                    </Text>
+                </View>
 
-            <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
-                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                    veJOE Share
-                </Text>
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                        veJOE Share
+                    </Text>
 
-                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                    5.36e-8%
-                </Text>
-            </View>
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        5.36e-8%
+                    </Text>
+                </View>
 
-            <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
-                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                    Base APR (Joe Per Year)
-                </Text>
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                        Base APR (Joe Per Year)
+                    </Text>
 
-                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                    15.3%
-                </Text>
-            </View>
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        15.3%
+                    </Text>
+                </View>
 
-            <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
-                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                    Currented Boosted APR
-                </Text>
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                        Currented Boosted APR
+                    </Text>
 
-                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                    0.569%
-                </Text>
-            </View>
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        0.569%
+                    </Text>
+                </View>
 
-            <View style={tailwind('border-t-2 border-purple-300 my-2')} />
+                <View style={tailwind('border-t-2 border-purple-300 my-2')} />
 
-            <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
-                <Text style={tailwind('text-green-500 text-xl font-bold')}>
-                    Est. Boosted APR
-                </Text>
+                <View style={tailwind('flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-green-500 text-xl font-bold')}>
+                        Est. Boosted APR
+                    </Text>
 
-                <Text style={tailwind('text-green-500 text-2xl font-bold')}>
-                    0.569%
-                </Text>
+                    <Text style={tailwind('text-green-500 text-2xl font-bold')}>
+                        0.569%
+                    </Text>
+                </View>
             </View>
 
         </ScrollView>
