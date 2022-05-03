@@ -21,6 +21,8 @@ class Profile {
         makeObservable(this)
 
         /* Create the wallet upon initialization. */
+        // TODO: Add error-handling in the event of failure.
+        //       All on-chain functions depend on access to this wallet.
         console.info('Initializing crypto wallet..')
         this.createWallet()
     }

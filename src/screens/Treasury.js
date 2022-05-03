@@ -29,10 +29,11 @@ import '@ethersproject/shims'
 import { ethers, utils, Wallet } from 'ethers'
 
 import moment from 'moment'
-
 import numeral from 'numeral'
 
+import ScreenTitle from '../components/ScreenTitle'
 import store from '../store'
+import Tokens from '../assets/images/tokens'
 
 /**
  * Treasury Screen
@@ -43,6 +44,11 @@ function Treasury() {
     const [balance, setBalance] = React.useState(0)
     const [balanceDisplay, setBalanceDisplay] = React.useState(null)
     const [usdBalanceDisplay, setUsdBalanceDisplay] = React.useState(null)
+
+    /* Initialize TOKEN context. */
+    const {
+        getBalances,
+    } = React.useContext(store.Token)
 
     /* Initialize PROFILE context. */
     const {
@@ -100,18 +106,24 @@ function Treasury() {
                 /* Set wallet. */
                 _setWallet(wallet)
             }
+
+            let balances
+
+            balances = await getBalances('DAI')
+            console.log('BALANCE (DAI.e):', balances)
         }
 
         /* Fetch info. */
         fetchInfo()
     }, [wallet])
 
-    return (
-        <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={tailwind('')}
-        >
-            {(hasAgreed || !DEBUG) &&
+    /* Validate user agreement. */
+    if (hasAgreed || !DEBUG) {
+        return (
+            <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={tailwind('')}
+            >
                 <>
                     <Text style={tailwind('m-5 text-gray-600 text-2xl font-semibold text-center')}>
                         One-stop-shop decentralized trading on Avalanche
@@ -163,13 +175,43 @@ function Treasury() {
                         </View>
                     </View>
 
-                    <View style={tailwind('py-6 items-center')}>
+                    <Text style={tailwind('m-5 text-gray-600 text-2xl font-semibold text-center')}>
+                        One-stop-shop decentralized trading on Avalanche
+                    </Text>
 
-                        <Pressable
-                            style={tailwind('flex')}
-                            onPress={() => alert('testNotif')}>
-                            <Text style={tailwind('text-gray-700 text-xl')}>Inbox</Text>
-                        </Pressable>
+                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                            DAI.e Token
+                        </Text>
+
+                        <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                            {0}
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                            JOE Token
+                        </Text>
+
+                        <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                            {0}
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                            USDT.e Token
+                        </Text>
+
+                        <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                            {0}
+                        </Text>
+                    </View>
+
+
+
+                    <View style={tailwind('py-6 items-center')}>
 
                         <View style={tailwind('mt-10 py-5 items-center')}>
                             <LottieView
@@ -184,9 +226,14 @@ function Treasury() {
 
                     </View>
                 </>
-            }
-
-            {(!hasAgreed && DEBUG) &&
+            </ScrollView>
+        )
+    } else {
+        return (
+            <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={tailwind('')}
+            >
                 <View>
                     <View style={tailwind('px-5 pt-5 items-center')}>
                         <Text style={tailwind('text-lg text-gray-800 font-bold')}>
@@ -243,9 +290,9 @@ function Treasury() {
                         </Pressable>
                     </View>
                 </View>
-            }
-        </ScrollView>
-    )
+            </ScrollView>
+        )
+    }
 }
 
 export default Treasury

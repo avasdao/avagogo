@@ -180,6 +180,11 @@ const Dashboard = observer(({navigation}) => {
                 </View>
             </View>
 
+            <Pressable
+                style={tailwind('flex w-32 bg-yellow-200 border-4 border-yellow-400 p-3 rounded-xl')}
+                onPress={() => alert('testNotif')}>
+                <Text style={tailwind('text-gray-700 text-xl')}>testNotif</Text>
+            </Pressable>
 
             <View style={tailwind('px-5 pt-5')}>
                 <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>

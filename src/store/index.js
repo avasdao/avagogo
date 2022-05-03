@@ -7,6 +7,7 @@ import Fund from './Fund'
 import Platform from './Platform'
 import Profile from './Profile'
 import System from './System.js'
+import Token from './Token.js'
 
 const hydrate = create({
     storage: AsyncStorage,
@@ -23,13 +24,15 @@ class Store {
     Platform = Platform.Context
     Profile = Profile.Context
     System = System.Context
+    Token = Token.Context
 
     constructor() {
         Promise.all([
             hydrate('Fund', Fund.Store),
             hydrate('Platform', Platform.Store),
             hydrate('Profile', Profile.Store),
-            hydrate('System', System.Store)
+            hydrate('System', System.Store),
+            hydrate('Token', Token.Store),
         ])
         // .then(() => this.System.initData()),
         .then(() => {

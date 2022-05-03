@@ -63,12 +63,13 @@ function Boards({navigation}) {
         DEBUG,
     } = React.useContext(store.System)
 
-    return (
-        <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={tailwind('')}
-        >
-            {(hasAgreed || !DEBUG) &&
+    /* Validate user agreement. */
+    if (hasAgreed || !DEBUG) {
+        return (
+            <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={tailwind('')}
+            >
                 <View style={tailwind('py-3')}>
                     <Welcome />
 
@@ -248,9 +249,14 @@ function Boards({navigation}) {
                     </View>
 
                 </View>
-            }
-
-            {(!hasAgreed && DEBUG) &&
+            </ScrollView>
+        )
+    } else {
+        return (
+            <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={tailwind('')}
+            >
                 <View>
                     <View style={tailwind('px-5 pt-5')}>
                         <Text style={tailwind('text-lg text-gray-800 text-center')}>
@@ -298,9 +304,9 @@ function Boards({navigation}) {
                         </Pressable>
                     </View>
                 </View>
-            }
-        </ScrollView>
-    )
+            </ScrollView>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
