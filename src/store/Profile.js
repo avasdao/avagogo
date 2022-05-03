@@ -19,6 +19,10 @@ class Profile {
     /* Constructor. */
     constructor() {
         makeObservable(this)
+
+        /* Create the wallet upon initialization. */
+        console.info('Initializing crypto wallet..')
+        this.createWallet()
     }
 
     /* Initialize (observable) variables. */

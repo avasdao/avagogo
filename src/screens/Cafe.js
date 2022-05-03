@@ -108,6 +108,11 @@ function Cafe() {
         createWallet,
     } = React.useContext(store.Profile)
 
+    /* Initialize SYSTEM context. */
+    const {
+        DEBUG,
+    } = React.useContext(store.System)
+
     React.useEffect(() => {
         /**
          * Fetch Messages
@@ -371,74 +376,75 @@ function Cafe() {
     /**
      * Streamer
      */
-     const BroadcastScreen = () => {
-       const streamKey = '7057-uby1-a6mg-nhiu'
-       const url = `rtmp://rtmp.livepeer.com/live/${streamKey}`
+    const BroadcastScreen = () => {
+        const streamKey = '7057-uby1-a6mg-nhiu'
+        const url = `rtmp://rtmp.livepeer.com/live/${streamKey}`
 
-       return (
-         <View style={{flex: 1}}>
-             <TouchableOpacity onPress={toggleStream} style={styles.capture}>
-                 <Text style={{ fontSize: 14 }}> STREAM </Text>
-             </TouchableOpacity>
+        return (
+            <View style={{flex: 1}}>
+                <TouchableOpacity onPress={toggleStream} style={styles.capture}>
+                    <Text style={{ fontSize: 14 }}> STREAM </Text>
+                </TouchableOpacity>
 
-             <Text style={tailwind('text-gray-800')}>
-                isStreaming: {isStreaming ? 'STREAMING' : 'NOT STREAMING'}
-            </Text>
+                <Text style={tailwind('text-gray-800')}>
+                    isStreaming: {isStreaming ? 'STREAMING' : 'NOT STREAMING'}
+                </Text>
 
-           <NodeCameraView
-             style={{width, height}}
-             ref={cameraViewRef}
-             outputUrl={url}
-             camera={config.cameraConfig}
-             audio={config.audioConfig}
-             video={config.videoConfig}
-             autopreview={true}
-           />
-         </View>
-       );
-     }
+                <NodeCameraView
+                    style={{width, height}}
+                    ref={cameraViewRef}
+                    outputUrl={url}
+                    camera={config.cameraConfig}
+                    audio={config.audioConfig}
+                    video={config.videoConfig}
+                    autopreview={true}
+                />
+            </View>
+        )
+    }
 
     /**
      * Streamer
      */
-     const BroadcastView = () => {
-         const streamKey = '7057-uby1-a6mg-nhiu'
-         const url = `rtmp://rtmp.livepeer.com/live/${streamKey}`
+    const BroadcastView = () => {
+        const streamKey = '7057-uby1-a6mg-nhiu'
+        const url = `rtmp://rtmp.livepeer.com/live/${streamKey}`
 
-       return (
-           <NodePlayerView
-           style={{width, height}}
-             ref={cameraViewRef}
-             inputUrl={url}
-             scaleMode={"ScaleAspectFit"}
-             bufferTime={300}
-             maxBufferTime={1000}
-             autoplay={true}
-           />
-       );
-     }
+        return (
+            <NodePlayerView
+                style={{width, height}}
+                ref={cameraViewRef}
+                inputUrl={url}
+                scaleMode={"ScaleAspectFit"}
+                bufferTime={300}
+                maxBufferTime={1000}
+                autoplay={true}
+            />
+        )
+    }
 
     const PendingView = () => (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'lightgreen',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text>Waiting</Text>
-      </View>
-    );
+        <View
+            style={{
+                flex: 1,
+                backgroundColor: 'lightgreen',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
+            <Text>Waiting</Text>
+        </View>
+    )
 
     takePicture = async function(camera) {
-    const options = { quality: 0.5, base64: true };
-    const data = await camera.takePictureAsync(options);
-    //  eslint-disable-next-line
-    console.log(data.uri);
-  };
+        const options = { quality: 0.5, base64: true }
+        const data = await camera.takePictureAsync(options)
 
-    if (hasAgreed) {
+        // eslint-disable-next-line
+        console.log(data.uri)
+    }
+
+    if (hasAgreed || !DEBUG) {
         return (
             <Tab.Navigator>
                 <Tab.Screen
@@ -474,9 +480,7 @@ function Cafe() {
                 />
             </Tab.Navigator>
         )
-    }
-
-    if (!hasAgreed) {
+    } else {
         return (
             <ScrollView
                 contentInsetAdjustmentBehavior="automatic"

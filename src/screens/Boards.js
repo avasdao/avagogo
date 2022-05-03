@@ -28,6 +28,8 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
+import store from '../store'
+
 /**
  * Welcome
  */
@@ -57,12 +59,17 @@ const Welcome = () => {
 function Boards({navigation}) {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
+    /* Initialize SYSTEM context. */
+    const {
+        DEBUG,
+    } = React.useContext(store.System)
+
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            {hasAgreed &&
+            {(hasAgreed || !DEBUG) &&
                 <View style={tailwind('py-3')}>
                     <Welcome />
 
@@ -244,7 +251,7 @@ function Boards({navigation}) {
                 </View>
             }
 
-            {!hasAgreed &&
+            {(!hasAgreed && DEBUG) &&
                 <View>
                     <View style={tailwind('px-5 pt-5')}>
                         <Text style={tailwind('text-lg text-gray-800 text-center')}>

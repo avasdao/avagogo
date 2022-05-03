@@ -29,6 +29,7 @@ class System {
     }
 
     /* Initialize (observable) variables. */
+    @observable DEBUG = false
     @observable quotes = {}
 
     /* Initialize (persistent) variables. */

@@ -46,6 +46,8 @@ import {
     VictoryTheme
 } from 'victory-native'
 
+import store from '../store'
+
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
 
@@ -244,8 +246,13 @@ const FundsLibraryScreen = () => {
 function Portfolio() {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
+    /* Initialize SYSTEM context. */
+    const {
+        DEBUG,
+    } = React.useContext(store.System)
+
     /* Validate user agreement. */
-    if (hasAgreed) {
+    if (hasAgreed || !DEBUG) {
         return (
             <Tab.Navigator>
                 <Tab.Screen

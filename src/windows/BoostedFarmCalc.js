@@ -35,9 +35,9 @@ import LottieView from 'lottie-react-native'
 import store from '../store'
 
 /**
- * Blank Screen
+ * Boosted Farm Calculator
  */
-const Blank = observer(({navigation}) => {
+const BoostedFarmCalc = observer(({navigation}) => {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
     const [balance, setBalance] = React.useState(0)
@@ -94,10 +94,9 @@ const Blank = observer(({navigation}) => {
         }
 
         /* Start pending rewards interval. */
-        setInterval(handlePendingRewards, 1000)
+        // setInterval(handlePendingRewards, 1000)
+        handlePendingRewards()
     }, [])
-
-
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
@@ -191,6 +190,7 @@ const Blank = observer(({navigation}) => {
                 <Text style={tailwind('text-gray-500 text-base font-bold')}>
                     BALANCE
                 </Text>
+
                 <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
                     {balanceDisplay}
                 </Text>
@@ -252,4 +252,4 @@ const Blank = observer(({navigation}) => {
     )
 })
 
-export default Blank
+export default BoostedFarmCalc

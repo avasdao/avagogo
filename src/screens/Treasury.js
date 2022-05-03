@@ -51,6 +51,11 @@ function Treasury() {
         createWallet,
     } = React.useContext(store.Profile)
 
+    /* Initialize SYSTEM context. */
+    const {
+        DEBUG,
+    } = React.useContext(store.System)
+
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         const _setWallet = async (_wallet) => {
@@ -107,7 +112,7 @@ function Treasury() {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            {hasAgreed &&
+            {(hasAgreed || !DEBUG) &&
                 <>
                     <Text style={tailwind('m-5 text-gray-600 text-2xl font-semibold text-center')}>
                         One-stop-shop decentralized trading on Avalanche
@@ -182,7 +187,7 @@ function Treasury() {
                 </>
             }
 
-            {!hasAgreed &&
+            {(!hasAgreed && DEBUG) &&
                 <View>
                     <View style={tailwind('px-5 pt-5 items-center')}>
                         <Text style={tailwind('text-lg text-gray-800 font-bold')}>
