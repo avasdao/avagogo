@@ -91,7 +91,7 @@ const TxManager = observer(({navigation}) => {
         // const contractAddress = '0xc4729e56b831d74bbc18797e0e17a295fa77488c' // Yield Yak: Router
         // console.log('\nCONTRACT ADDR', contractAddress)
 
-        const abi = require('../assets/abis/trader-joe')
+        const abi = require('../assets/abis/trader-joe/Router')
         // console.log('\nABI', abi)
 
         /* Initialize contract. */
