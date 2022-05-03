@@ -9,6 +9,7 @@
 import React from 'react'
 
 import {
+    Image,
     Pressable,
     SafeAreaView,
     ScrollView,
@@ -32,6 +33,7 @@ import moment from 'moment'
 import numeral from 'numeral'
 
 import store from '../store'
+import Tokens from '../assets/images/tokens'
 
 /**
  * Account Address Abbreviation.
@@ -42,6 +44,18 @@ const _abbr = (_address) => {
     if (!_address) return '0x0'
 
     return _address.slice(0, 10) + ' ... ' + _address.slice(-10)
+}
+
+/**
+ * Parse Pool
+ *
+ * Splits the base and trade pair values.
+ */
+const _parsePool = (_pool) => {
+    return {
+        basePair: _pool.split('/')[0],
+        tradePair: _pool.split('/')[1],
+    }
 }
 
 /**
@@ -245,20 +259,60 @@ const BoostedFarmCalc = observer(({navigation}) => {
 
             <Pressable
                 onPress={() => navigation.navigate('Pools')}
-                style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}
+                style={tailwind('m-3 flex flex-row justify-between bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}
             >
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Selected Pool
-                </Text>
+                <View>
+                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                        Selected Pool
+                    </Text>
 
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {currentPool || 'no pool selected'}
-                </Text>
+                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                        {currentPool || 'no pool selected'}
+                    </Text>
+                </View>
+
+                {currentPool &&
+                    <View style={tailwind('flex flex-row mr-2')}>
+                        <View style={tailwind('bg-gray-50 border-4 border-gray-50 rounded-full overflow-hidden')}>
+                            <Image
+                                style={tailwind('w-12 h-12')}
+                                source={Tokens[_parsePool(currentPool).basePair]}
+                            />
+                        </View>
+
+                        <View style={tailwind('bg-gray-50 border-4 border-gray-50 rounded-full overflow-hidden relative -ml-4')}>
+                            <Image
+                                style={tailwind('w-12 h-12')}
+                                source={Tokens[_parsePool(currentPool).tradePair]}
+                            />
+                        </View>
+                    </View>
+                }
             </Pressable>
 
             <Text style={tailwind('m-5 text-gray-400 text-2xl font-semibold text-center')}>
                 Boost Your JOE Farm Rewards
             </Text>
+
+            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    veJOE Balance
+                </Text>
+
+                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                    0.015515830733128148
+                </Text>
+            </View>
+
+            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    Total veJOE Supply
+                </Text>
+
+                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                    28921690.857080936
+                </Text>
+            </View>
 
             <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
                 <Text style={tailwind('text-gray-800 text-lg font-bold')}>
@@ -285,15 +339,19 @@ const BoostedFarmCalc = observer(({navigation}) => {
                     Base APR (Joe Per Year)
                 </Text>
 
-                <View style={tailwind('flex flex-row items-end')}>
-                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                        15.3%
-                    </Text>
+                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                    15.3%
+                </Text>
+            </View>
 
-                    <Text style={tailwind('ml-1 mb-1 text-gray-500 text-sm font-bold')}>
-                        0.569%
-                    </Text>
-                </View>
+            <View style={tailwind('my-1 px-5 flex flex-row justify-between items-center')}>
+                <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                    Currented Boosted APR
+                </Text>
+
+                <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                    0.569%
+                </Text>
             </View>
 
             <View style={tailwind('border-t-2 border-purple-300 my-2')} />

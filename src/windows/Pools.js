@@ -61,9 +61,7 @@ const Pools = observer(({navigation}) => {
          * Fetch Info
          */
         const fetchInfo = async () => {
-            const pool = 'AVAX/JOE'
-            console.log('SETTING CURRENT POOL', pool)
-            saveCurrentPool(pool)
+            // 
         }
 
         /* Fetch info. */
@@ -87,6 +85,17 @@ const Pools = observer(({navigation}) => {
             </View>
 
             <View style={tailwind('m-3')}>
+
+                <PoolListItem
+                    basePair={'AVAX'}
+                    tradePair={'JOE'}
+                    platform={'Trader Joe'}
+                    yield={'206.23'}
+                    yieldOther={'59.87'}
+                    farming={'95.02'}
+                    fee={'156.77'}
+                    borrow={'-45.56'}
+                />
 
                 <PoolListItem
                     basePair={'AVAX'}

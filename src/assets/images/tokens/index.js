@@ -10,6 +10,7 @@ const tokens = {
     TUS: require('./TUS.png'),
     USDC: require('./USDC.png'),
     USDT: require('./USDT.png'),
+    WBTC: require('./WBTC.png'),
     WETH: require('./WETH.png'),
 }
 

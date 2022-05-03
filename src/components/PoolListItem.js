@@ -140,15 +140,19 @@ const PoolListItem = observer((_params) => {
         >
             <View style={tailwind('flex flex-row items-center')}>
                 <View style={tailwind('flex mr-2')}>
-                    <Image
-                        style={tailwind('w-6 h-6')}
-                        source={Tokens[basePair]}
-                    />
+                    <View style={tailwind('bg-gray-50 border-2 border-gray-50 rounded-full overflow-hidden')}>
+                        <Image
+                            style={tailwind('w-6 h-6')}
+                            source={Tokens[basePair]}
+                        />
+                    </View>
 
-                    <Image
-                        style={tailwind('w-6 h-6 relative -mt-1')}
-                        source={Tokens[tradePair]}
-                    />
+                    <View style={tailwind('bg-gray-50 border-2 border-gray-50 rounded-full overflow-hidden relative -mt-1')}>
+                        <Image
+                            style={tailwind('w-6 h-6')}
+                            source={Tokens[tradePair]}
+                        />
+                    </View>
                 </View>
 
                 <View>
