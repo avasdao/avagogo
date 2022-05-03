@@ -3,6 +3,7 @@ import { create } from 'mobx-persist'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+import Fund from './Fund'
 import Platform from './Platform'
 import Profile from './Profile'
 import System from './System.js'
@@ -18,12 +19,14 @@ const hydrate = create({
  * Base store to manage the overall application's data and activities.
  */
 class Store {
+    Fund = Fund.Context
     Platform = Platform.Context
     Profile = Profile.Context
     System = System.Context
 
     constructor() {
         Promise.all([
+            hydrate('Fund', Fund.Store),
             hydrate('Platform', Platform.Store),
             hydrate('Profile', Profile.Store),
             hydrate('System', System.Store)

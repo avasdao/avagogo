@@ -32,8 +32,10 @@ import { ethers, utils, Wallet } from 'ethers'
 import moment from 'moment'
 import numeral from 'numeral'
 
+import ScreenTitle from '../components/ScreenTitle'
 import store from '../store'
 import Tokens from '../assets/images/tokens'
+
 
 /**
  * Account Address Abbreviation.
@@ -293,13 +295,9 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 </Pressable>
             </View>
 
-            <View style={tailwind('w-full mb-4 py-4 bg-purple-200 border-b-2 border-purple-300 items-center')}>
-                <Text style={tailwind('text-purple-600 text-2xl font-bold')}>
-                    Boosted Farm Calculator
-                </Text>
-            </View>
+            <ScreenTitle title="Boosted Farm Calculator" />
 
-            <View style={tailwind('flex flex-row justify-between items-center')}>
+            <View style={tailwind('mt-3 flex flex-row justify-between items-center')}>
                 <View style={tailwind('flex flex-col mx-4 mb-2')}>
                     <Text style={tailwind('text-sm text-gray-400 font-bold uppercase')}>
                         Current Asset

@@ -48,6 +48,8 @@ import {
 
 import store from '../store'
 
+import FundsLibraryScreen from './Portfolio/FundsLibrary'
+
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
 
@@ -217,24 +219,6 @@ const MyPortfolioScreen = () => {
                     }}
                     bezier
                 />
-            </View>
-        </ScrollView>
-    )
-}
-
-/**
- * Funds Library Screen
- */
-const FundsLibraryScreen = () => {
-    return (
-        <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={tailwind('')}
-        >
-            <View>
-                <Text style={tailwind('text-3xl font-bold')}>
-                    Community Funds
-                </Text>
             </View>
         </ScrollView>
     )

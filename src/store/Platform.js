@@ -57,21 +57,21 @@ const getTokenBalances = async (_tokenid) => {
     const wei = await contract
         .balanceOf(wallet.address)
         .catch(err => console.error(err))
-    console.log('WEI', wei)
+    // console.log('WEI', wei)
 
     /* Retrieve number of decimals. */
     const numDecimals = await contract
         .decimals()
         .catch(err => console.error(err))
-    console.log('# DECIMALS', numDecimals)
+    // console.log('# DECIMALS', numDecimals)
 
     /* Convert to decimal balance. */
     const decimal = utils.formatUnits(wei, numDecimals)
-    console.log('DECIMAL FORMAT', decimal)
+    // console.log('DECIMAL FORMAT', decimal)
 
     /* Format balance. */
     const display = numeral(decimal).format('0,0.0000[00]')
-    console.log('DISPLAY FORMAT', display)
+    // console.log('DISPLAY FORMAT', display)
 
     /* Return a balance package. */
     return {

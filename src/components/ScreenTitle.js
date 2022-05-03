@@ -34,10 +34,13 @@ import LottieView from 'lottie-react-native'
 import store from '../store'
 
 /**
- * Blank
+ * Page Title
  */
-const Blank = observer(({navigation}) => {
+const PageTitle = observer((_props) => {
     // const [hasAgreed, setHasAgreed] = React.useState(false)
+
+    /* Set title. */
+    const title = _props.title
 
     // const {
     //     firstName,
@@ -61,27 +64,12 @@ const Blank = observer(({navigation}) => {
     }, [])
 
     return (
-        <View>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 30 }}>
-                    Do <Text style={tailwind('font-bold')}>YOU</Text> need help?
-                </Text>
-
-                <Pressable onPress={() => navigation.goBack()} title="No thanks" />
-            </View>
-
-            <View style={tailwind('py-5 bg-gray-50 items-center')}>
-                <LottieView
-                    style={tailwind('h-48')}
-                    source={require('../assets/lottie/couple-talk.json')} autoPlay loop
-                />
-
-                <Text style={tailwind('text-pink-500 font-semibold')}>
-                    24 Hour Cafe
-                </Text>
-            </View>
+        <View style={tailwind('w-full py-3 bg-purple-200 border-b-2 border-purple-300 items-center')}>
+            <Text style={tailwind('text-purple-600 text-2xl font-bold')}>
+                {title}
+            </Text>
         </View>
     )
 })
 
-export default Blank
+export default PageTitle
