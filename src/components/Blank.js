@@ -33,7 +33,7 @@ import store from '../store'
 /**
  * Blank
  */
-const Blank = observer(({navigation}) => {
+const Blank = observer(() => {
     // const [hasAgreed, setHasAgreed] = React.useState(false)
 
     // const {

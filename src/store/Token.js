@@ -67,8 +67,17 @@ class Platform {
             address = '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'
             abi = require('../assets/abis/ERC20')
             break
-        default:
-            throw new Error('That symbol is NOT supported in this application.')
+        case 'YAK':
+            address = '0x59414b3089ce2AF0010e7523Dea7E2b35d776ec7'
+            abi = require('../assets/abis/ERC20')
+            break
+        }
+
+        /* Validate contract params. */
+        if (!address || !abi) {
+            return console.error(
+                `Sorry, [ ${_tokenid} ] is NOT supported by this application.`
+            )
         }
 
         /* Initialize contract. */

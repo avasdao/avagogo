@@ -31,9 +31,12 @@ import { ethers, utils, Wallet } from 'ethers'
 import moment from 'moment'
 import numeral from 'numeral'
 
-import ScreenTitle from '../components/ScreenTitle'
 import store from '../store'
+
 import Tokens from '../assets/images/tokens'
+
+import Divider from '../components/Divider'
+import ScreenTitle from '../components/ScreenTitle'
 
 /**
  * Treasury Screen
@@ -44,6 +47,8 @@ function Treasury() {
     const [balance, setBalance] = React.useState(0)
     const [balanceDisplay, setBalanceDisplay] = React.useState(null)
     const [usdBalanceDisplay, setUsdBalanceDisplay] = React.useState(null)
+
+    const [tokenBalances, setTokenBalances] = React.useState({})
 
     /* Initialize TOKEN context. */
     const {
@@ -107,10 +112,18 @@ function Treasury() {
                 _setWallet(wallet)
             }
 
-            let balances
+            /* Initialize handler. */
+            let _tokenBalances = {}
 
-            balances = await getBalances('DAI')
-            console.log('BALANCE (DAI.e):', balances)
+            /* Request token balances. */
+            _tokenBalances['DAI'] = await getBalances('DAI')
+            _tokenBalances['JOE'] = await getBalances('JOE')
+            _tokenBalances['USDT'] = await getBalances('USDT')
+            _tokenBalances['YAK'] = await getBalances('YAK')
+            console.log('TOKEN BALANCES:', JSON.stringify(_tokenBalances, null, 2))
+
+            /* Set token balances. */
+            setTokenBalances(_tokenBalances)
         }
 
         /* Fetch info. */
@@ -124,108 +137,78 @@ function Treasury() {
                 contentInsetAdjustmentBehavior="automatic"
                 style={tailwind('')}
             >
-                <>
-                    <Text style={tailwind('m-5 text-gray-600 text-2xl font-semibold text-center')}>
-                        One-stop-shop decentralized trading on Avalanche
-                    </Text>
+                <ScreenTitle title="$1,337.88 USD" />
 
-                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
-                        <Text style={tailwind('text-gray-800 text-lg font-semibold')}>
+                <View style={tailwind('p-3')}>
+                    <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-500 text-lg font-semibold')}>
                             My Account Balance
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
                             {balanceDisplay}
                         </Text>
                     </View>
 
-                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
-                        <Text style={tailwind('text-gray-800 text-lg font-semibold')}>
+                    <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-500 text-lg font-semibold')}>
                             My USD Balance
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-lg font-bold')}>
+                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
                             {usdBalanceDisplay}
                         </Text>
                     </View>
 
-                    <View style={tailwind('px-5 flex flex-row justify-between items-center hidden')}>
-                        <Text style={tailwind('text-gray-800 text-base font-bold')}>
-                            Market Cap
-                        </Text>
+                    <Divider />
 
-                        <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                            123,456
-                        </Text>
-                    </View>
-
-                    <View style={tailwind('px-5 flex flex-row justify-between items-center hidden')}>
-                        <Text style={tailwind('text-gray-800 text-base font-bold')}>
-                            Circulating Supply
-                        </Text>
-
-                        <View style={tailwind('flex flex-row items-end')}>
-                            <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                                888,888
-                            </Text>
-
-                            <Text style={tailwind('ml-1 mb-1 text-gray-500 text-xs font-bold')}>
-                                12%
-                            </Text>
-                        </View>
-                    </View>
-
-                    <Text style={tailwind('m-5 text-gray-600 text-2xl font-semibold text-center')}>
-                        One-stop-shop decentralized trading on Avalanche
-                    </Text>
-
-                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
-                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                    <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-500 text-lg font-bold')}>
                             DAI.e Token
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                            {0}
+                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                            {tokenBalances['DAI'] ? tokenBalances['DAI'].display : 0}
                         </Text>
                     </View>
 
-                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
-                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                    <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-500 text-lg font-bold')}>
                             JOE Token
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                            {0}
+                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                            {tokenBalances['JOE'] ? tokenBalances['JOE'].display : 0}
                         </Text>
                     </View>
 
-                    <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
+                    <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-500 text-lg font-bold')}>
+                            YAK Token
+                        </Text>
+
                         <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                            {tokenBalances['YAK'] ? tokenBalances['YAK'].display : 0}
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-500 text-lg font-bold')}>
                             USDT.e Token
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                            {0}
+                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                            {tokenBalances['USDT'] ? tokenBalances['USDT'].display : 0}
                         </Text>
                     </View>
 
-
-
-                    <View style={tailwind('py-6 items-center')}>
-
-                        <View style={tailwind('mt-10 py-5 items-center')}>
-                            <LottieView
-                                style={tailwind('h-48')}
-                                source={require('../assets/lottie/finance-guru.json')} autoPlay loop
-                            />
-
-                            <Text style={tailwind('text-purple-700 font-light')}>
-                                This area is still under development
-                            </Text>
-                        </View>
-
+                    <View style={tailwind('my-10 items-center')}>
+                        <LottieView
+                            style={tailwind('h-48')}
+                            source={require('../assets/lottie/finance-guru.json')} autoPlay loop
+                        />
                     </View>
-                </>
+                </View>
             </ScrollView>
         )
     } else {

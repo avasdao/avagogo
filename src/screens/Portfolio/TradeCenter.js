@@ -46,6 +46,9 @@ import {
 
 import store from '../../store'
 
+import Divider from '../../components/Divider'
+import ScreenTitle from '../../components/ScreenTitle'
+
 const pieData = [
     {
         name: 'Seoul',
@@ -132,6 +135,8 @@ const Dashboard = observer(({navigation}) => {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
+            <ScreenTitle title="Crypto Trade Center" />
+
             <TextInput
                 style={tailwind('px-3 border-2 border-gray-300 rounded-xl mt-3 mx-2')}
                 onChangeText={onChangeSearchText}
@@ -185,24 +190,6 @@ const Dashboard = observer(({navigation}) => {
                 onPress={() => alert('testNotif')}>
                 <Text style={tailwind('text-gray-700 text-xl')}>testNotif</Text>
             </Pressable>
-
-            <View style={tailwind('px-5 pt-5')}>
-                <Text style={tailwind('hidden text-2xl font-bold text-gray-800')}>
-                    Portfolio
-                </Text>
-
-                <Text style={tailwind('text-lg text-gray-800')}>
-                    Track ALL of your <Text style={tailwind('font-bold')}>DeFi</Text> investments from a single screen.
-                </Text>
-            </View>
-
-            <View style={tailwind('py-6 items-center')}>
-                <View style={tailwind('bg-pink-200 px-5 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                        $1,337.88
-                    </Text>
-                </View>
-            </View>
 
             <View style={tailwind('')}>
                 <VictoryChart

@@ -30,8 +30,8 @@ import LottieView from 'lottie-react-native'
 
 import store from '../store'
 
-import DashboardScreen from './Portfolio/Dashboard'
 import FundsLibraryScreen from './Portfolio/FundsLibrary'
+import TradeCenterScreen from './Portfolio/TradeCenter'
 
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
@@ -52,10 +52,10 @@ function Portfolio() {
         return (
             <Tab.Navigator>
                 <Tab.Screen
-                    name="MyPortfolio"
-                    component={DashboardScreen}
+                    name="Dashboards"
+                    component={TradeCenterScreen}
                     options={{
-                        title: 'Portfolio'
+                        title: 'Dashboards'
                     }}
                 />
                 <Tab.Screen

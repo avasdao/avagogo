@@ -31,10 +31,12 @@ import { ethers, utils, Wallet } from 'ethers'
 import moment from 'moment'
 import numeral from 'numeral'
 
-import ScreenTitle from '../components/ScreenTitle'
 import store from '../store'
+
 import Tokens from '../assets/images/tokens'
 
+import Divider from '../components/Divider'
+import ScreenTitle from '../components/ScreenTitle'
 
 /**
  * Account Address Abbreviation.
@@ -457,7 +459,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
                     </Text>
                 </View>
 
-                <View style={tailwind('border-t-2 border-purple-300 my-2')} />
+                <Divider />
 
                 <View style={tailwind('flex flex-row justify-between items-center')}>
                     <Text style={tailwind('text-green-500 text-xl font-bold')}>
