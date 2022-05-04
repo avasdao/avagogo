@@ -13,7 +13,6 @@ import {
     Pressable,
     ScrollView,
     StatusBar,
-    StyleSheet,
     Text,
     TextInput,
     useColorScheme,

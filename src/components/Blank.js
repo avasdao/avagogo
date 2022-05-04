@@ -14,7 +14,6 @@ import {
     Pressable,
     ScrollView,
     StatusBar,
-    StyleSheet,
     Text,
     useColorScheme,
     View,
