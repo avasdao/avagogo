@@ -15,6 +15,7 @@ import {
     StatusBar,
     StyleSheet,
     Text,
+    TextInput,
     useColorScheme,
     View,
 } from 'react-native'
@@ -85,6 +86,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
     /* Initialize veJOE balance handlers. */
     // FIXME: How can we make this generic.
     const [veJoeBalance, setVeJoeBalance] = React.useState(0)
+    // const [veJoeBalanceDisplay, onChangeVeJoeBalance] = React.useState(null)
     const [veJoeBalanceDisplay, setVeJoeBalanceDisplay] = React.useState(0)
 
     /* Initialize veJOE total supply handlers. */
@@ -333,6 +335,16 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 </Text>
             </View>
 
+            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    Total veJOE Supply
+                </Text>
+
+                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                    {veJoeTotalSupplyDisplay}
+                </Text>
+            </View>
+
             <Pressable
                 onPress={() => navigation.navigate('Pools')}
                 style={tailwind('m-3 flex flex-row justify-between bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}
@@ -366,6 +378,10 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 }
             </Pressable>
 
+            <Text style={tailwind('m-5 text-yellow-700 text-xl font-bold text-center')}>
+                Adjust the values shown below to estimate your new {assetName} rewards
+            </Text>
+
             <View style={tailwind('p-3 flex flex-row justify-between')}>
                 <View style={tailwind('flex flex-grow mr-1 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                     <View style={tailwind('flex flex-row justify-between items-center')}>
@@ -379,51 +395,49 @@ const BoostedFarmCalc = observer(({navigation}) => {
                         />
                     </View>
 
-                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                        {basePairBalances ? basePairBalances.display : 0}
-                    </Text>
-                </View>
-
-                <View style={tailwind('flex flex-grow ml-1 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <View style={tailwind('flex flex-row justify-between items-center')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                        {_parsePool(currentPool).tradePair} Bal
-                    </Text>
-
-                    <Image
-                        style={tailwind('w-6 h-6')}
-                        source={Tokens[_parsePool(currentPool).tradePair]}
+                    <TextInput
+                        style={tailwind('mt-2 px-3 text-gray-200 text-lg font-bold bg-gray-800 border-2 border-blue-500 rounded-xl')}
+                        onChangeText={setVeJoeBalanceDisplay}
+                        value={basePairBalances ? basePairBalances.display : 0}
+                        placeholder="How many?"
+                        placeholderTextColor="#AAA"
                     />
                 </View>
 
-                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                        {tradePairBalances ? tradePairBalances.display : 0}
-                    </Text>
+                <View style={tailwind('flex flex-grow ml-1 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+                    <View style={tailwind('flex flex-row justify-between items-center')}>
+                        <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                            {_parsePool(currentPool).tradePair} Bal
+                        </Text>
+
+                        <Image
+                            style={tailwind('w-6 h-6')}
+                            source={Tokens[_parsePool(currentPool).tradePair]}
+                        />
+                    </View>
+
+                    <TextInput
+                        style={tailwind('mt-2 px-3 text-gray-200 text-lg font-bold bg-gray-800 border-2 border-blue-500 rounded-xl')}
+                        onChangeText={setVeJoeBalanceDisplay}
+                        value={tradePairBalances ? tradePairBalances.display : 0}
+                        placeholder="How many?"
+                        placeholderTextColor="#AAA"
+                    />
                 </View>
             </View>
-
-            <Text style={tailwind('m-5 text-gray-400 text-2xl font-semibold text-center')}>
-                Boost Your JOE Farm Rewards
-            </Text>
 
             <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
                     veJOE Balance
                 </Text>
 
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {veJoeBalanceDisplay}
-                </Text>
-            </View>
-
-            <View style={tailwind('m-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Total veJOE Supply
-                </Text>
-
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {veJoeTotalSupplyDisplay}
-                </Text>
+                <TextInput
+                    style={tailwind('mt-1 px-3 text-gray-200 text-2xl font-bold bg-gray-800 border-2 border-blue-500 rounded-xl')}
+                    onChangeText={setVeJoeBalanceDisplay}
+                    value={veJoeBalanceDisplay}
+                    placeholder="Enter your new balance"
+                    placeholderTextColor="#AAA"
+                />
             </View>
 
             <View style={tailwind('px-5 mb-7')}>
@@ -470,7 +484,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 <Divider />
 
                 <View style={tailwind('flex flex-row justify-between items-center')}>
-                    <Text style={tailwind('text-green-500 text-xl font-bold')}>
+                    <Text style={tailwind('text-green-500 text-2xl font-bold')}>
                         Est. Boosted APR
                     </Text>
 
