@@ -29,17 +29,20 @@ import _1inch from './Boards/1inch'
 import Aave from './Boards/Aave'
 import AlphaFinanceLab from './Boards/AlphaFinanceLab'
 import BENQI from './Boards/BENQI'
+import BenSwap from './Boards/BenSwap'
 import Compound from './Boards/Compound'
 import Cream from './Boards/Cream'
 import Curve from './Boards/Curve'
 import MistSwap from './Boards/MistSwap'
 import PancakeSwap from './Boards/PancakeSwap'
 import Pangolin from './Boards/Pangolin'
+import TangoSwap from './Boards/TangoSwap'
 
 import TraderJoe from './Boards/TraderJoe'
 import TraderJoeStake from './Boards/TraderJoe/Stake'
 
 import Uniswap from './Boards/Uniswap'
+import Verse from './Boards/Verse'
 import Yearn from './Boards/Yearn'
 import YieldYak from './Boards/YieldYak'
 
@@ -100,6 +103,15 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
+                name="Boards.BenSwap"
+                component={BenSwap}
+                options={{
+                    title: 'BenSwap',
+                    headerRight: InfoButton,
+                }}
+            />
+
+            <Stack.Screen
                 name="Boards.Compound"
                 component={Compound}
                 options={{
@@ -154,6 +166,15 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
+                name="Boards.TangoSwap"
+                component={TangoSwap}
+                options={{
+                    title: 'TangoSwap',
+                    headerRight: InfoButton,
+                }}
+            />
+
+            <Stack.Screen
                 name="Boards.TraderJoe"
                 component={TraderJoe}
                 options={{
@@ -175,6 +196,15 @@ const BoardsStack = () => {
                 component={Uniswap}
                 options={{
                     title: 'Uniswap',
+                    headerRight: InfoButton,
+                }}
+            />
+
+            <Stack.Screen
+                name="Boards.Verse"
+                component={Verse}
+                options={{
+                    title: 'Verse',
                     headerRight: InfoButton,
                 }}
             />

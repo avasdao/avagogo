@@ -132,6 +132,17 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
+                        onPress={() => navigation.navigate('Boards.BenSwap')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/images/banners/ben-swap.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
                         onPress={() => navigation.navigate('Boards.Compound')}
                         style={tailwind('items-center')}
                     >
@@ -198,6 +209,17 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
+                        onPress={() => navigation.navigate('Boards.TangoSwap')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/images/banners/tango-swap.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
                         onPress={() => navigation.navigate('Boards.TraderJoe')}
                         style={tailwind('items-center')}
                     >
@@ -215,6 +237,17 @@ function Boards({navigation}) {
                         <Image
                             style={styles.dappBanner}
                             source={require('../assets/images/banners/uniswap.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('Boards.Verse')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/images/banners/verse.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
