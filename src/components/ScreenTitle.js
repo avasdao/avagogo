@@ -63,8 +63,8 @@ const PageTitle = observer((_props) => {
     }, [])
 
     return (
-        <View style={tailwind('w-full py-3 bg-purple-200 border-b-2 border-purple-300 items-center')}>
-            <Text style={tailwind('text-purple-600 text-2xl font-bold')}>
+        <View style={tailwind('w-full py-3 bg-blue-700 border-b-2 border-t-2 border-blue-300 items-center')}>
+            <Text style={tailwind('text-blue-300 text-2xl font-bold')}>
                 {title}
             </Text>
         </View>

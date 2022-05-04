@@ -46,7 +46,7 @@ import ScreenTitle from '../components/ScreenTitle'
 const _abbr = (_address) => {
     if (!_address) return '0x0'
 
-    return _address.slice(0, 10) + ' ... ' + _address.slice(-10)
+    return _address.slice(0, 10) + ' ... ' + _address.slice(-8)
 }
 
 /**
@@ -55,6 +55,14 @@ const _abbr = (_address) => {
  * Splits the base and trade pair values.
  */
 const _parsePool = (_pool) => {
+    /* Validate pool. */
+    if (!_pool) {
+        return {
+            basePair: null,
+            tradePair: null,
+        }
+    }
+
     return {
         basePair: _pool.split('/')[0],
         tradePair: _pool.split('/')[1],
@@ -362,7 +370,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 <View style={tailwind('flex flex-grow mr-1 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                     <View style={tailwind('flex flex-row justify-between items-center')}>
                         <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                            {_parsePool(currentPool).basePair} Balance
+                            {_parsePool(currentPool).basePair} Bal
                         </Text>
 
                         <Image
@@ -379,7 +387,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
                 <View style={tailwind('flex flex-grow ml-1 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <View style={tailwind('flex flex-row justify-between items-center')}>
                     <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                        {_parsePool(currentPool).tradePair} Balance
+                        {_parsePool(currentPool).tradePair} Bal
                     </Text>
 
                     <Image
@@ -441,7 +449,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
 
                 <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
                     <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                        Base APR (Joe Per Year)
+                        Base APR (Joe/Year)
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-xl font-bold')}>
@@ -451,7 +459,7 @@ const BoostedFarmCalc = observer(({navigation}) => {
 
                 <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
                     <Text style={tailwind('text-gray-800 text-lg font-bold')}>
-                        Currented Boosted APR
+                        Current Boosted APR
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-xl font-bold')}>

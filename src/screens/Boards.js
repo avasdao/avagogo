@@ -37,7 +37,7 @@ const Welcome = () => {
         return (
             <View style={tailwind('px-5 py-3')}>
                 <Text style={tailwind('text-2xl font-bold text-gray-800 text-center')}>
-                    Welcome to the Premier DeFi Experience on iOS
+                    Entering the Premier DeFi Experience on iOS
                 </Text>
             </View>
         )
@@ -45,7 +45,7 @@ const Welcome = () => {
         return (
             <View style={tailwind('px-5 py-3')}>
                 <Text style={tailwind('text-2xl font-bold text-gray-800 text-center')}>
-                    Welcome to the Premier DeFi Experience on Android
+                    Entering the Premier DeFi Experience on Android
                 </Text>
             </View>
         )
@@ -274,10 +274,10 @@ function Boards({navigation}) {
                         />
                     </Pressable>
 
-                    <View style={tailwind('m-3 p-3 bg-gray-700 rounded-xl')}>
-                        <Text style={tailwind('text-gray-400 text-xs')}>
+                    <View style={tailwind('m-3 p-3 bg-gray-700 border-2 border-red-700 rounded-xl')}>
+                        <Text style={tailwind('text-gray-400 text-xs text-center')}>
                             All product and company names are trademarks™ or registered® trademarks of their respective holders.
-                            Use of them does not imply any affiliation with or endorsement by them.
+                            Use of them does not imply any affiliation with or endorsement by them, unless otherwise stated.
                         </Text>
                     </View>
 
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
 
-        borderWidth: 5,
+        borderWidth: 2,
         // borderColor: '#73AD21',
         borderColor: '#AAAD21',
         borderRadius: 25,
