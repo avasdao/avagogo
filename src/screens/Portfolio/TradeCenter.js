@@ -14,7 +14,6 @@ import {
     ScrollView,
     StatusBar,
     Text,
-    TextInput,
     useColorScheme,
     View,
 } from 'react-native'
@@ -27,13 +26,15 @@ import tailwind from 'tailwind-rn'
 
 import { ethers, utils, Wallet } from 'ethers'
 
+import moment from 'moment'
+
 import {
   LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
+  // BarChart,
+  // PieChart,
+  // ProgressChart,
+  // ContributionGraph,
+  // StackedBarChart
 } from 'react-native-chart-kit'
 
 import {
@@ -47,61 +48,32 @@ import store from '../../store'
 
 import Divider from '../../components/Divider'
 import ScreenTitle from '../../components/ScreenTitle'
-
-const pieData = [
-    {
-        name: 'Seoul',
-        population: 21500000,
-        color: 'rgba(131, 167, 234, 1)',
-        legendFontColor: '#7F7F7F',
-        legendFontSize: 12,
-    },
-    {
-        name: 'Toronto',
-        population: 2800000,
-        color: '#F00',
-        legendFontColor: '#7F7F7F',
-        legendFontSize: 12,
-    },
-    {
-        name: 'Beijing',
-        population: 527612,
-        color: 'red',
-        legendFontColor: '#7F7F7F',
-        legendFontSize: 12,
-    },
-    {
-        name: 'New York',
-        population: 8538000,
-        color: '#ffffff',
-        legendFontColor: '#7F7F7F',
-        legendFontSize: 12,
-    },
-    {
-        name: 'Moscow',
-        population: 11920000,
-        color: 'rgb(0, 0, 255)',
-        legendFontColor: '#7F7F7F',
-        legendFontSize: 12,
-    },
-]
+import Search from '../../components/Search'
 
 const chartConfig = {
-    backgroundGradientFrom: "#1E2923",
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#08130D",
-    backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5,
-    useShadowColorFromDataset: false // optional
+    // backgroundColor: "#e26a00",
+    backgroundGradientFrom: "#f80",
+    backgroundGradientTo: "#726",
+    decimalPlaces: 1, // optional, defaults to 2dp
+    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    style: {
+        borderRadius: 16
+    },
+    propsForDots: {
+        r: "6",
+        strokeWidth: "2",
+        stroke: "#ffa726"
+    }
 }
 
 const data = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 }
+    { month: 1, earnings: 13000 },
+    { month: 2, earnings: 16500 },
+    { month: 3, earnings: 14250 },
+    { month: 4, earnings: 19000 },
+    { month: 5, earnings: 27000 },
+    { month: 6, earnings: 700 },
 ]
 
 /**
@@ -109,12 +81,15 @@ const data = [
  */
 const Dashboard = observer(({navigation}) => {
     const [hasAgreed, setHasAgreed] = React.useState(false)
-    const [searchText, onChangeSearchText] = React.useState(null)
+    // const [searchText, onChangeSearchText] = React.useState(null)
 
     /* Initialize SYSTEM context. */
     const {
         DEBUG,
     } = React.useContext(store.System)
+
+    /* Retreive window width. */
+    const width = Dimensions.get('window').width
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
@@ -129,24 +104,23 @@ const Dashboard = observer(({navigation}) => {
         fetchInfo()
     }, [])
 
+    /* Handle search query. */
+    const _handleQuery = (_query) => {
+        console.log('QUERY (props):', _query)
+    }
+
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <ScreenTitle title="Crypto Trade Center" />
+            <ScreenTitle title="DeFi Trade Center" />
 
-            <TextInput
-                style={tailwind('px-3 border-2 border-gray-300 rounded-xl mt-3 mx-2')}
-                onChangeText={onChangeSearchText}
-                onFocus={() => alert('Search is NOT enabled in this DEMO')}
-                value={searchText}
-                placeholder="Search token symbol"
+            <Search
+                style={tailwind('mx-3 mt-2 mb-1')}
+                onQuery={_handleQuery}
+                placeholder="What are you looking for?"
             />
-
-            <Text style={tailwind('m-5 text-gray-600 text-2xl font-semibold text-center')}>
-                One-stop-shop decentralized trading on Avalanche
-            </Text>
 
             <View style={tailwind('px-5 flex flex-row justify-between items-center')}>
                 <Text style={tailwind('text-gray-800 text-xl font-bold')}>
@@ -190,39 +164,49 @@ const Dashboard = observer(({navigation}) => {
                 <Text style={tailwind('text-gray-700 text-xl')}>testNotif</Text>
             </Pressable>
 
-            <View style={tailwind('')}>
+            <View style={tailwind('mt-2 ml-2 flex flex-row items-end')}>
+                <Text style={tailwind('text-xl font-bold text-gray-500')}>
+                    Earnings Trends
+                </Text>
+
+                <Text style={tailwind('ml-2 mb-1 text-gray-500 text-xs font-semibold')}>
+                    ( LAST 6 MONTHS )
+                </Text>
+            </View>
+
+            <View style={tailwind('-mt-5 bg-gray-200 border-t-2 border-b-2 border-indigo-500')}>
                 <VictoryChart
-                    width={350}
+                    width={width}
+                    height={width / 1.5}
                     theme={VictoryTheme.material}
                     domainPadding={20}
                 >
                     <VictoryAxis
-                          // tickValues specifies both the number of ticks and where
-                          // they are placed on the axis
-                          tickValues={[1, 2, 3, 4]}
-                          tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+                        // tickValues specifies both the number of ticks and where
+                        // they are placed on the axis
+                        // tickValues={[1, 2, 3, 4]}
+                        tickFormat={[
+                            moment().subtract(5, 'months').format('MMM'),
+                            moment().subtract(4, 'months').format('MMM'),
+                            moment().subtract(3, 'months').format('MMM'),
+                            moment().subtract(2, 'months').format('MMM'),
+                            moment().subtract(1, 'months').format('MMM'),
+                            moment().format('MMM'),
+                        ]}
                     />
+
                     <VictoryAxis
                           dependentAxis
                           // tickFormat specifies how ticks should be displayed
                           tickFormat={(x) => (`$${x / 1000}k`)}
                     />
-                    <VictoryBar data={data} x="quarter" y="earnings" />
-                </VictoryChart>
-            </View>
 
-            <View style={tailwind('my-3')}>
-                <PieChart
-                    style={tailwind('')}
-                    data={pieData}
-                    width={Dimensions.get('window').width}
-                    height={120}
-                    chartConfig={chartConfig}
-                    accessor="population"
-                    backgroundColor="transparent"
-                    paddingLeft={0}
-                    absolute
-                />
+                    <VictoryBar
+                        data={data}
+                        x='month'
+                        y='earnings'
+                    />
+                </VictoryChart>
             </View>
 
             <View style={tailwind('m-2')}>
@@ -232,20 +216,26 @@ const Dashboard = observer(({navigation}) => {
             </View>
 
             <View style={tailwind('mb-10')}>
-
                 <LineChart
                     style={tailwind('border-t-2 border-b-2 border-yellow-600')}
                     data={{
-                        labels: ['Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Jan'],
+                        labels: [
+                            moment().subtract(5, 'months').format('MMM'),
+                            moment().subtract(4, 'months').format('MMM'),
+                            moment().subtract(3, 'months').format('MMM'),
+                            moment().subtract(2, 'months').format('MMM'),
+                            moment().subtract(1, 'months').format('MMM'),
+                            moment().format('MMM'),
+                        ],
                         datasets: [
                             {
                                 data: [
-                                    Math.random() * (75 - 25) + 25,
+                                    Math.random() * (75 - 25) + 50,
                                     Math.random() * (100 - 50) + 50,
-                                    Math.random() * (125 - 75) + 75,
-                                    Math.random() * (150 - 100) + 100,
-                                    Math.random() * (175 - 125) + 125,
-                                    Math.random() * (200 - 150) + 150,
+                                    Math.random() * (125 - 75) + 50,
+                                    Math.random() * (150 - 100) + 50,
+                                    Math.random() * (175 - 125) + 50,
+                                    Math.random() * (200 - 150) + 50,
                                 ]
                             }
                         ]
@@ -255,22 +245,7 @@ const Dashboard = observer(({navigation}) => {
                     yAxisLabel="$"
                     yAxisSuffix="k"
                     yAxisInterval={1} // optional, defaults to 1
-                    chartConfig={{
-                        backgroundColor: "#e26a00",
-                        backgroundGradientFrom: "#fb8c00",
-                        backgroundGradientTo: "#ffa726",
-                        decimalPlaces: 2, // optional, defaults to 2dp
-                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                        style: {
-                            borderRadius: 16
-                        },
-                        propsForDots: {
-                            r: "6",
-                            strokeWidth: "2",
-                            stroke: "#ffa726"
-                        }
-                    }}
+                    chartConfig={chartConfig}
                     bezier
                 />
             </View>

@@ -33,9 +33,9 @@ import FundListItem from '../../components/FundListItem'
 import ScreenTitle from '../../components/ScreenTitle'
 
 /**
- * Funds Library Screen
+ * Funds Manager Screen
  */
-const FundsLibrary = observer(({navigation}) => {
+const FundsManager = observer(({navigation}) => {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
     /* Initialize SYSTEM context. */
@@ -61,7 +61,7 @@ const FundsLibrary = observer(({navigation}) => {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <ScreenTitle title="Funds Library" />
+            <ScreenTitle title="Funds Manager" />
 
             <View style={tailwind('m-3')}>
 
@@ -125,4 +125,4 @@ const FundsLibrary = observer(({navigation}) => {
     )
 })
 
-export default FundsLibrary
+export default FundsManager
