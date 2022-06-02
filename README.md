@@ -2,50 +2,31 @@
 
 https://avagogo.io
 
-Ava GoGo is introducing the ULTIMATE crypto experience on ANY iOS / Android phone or tablet; and is designed to onboard newcomers and seasoned investors alike to the world of GameFi, DeFi and SocialFi by offering exclusive content and features found no where else.
+Ava GoGo introduced the ULTIMATE crypto experience for iOS and Android devices. The app is designed to navigate both newcomers and seasoned investors alike across the worlds of DeFi, GameFi and SocialFi; while offering exclusive community, content and services found nowhere else.
 
-Our mobile-first strategy that puts us in the unique position of being the FIRST native mobile dApp to integrate with leading platforms like: Aave, OpenSea, UniSwap and Yearn Finance.
+## Downloads
 
-## For Novice Users
+https://avagogo.io/download
 
-Join a growing community of experienced traders to help guide you through the challenges of getting started with GameFi, DeFi and SocialFi.
+- Android Play Store
+- Apple App Store
+- F-Droid
+- APK Nightlies (unstable)
 
-## For Daytraders & Professionals
+## How-to Run via Linux
 
-Now you can trade on your favorite platforms, while on-the-go. Our push notification system will keep you up-to-date on ANY critical smart contract or platform activity.
+STEP 1: If you don't already have a running emulator, then:  
+`emulator -avd Pixel_5_API_30`
 
-## Why Ava GoGo?
+> NOTE: If you need a list of installed emulators:  
+`emulator -list-avds
+`
 
-In a word .. ENGAGEMENT! 🤝
+STEP 2: We need to start Metro  
+`npx react-native start --reset-cache`
 
-We're introducing a brand new Push Notification system that promises to do what "native" apps did to "web-based" apps, and that's boost user engagement by over 30%.
+STEP 3: Finally, we can launch the app  
+`npx react-native run-android`
 
-Ava GoGo offers the ideal user-experience for EVERY GameFi, DeFi and SocialFi trader that prefers to utilize a mobile phone or tablet vs a desktop.
-
-Our MVP has already been approved by Apple's Review Board for TestFlight. Download it today, and see for yourself how much richer the DeFi experience can be on a "native" mobile application.
-
-## Introducing NFT Investment Pools
-
-Want a BoredApe for your Twitter profile?
-Well.. they start at about $300k
-Option 2, buy a "fractional" share in a BoredApe Managed Fund
-
-On Ava GoGo ALL of our investment pools are:
-- 100% Transparent
-- 100% Trustless
-- 100% Non-custodial
-
-## Revenue Model / Tokenomics
-
-We plan to mint 1 BILLION $GOGO tokens that will be used to incentivize traders to participate in the community.
-
-Tokens will be burned as users subscribe to trading pools.
-
-## Our Platform Links
-
-- https://avagogo.io
-- https://docs.avagogo.io
-- https://canvas.avagogo.io/
-- https://plan.avagogo.io/
-- https://pitch.avagogo.io/
-- https://tour.avagogo.io/
+(optional) Setup a reverse proxy for debugging  
+`adb -s emulator-5554 reverse tcp:9090 tcp:9090`
