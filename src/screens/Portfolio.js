@@ -90,7 +90,7 @@ function Portfolio() {
                         />
 
                         <Text style={tailwind('mt-3 text-pink-800 font-semibold')}>
-                            Your AVAX Daily Earnings
+                            Your Crypto Daily Earnings
                         </Text>
                     </View>
 

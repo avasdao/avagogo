@@ -9,6 +9,7 @@
 import React from 'react'
 
 import {
+    Dimensions,
     Pressable,
     ScrollView,
     StatusBar,
@@ -29,6 +30,14 @@ import { ethers, utils, Wallet } from 'ethers'
 
 import moment from 'moment'
 import numeral from 'numeral'
+
+import {
+    VictoryAxis,
+    VictoryBar,
+    VictoryChart,
+    VictoryLine,
+    VictoryTheme
+} from 'victory-native'
 
 import store from '../store'
 
@@ -137,6 +146,20 @@ function Treasury() {
                 style={tailwind('')}
             >
                 <ScreenTitle title="$1,337.88 USD" />
+
+                {/*<View style={tailwind('my-3')}>
+                    <PieChart
+                        style={tailwind('')}
+                        data={pieData}
+                        width={Dimensions.get('window').width}
+                        height={120}
+                        chartConfig={chartConfig}
+                        accessor="population"
+                        backgroundColor="transparent"
+                        paddingLeft={0}
+                        absolute
+                    />
+                </View>*/}
 
                 <View style={tailwind('p-3')}>
                     <View style={tailwind('my-1 flex flex-row justify-between items-center')}>

@@ -29,18 +29,10 @@ import { ethers, utils, Wallet } from 'ethers'
 import moment from 'moment'
 
 import {
-  LineChart,
-  // BarChart,
-  // PieChart,
-  // ProgressChart,
-  // ContributionGraph,
-  // StackedBarChart
-} from 'react-native-chart-kit'
-
-import {
     VictoryAxis,
     VictoryBar,
     VictoryChart,
+    VictoryLine,
     VictoryTheme
 } from 'victory-native'
 
@@ -74,6 +66,14 @@ const data = [
     { month: 4, earnings: 19000 },
     { month: 5, earnings: 27000 },
     { month: 6, earnings: 700 },
+]
+
+const data2 = [
+    { month: 1, earnings: 5000 },
+    { month: 2, earnings: 9500 },
+    { month: 3, earnings: 7250 },
+    { month: 4, earnings: 11000 },
+    { month: 5, earnings: 17000 },
 ]
 
 /**
@@ -203,6 +203,12 @@ const Dashboard = observer(({navigation}) => {
 
                     <VictoryBar
                         data={data}
+                        x='month'
+                        y='earnings'
+                    />
+
+                    <VictoryLine
+                        data={data2}
                         x='month'
                         y='earnings'
                     />

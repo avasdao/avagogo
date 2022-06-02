@@ -222,8 +222,8 @@ const App = () => {
         /* Retrieve window height. */
         const height = Dimensions.get('window').height
 
-        console.log('UPDATED LAYOUT', width, height)
-        // alert(`new layout -> w:${width} / h:${height}`)
+        console.info(
+            `Screen Layout has been updated [ w:${parseInt(width)} | h:${parseInt(height)} ]`)
     }
 
     return (

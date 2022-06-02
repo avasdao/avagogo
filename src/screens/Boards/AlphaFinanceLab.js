@@ -29,11 +29,15 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
-import {
-  LineChart,
-} from 'react-native-chart-kit'
-
 import PoolListItem from '../../components/PoolListItem'
+
+import {
+    VictoryAxis,
+    VictoryBar,
+    VictoryChart,
+    VictoryLine,
+    VictoryTheme
+} from 'victory-native'
 
 /* Initialize tab (navigation). */
 const Tab = createMaterialTopTabNavigator()
@@ -252,7 +256,7 @@ function Board({navigation}) {
                         $465,244,384
                     </Text>
 
-                    <LineChart
+                    {/*<LineChart
                         data={{
                             labels: ['Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Jan'],
                             datasets: [
@@ -298,7 +302,7 @@ function Board({navigation}) {
                             // paddingVertical: 5,
                             // paddingHorizontal: 5,
                         }}
-                    />
+                    />*/}
 
                 </View>
 
