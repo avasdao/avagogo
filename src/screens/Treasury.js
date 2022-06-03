@@ -32,9 +32,11 @@ import moment from 'moment'
 import numeral from 'numeral'
 
 import {
+    VictoryArea,
     VictoryAxis,
     VictoryBar,
     VictoryChart,
+    VictoryGroup,
     VictoryLine,
     VictoryTheme
 } from 'victory-native'
@@ -50,6 +52,32 @@ import Platforms from '../components/Treasury/Platforms'
 import Recent from '../components/Treasury/Recent'
 import Rewards from '../components/Treasury/Rewards'
 
+const chartConfig = {
+    // backgroundColor: "#e26a00",
+    backgroundGradientFrom: "#f80",
+    backgroundGradientTo: "#726",
+    decimalPlaces: 1, // optional, defaults to 2dp
+    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    style: {
+        borderRadius: 16
+    },
+    propsForDots: {
+        r: "6",
+        strokeWidth: "2",
+        stroke: "#ffa726"
+    }
+}
+
+const userData = [
+    { timestamp: 1, earnings: 10081 },
+    { timestamp: 2, earnings: 12158 },
+    { timestamp: 3, earnings: 15798 },
+    { timestamp: 4, earnings: 13412 },
+    { timestamp: 5, earnings: 12434 },
+    { timestamp: 6, earnings: 9482 },
+]
+
 /**
  * Treasury Screen
  */
@@ -58,7 +86,7 @@ function Treasury() {
 
     const [balance, setBalance] = React.useState(0)
     const [balanceDisplay, setBalanceDisplay] = React.useState(null)
-    const [usdBalanceDisplay, setUsdBalanceDisplay] = React.useState(null)
+    const [usdBalanceDisplay, setUsdBalanceDisplay] = React.useState('$1,337.88')
 
     const [tokenBalances, setTokenBalances] = React.useState({})
 
@@ -77,6 +105,9 @@ function Treasury() {
     const {
         DEBUG,
     } = React.useContext(store.System)
+
+    /* Retreive window width. */
+    const width = Dimensions.get('window').width
 
     /* Handle onLoad scripts. */
     React.useEffect(() => {
@@ -149,51 +180,62 @@ function Treasury() {
                 contentInsetAdjustmentBehavior="automatic"
                 style={tailwind('')}
             >
-                <ScreenTitle title="$1,337.88 USD" />
+                <View style={tailwind('mt-3 flex flex-col items-center border-b-4 border-gray-300')}>
+                    <View style={tailwind('my-1 flex flex-col items-center')}>
+                        <Text style={tailwind('text-gray-400 text-lg font-bold uppercase')}>
+                            Balance
+                        </Text>
 
-                {/*<View style={tailwind('my-3')}>
-                    <PieChart
-                        style={tailwind('')}
-                        data={pieData}
-                        width={Dimensions.get('window').width}
-                        height={120}
-                        chartConfig={chartConfig}
-                        accessor="population"
-                        backgroundColor="transparent"
-                        paddingLeft={0}
-                        absolute
-                    />
-                </View>*/}
+                        <View style={tailwind('mt-3')}>
+                            <Text style={tailwind('absolute -right-2 -top-5 text-green-500 text-base font-bold')}>
+                                USD
+                            </Text>
+
+                            <Text style={tailwind('text-green-500 text-4xl font-bold')}>
+                                {usdBalanceDisplay}
+                            </Text>
+                        </View>
+
+                        <Text style={tailwind('text-gray-400 text-xs italic')}>
+                            updated 10 minutes ago
+                        </Text>
+                    </View>
+
+                    <View style={tailwind('mt-5')}>
+                        <VictoryGroup
+                            width={width}
+                            height={width / 5}
+                            theme={VictoryTheme.material}
+                            padding={{ top: -5, bottom: -10, left: -10, right: -10 }}
+                            domainPadding={10}
+                        >
+                            <VictoryArea
+                                data={userData}
+                                x='timestamp'
+                                y='earnings'
+                                labels={({ datum }) => datum.y}
+                                // labels={['1', '2', '3', '4']}
+                                interpolation='natural'
+                                style={{
+                                    data: {
+                                        fill: '#0089BA',
+                                        stroke: '#845EC2',
+                                        strokeWidth: 5,
+                                    }
+                                }}
+                            />
+                        </VictoryGroup>
+                    </View>
+                </View>
 
                 <View style={tailwind('p-3')}>
-                    <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
-                        <Text style={tailwind('text-gray-500 text-lg font-semibold')}>
-                            My Account Balance
-                        </Text>
-
-                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                            {balanceDisplay}
-                        </Text>
-                    </View>
-
-                    <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
-                        <Text style={tailwind('text-gray-500 text-lg font-semibold')}>
-                            My USD Balance
-                        </Text>
-
-                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                            {usdBalanceDisplay}
-                        </Text>
-                    </View>
-
-                    <Divider />
 
                     <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
                         <Text style={tailwind('text-gray-500 text-lg font-bold')}>
                             DAI.e Token
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        <Text style={tailwind('text-gray-600 text-xl font-bold')}>
                             {tokenBalances['DAI'] ? tokenBalances['DAI'].display : 0}
                         </Text>
                     </View>
@@ -203,7 +245,7 @@ function Treasury() {
                             JOE Token
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        <Text style={tailwind('text-gray-600 text-xl font-bold')}>
                             {tokenBalances['JOE'] ? tokenBalances['JOE'].display : 0}
                         </Text>
                     </View>
@@ -213,7 +255,7 @@ function Treasury() {
                             YAK Token
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        <Text style={tailwind('text-gray-600 text-xl font-bold')}>
                             {tokenBalances['YAK'] ? tokenBalances['YAK'].display : 0}
                         </Text>
                     </View>
@@ -223,7 +265,7 @@ function Treasury() {
                             USDT.e Token
                         </Text>
 
-                        <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        <Text style={tailwind('text-gray-600 text-xl font-bold')}>
                             {tokenBalances['USDT'] ? tokenBalances['USDT'].display : 0}
                         </Text>
                     </View>

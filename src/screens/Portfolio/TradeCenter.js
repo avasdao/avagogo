@@ -133,7 +133,7 @@ const Dashboard = observer(({navigation}) => {
             <ScreenTitle title="DeFi Trade Center" />
 
             <Search
-                style={tailwind('mx-3 mt-2 mb-1')}
+                style={tailwind('mx-2 mt-2 mb-1')}
                 onQuery={_handleQuery}
                 placeholder="What are you looking for?"
             />
@@ -176,7 +176,9 @@ const Dashboard = observer(({navigation}) => {
                 </View>
             </View>
 
-            <View style={tailwind('mt-3')}>
+            <Divider />
+
+            <View style={tailwind('my-1')}>
                 <View style={tailwind('px-3 flex flex-row justify-between items-center')}>
                     <View style={tailwind('flex flex-row items-end')}>
                         <Text style={tailwind('text-xl font-bold text-gray-500')}>
@@ -198,7 +200,7 @@ const Dashboard = observer(({navigation}) => {
                     </Pressable>
                 </View>
 
-                <View style={tailwind('mt-2 py-2 bg-gray-200 border-t border-b border-indigo-500')}>
+                <View style={tailwind('mt-3 py-2 bg-gray-300 border-t border-b border-indigo-500')}>
                     <VictoryChart
                         width={width}
                         height={width / 1.75}
@@ -255,10 +257,10 @@ const Dashboard = observer(({navigation}) => {
                     </VictoryChart>
 
                     <View style={tailwind('flex flex-row px-3 justify-between')}>
-                        <Text style={tailwind('text-gray-700 text-xs italic')}>
-                            Last updated:
-                            <Text style={tailwind('font-bold italic')}>
-                                5 minutes ago
+                        <Text style={tailwind('text-gray-600 text-xs italic')}>
+                            Updated
+                            <Text style={tailwind('text-gray-600 font-bold italic')}>
+                                &nbsp;5 minutes ago
                             </Text>
                         </Text>
 
