@@ -35,8 +35,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Require to take photos and record video.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Required to record audio.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Required to access your stored photos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Required to access your stored photos.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>MaterialIcons.ttf</string>
@@ -68,13 +76,5 @@
 		<key>apiKey</key>
 		<string>91bb5b15020621e909b242dbc53eff62</string>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Require to take photos and record video.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Required to access your stored photos.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Required to access your stored photos.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Required to record audio.</string>
 </dict>
 </plist>
