@@ -41,7 +41,7 @@ const Search = (_props) => {
     return (
         <View style={_props.style}>
             <TextInput
-                style={tailwind('pl-12 bg-gray-800 border-2 border-gray-800 text-lg text-gray-300 font-medium rounded-xl')}
+                style={tailwind('pl-12 bg-gray-800 border-2 border-gray-800 text-lg text-gray-300 font-medium rounded-lg')}
                 onChangeText={_handleInput}
                 onFocus={() => alert('Search is NOT enabled in this DEMO')}
                 value={queryText}
