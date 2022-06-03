@@ -59,21 +59,23 @@ const chartConfig = {
     }
 }
 
-const data = [
-    { month: 1, earnings: 13000 },
-    { month: 2, earnings: 16500 },
-    { month: 3, earnings: 14250 },
-    { month: 4, earnings: 19000 },
-    { month: 5, earnings: 27000 },
-    { month: 6, earnings: 700 },
+const userData = [
+    { timestamp: 1, earnings: 21.3 },
+    { timestamp: 2, earnings: 23.65 },
+    { timestamp: 3, earnings: 32.425 },
+    { timestamp: 4, earnings: 12.9 },
+    { timestamp: 5, earnings: 4.7 },
+    { timestamp: 6, earnings: 8.2 },
 ]
 
-const data2 = [
-    { month: 1, earnings: 5000 },
-    { month: 2, earnings: 9500 },
-    { month: 3, earnings: 7250 },
-    { month: 4, earnings: 11000 },
-    { month: 5, earnings: 17000 },
+const communityData = [
+    { timestamp: 1, earnings: 13.5 },
+    { timestamp: 2, earnings: 11.95 },
+    { timestamp: 3, earnings: 18.725 },
+    { timestamp: 4, earnings: 15.1 },
+    { timestamp: 5, earnings: 2.7 },
+    { timestamp: 6, earnings: 11.7 },
+    { timestamp: 7, earnings: 11.7 },
 ]
 
 /**
@@ -176,9 +178,15 @@ const Dashboard = observer(({navigation}) => {
 
             <View style={tailwind('mt-3')}>
                 <View style={tailwind('px-3 flex flex-row justify-between items-center')}>
-                    <Text style={tailwind('text-xl font-bold text-gray-500')}>
-                        Earnings vs. Community
-                    </Text>
+                    <View style={tailwind('flex flex-row items-end')}>
+                        <Text style={tailwind('text-xl font-bold text-gray-500')}>
+                            My APY Power
+                        </Text>
+
+                        <Text style={tailwind('ml-2 font-bold text-gray-500')}>
+                            vs. Community
+                        </Text>
+                    </View>
 
                     <Pressable
                         style={tailwind('py-1 px-3 border-2 border-yellow-500 bg-yellow-300 rounded')}
@@ -215,35 +223,49 @@ const Dashboard = observer(({navigation}) => {
                         <VictoryAxis
                               dependentAxis
                               // tickFormat specifies how ticks should be displayed
-                              tickFormat={(x) => (`$${x / 1000}k`)}
+                              tickFormat={(x) => `${x}%`}
                         />
 
                         <VictoryLine
-                            data={data2}
-                            x='month'
+                            data={communityData}
+                            x='timestamp'
                             y='earnings'
                             // labels={({ datum }) => datum.y}
                             labels={['1', '2', '3', '4']}
                             interpolation='natural'
                             style={{
                                 data: {
-                                    stroke: '#c43a31',
+                                    stroke: '#D03B29',
                                     strokeWidth: 5,
                                 }
                             }}
                         />
 
                         <VictoryBar
-                            data={data}
-                            x='month'
+                            data={userData}
+                            x='timestamp'
                             y='earnings'
+                            style={{
+                                data: {
+                                    fill: '#3C8DA8',
+                                }
+                            }}
                         />
 
                     </VictoryChart>
 
-                    <Text style={tailwind('ml-3 text-gray-700 text-xs italic')}>
-                        Last updated: 5 minutes ago
-                    </Text>
+                    <View style={tailwind('flex flex-row px-3 justify-between')}>
+                        <Text style={tailwind('text-gray-700 text-xs italic')}>
+                            Last updated:
+                            <Text style={tailwind('font-bold italic')}>
+                                5 minutes ago
+                            </Text>
+                        </Text>
+
+                        <Text style={tailwind('text-gray-400 text-xs')}>
+                            Telr Analytics
+                        </Text>
+                    </View>
                 </View>
             </View>
 
