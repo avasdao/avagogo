@@ -46,6 +46,10 @@ import Tokens from '../assets/images/tokens'
 import Divider from '../components/Divider'
 import ScreenTitle from '../components/ScreenTitle'
 
+import Platforms from '../components/Treasury/Platforms'
+import Recent from '../components/Treasury/Recent'
+import Rewards from '../components/Treasury/Rewards'
+
 /**
  * Treasury Screen
  */
@@ -224,12 +228,38 @@ function Treasury() {
                         </Text>
                     </View>
 
-                    <View style={tailwind('my-10 items-center')}>
-                        <LottieView
-                            style={tailwind('h-48')}
-                            source={require('../assets/lottie/finance-guru.json')} autoPlay loop
-                        />
-                    </View>
+                    <Divider />
+
+                    <Recent />
+
+                    <Divider />
+
+                    <Platforms />
+
+                    <Divider />
+
+                    <Rewards />
+
+                    <Divider />
+
+                    <>
+                        <View style={tailwind('my-1')}>
+                            <Text style={tailwind('text-gray-400 text-base font-bold uppercase')}>
+                                Bills &amp; Income
+                            </Text>
+                        </View>
+
+                        <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                            <Text style={tailwind('text-gray-500 text-lg font-bold')}>
+                                Trader Joe
+                            </Text>
+
+                            <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                                1 day ago - $1,337.88
+                            </Text>
+                        </View>
+                    </>
+
                 </View>
             </ScrollView>
         )

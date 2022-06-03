@@ -8,36 +8,17 @@
 
 import React from 'react'
 
-import {
-    Image,
-    Pressable,
-    ScrollView,
-    StatusBar,
-    Text,
-    useColorScheme,
-    View,
-} from 'react-native'
-
-// import { useNavigation } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
-// import { observer } from 'mobx-react-lite'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-// import tailwind from 'tailwind-rn'
-
-// import LottieView from 'lottie-react-native'
-
-// import store from '../store'
-
 /* Add (navigation) stacks. */
 import BoardsStackScreen from './BoardsStack'
+import TreasuryStackScreen from './TreasuryStack'
 
 /* Add (main) screens. */
 import CafeScreen from './Cafe'
 import PortfolioScreen from './Portfolio'
-import TreasuryScreen from './Treasury'
 
 import InfoButton from '../components/InfoButton'
 
@@ -73,7 +54,11 @@ const Tabs = () => {
                     }
 
                     /* Return (tab) icon. */
-                    return <Ionicons name={iconName} size={size} color={color} />
+                    return <Ionicons
+                        name={iconName}
+                        size={size}
+                        color={color}
+                    />
                 },
                 tabBarActiveTintColor: 'tomato',
                 tabBarInactiveTintColor: 'gray',
@@ -90,9 +75,9 @@ const Tabs = () => {
 
             <Tab.Screen
                 name="Treasury"
-                component={TreasuryScreen}
+                component={TreasuryStackScreen}
                 options={{
-                    headerRight: InfoButton,
+                    headerShown: false,
                 }}
             />
 

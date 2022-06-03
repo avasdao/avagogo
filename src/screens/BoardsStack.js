@@ -8,16 +8,6 @@
 
 import React from 'react'
 
-import {
-    Image,
-    Pressable,
-    ScrollView,
-    StatusBar,
-    Text,
-    useColorScheme,
-    View,
-} from 'react-native'
-
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 /* Add START screen. */

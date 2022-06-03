@@ -19,7 +19,7 @@ import tailwind from 'tailwind-rn'
  */
 const Divider = (() => {
     return (
-        <View style={tailwind('border-t-2 border-gray-300 my-2')} />
+        <View style={tailwind('border-t border-gray-300 my-2')} />
     )
 })
 
