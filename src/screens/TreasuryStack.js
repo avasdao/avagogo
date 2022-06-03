@@ -15,6 +15,7 @@ import Start from './Treasury'
 
 /* Add TREASURY screens. */
 import Recent from './Treasury/Recent'
+import Stats from './Treasury/Stats'
 
 import InfoButton from '../components/InfoButton'
 
@@ -41,6 +42,15 @@ const TreasuryStack = () => {
                 component={Recent}
                 options={{
                     title: 'Recent Transactions',
+                    headerRight: InfoButton,
+                }}
+            />
+
+            <Stack.Screen
+                name="Treasury.Stats"
+                component={Stats}
+                options={{
+                    title: 'Statistics',
                     headerRight: InfoButton,
                 }}
             />

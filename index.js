@@ -62,10 +62,18 @@ Bugsnag.start({
 //     requestPermissions: false,
 // })
 
-import {AppRegistry} from 'react-native'
+import {
+    AppRegistry,
+    LogBox,
+} from 'react-native'
 
 import App from './src/App'
 
 import {name as appName} from './src/app.json'
+
+/* Disable log warnings. */
+LogBox.ignoreLogs([
+    'Require cycle: node_modules/victory', // https://github.com/FormidableLabs/victory/issues/2230
+])
 
 AppRegistry.registerComponent(appName, () => App)

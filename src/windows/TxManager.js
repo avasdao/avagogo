@@ -135,7 +135,6 @@ const TxManager = observer(({navigation}) => {
                         style={tailwind('mr-2 text-gray-300')}
                         name={'close-outline'}
                         size={40}
-                        color={'rgba(90, 90, 90, 0.8)'}
                     />
                 </Pressable>
             </View>

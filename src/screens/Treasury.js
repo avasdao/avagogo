@@ -36,6 +36,7 @@ import {
     VictoryAxis,
     VictoryBar,
     VictoryChart,
+    VictoryContainer,
     VictoryGroup,
     VictoryLine,
     VictoryTheme
@@ -81,7 +82,7 @@ const userData = [
 /**
  * Treasury Screen
  */
-function Treasury() {
+function Treasury({navigation}) {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
     const [balance, setBalance] = React.useState(0)
@@ -180,7 +181,10 @@ function Treasury() {
                 contentInsetAdjustmentBehavior="automatic"
                 style={tailwind('')}
             >
-                <View style={tailwind('mt-3 flex flex-col items-center border-b-4 border-gray-300')}>
+                <Pressable
+                    style={tailwind('flex flex-col items-center border-b-4 border-gray-300')}
+                    onPress={() => navigation.navigate('Treasury.Stats')}
+                >
                     <View style={tailwind('my-1 flex flex-col items-center')}>
                         <Text style={tailwind('text-gray-400 text-lg font-bold uppercase')}>
                             Balance
@@ -201,32 +205,34 @@ function Treasury() {
                         </Text>
                     </View>
 
-                    <View style={tailwind('mt-5')}>
-                        <VictoryGroup
-                            width={width}
-                            height={width / 5}
-                            theme={VictoryTheme.material}
-                            padding={{ top: -5, bottom: -10, left: -10, right: -10 }}
-                            domainPadding={10}
-                        >
-                            <VictoryArea
-                                data={userData}
-                                x='timestamp'
-                                y='earnings'
-                                labels={({ datum }) => datum.y}
-                                // labels={['1', '2', '3', '4']}
-                                interpolation='natural'
-                                style={{
-                                    data: {
-                                        fill: '#0089BA',
-                                        stroke: '#845EC2',
-                                        strokeWidth: 5,
-                                    }
-                                }}
-                            />
-                        </VictoryGroup>
-                    </View>
-                </View>
+                    <VictoryGroup
+                        width={width}
+                        height={width / 5}
+                        style={{
+                            parent: tailwind('mt-5'),
+                        }}
+                        theme={VictoryTheme.material}
+                        padding={{ top: -5, bottom: -10, left: -10, right: -10 }}
+                        domainPadding={10}
+                        containerComponent={<VictoryContainer disableContainerEvents />}
+                    >
+                        <VictoryArea
+                            data={userData}
+                            x='timestamp'
+                            y='earnings'
+                            labels={({ datum }) => datum.y}
+                            // labels={['1', '2', '3', '4']}
+                            interpolation='natural'
+                            style={{
+                                data: {
+                                    fill: '#0089BA',
+                                    stroke: '#845EC2',
+                                    strokeWidth: 5,
+                                }
+                            }}
+                        />
+                    </VictoryGroup>
+                </Pressable>
 
                 <View style={tailwind('p-3')}>
 
