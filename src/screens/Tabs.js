@@ -21,6 +21,7 @@ import CafeScreen from './Cafe'
 import PortfolioScreen from './Portfolio'
 
 import InfoButton from '../components/InfoButton'
+import MenuButton from '../components/MenuButton'
 
 /* Initialize navigators. */
 const Tab = createBottomTabNavigator()
@@ -69,7 +70,7 @@ const Tabs = () => {
                 name="Portfolio"
                 component={PortfolioScreen}
                 options={{
-                    headerRight: InfoButton,
+                    headerRight: MenuButton,
                 }}
             />
 

@@ -185,7 +185,7 @@ const Dashboard = observer(({navigation}) => {
                             My APY Power
                         </Text>
 
-                        <Text style={tailwind('ml-2 font-bold text-gray-500')}>
+                        <Text style={tailwind('ml-2 mb-0.5 font-bold text-gray-500')}>
                             vs. Community
                         </Text>
                     </View>

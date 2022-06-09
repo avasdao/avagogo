@@ -17,11 +17,23 @@ import {
     View,
 } from 'react-native'
 
+import {
+    createMaterialTopTabNavigator
+} from '@react-navigation/material-top-tabs'
+
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
+
+import AnalyticsScreen from './Verse/Analytics'
+import HistoryScreen from './Verse/History'
+import InvestScreen from './Verse/Invest'
+import SwapScreen from './Verse/Swap'
+
+/* Initialize tab (navigation). */
+const Tab = createMaterialTopTabNavigator()
 
 /**
  * Board Screen
@@ -41,26 +53,39 @@ function Board({navigation}) {
     }, [])
 
     return (
-        <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={tailwind('')}
-        >
-            <Text style={tailwind('my-16 text-purple-600 text-3xl font-semibold text-center uppercase')}>
-                Verse
-            </Text>
+        <Tab.Navigator>
+            <Tab.Screen
+                name="Swap"
+                component={SwapScreen}
+                options={{
+                    title: 'Swap'
+                }}
+            />
 
-            <View style={tailwind('py-5 items-center')}>
-                <LottieView
-                    style={tailwind('h-48')}
-                    source={require('../../assets/lottie/finance-guru.json')} autoPlay loop
-                />
+            <Tab.Screen
+                name="Invest"
+                component={InvestScreen}
+                options={{
+                    title: 'Invest'
+                }}
+            />
 
-                <Text style={tailwind('text-purple-700 font-light')}>
-                    This area is still under development
-                </Text>
-            </View>
+            <Tab.Screen
+                name="History"
+                component={HistoryScreen}
+                options={{
+                    title: 'History'
+                }}
+            />
 
-        </ScrollView>
+            <Tab.Screen
+                name="Analytics"
+                component={AnalyticsScreen}
+                options={{
+                    title: 'Analytics'
+                }}
+            />
+        </Tab.Navigator>
     )
 }
 

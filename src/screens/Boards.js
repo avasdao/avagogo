@@ -29,28 +29,7 @@ import LottieView from 'lottie-react-native'
 
 import store from '../store'
 
-/**
- * Welcome
- */
-const Welcome = () => {
-    if (Platform.OS === 'ios') {
-        return (
-            <View style={tailwind('px-5 py-3')}>
-                <Text style={tailwind('text-2xl font-bold text-gray-800 text-center')}>
-                    Entering the Premier DeFi Experience on iOS
-                </Text>
-            </View>
-        )
-    } else {
-        return (
-            <View style={tailwind('px-5 py-3')}>
-                <Text style={tailwind('text-2xl font-bold text-gray-800 text-center')}>
-                    Entering the Premier DeFi Experience on Android
-                </Text>
-            </View>
-        )
-    }
-}
+import Divider from '../components/Divider'
 
 /**
  * Boards Screen
@@ -71,19 +50,58 @@ function Boards({navigation}) {
                 style={tailwind('')}
             >
                 <View style={tailwind('py-3')}>
-                    <Welcome />
-
-                    <View style={tailwind('hidden px-10 pb-3')}>
-                        <Text style={tailwind('text-base font-medium text-red-600 text-center')}>
-                            ALL listed dashboards are being built
+                    <View style={tailwind('px-3 pt-3')}>
+                        <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
+                            Ava's Featured Communities
                         </Text>
+                    </View>
 
-                        <Text style={tailwind('text-xl font-medium text-red-600 text-center')}>
-                            100% "NATIVELY" IN-HOUSE
+                    <Pressable
+                        onPress={() => navigation.navigate('Boards.TraderJoe')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/images/banners/trader-joe.png')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('Boards.PancakeSwap')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/images/banners/pancake-swap.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Divider />
+
+                    <View style={tailwind('px-3 pt-3')}>
+                        <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
+                            New & Noteworthy Communities
                         </Text>
+                    </View>
 
-                        <Text style={tailwind('text-base font-medium text-red-600 text-center')}>
-                            by our amazing Ava GoGo engineers
+                    <Pressable
+                        onPress={() => navigation.navigate('Boards.Verse')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/images/banners/verse.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <Divider />
+
+                    <View style={tailwind('px-3 pt-3')}>
+                        <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
+                            TOP DeFi + GameFi Communities
                         </Text>
                     </View>
 
@@ -187,17 +205,6 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.PancakeSwap')}
-                        style={tailwind('items-center')}
-                    >
-                        <Image
-                            style={styles.dappBanner}
-                            source={require('../assets/images/banners/pancake-swap.jpg')}
-                            resizeMode={'cover'}
-                        />
-                    </Pressable>
-
-                    <Pressable
                         onPress={() => navigation.navigate('Boards.Pangolin')}
                         style={tailwind('items-center')}
                     >
@@ -220,34 +227,12 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.TraderJoe')}
-                        style={tailwind('items-center')}
-                    >
-                        <Image
-                            style={styles.dappBanner}
-                            source={require('../assets/images/banners/trader-joe.png')}
-                            resizeMode={'cover'}
-                        />
-                    </Pressable>
-
-                    <Pressable
                         onPress={() => navigation.navigate('Boards.Uniswap')}
                         style={tailwind('items-center')}
                     >
                         <Image
                             style={styles.dappBanner}
                             source={require('../assets/images/banners/uniswap.jpg')}
-                            resizeMode={'cover'}
-                        />
-                    </Pressable>
-
-                    <Pressable
-                        onPress={() => navigation.navigate('Boards.Verse')}
-                        style={tailwind('items-center')}
-                    >
-                        <Image
-                            style={styles.dappBanner}
-                            source={require('../assets/images/banners/verse.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
@@ -274,8 +259,8 @@ function Boards({navigation}) {
                         />
                     </Pressable>
 
-                    <View style={tailwind('m-3 p-3 bg-gray-700 border-2 border-red-700 rounded-xl')}>
-                        <Text style={tailwind('text-gray-400 text-xs text-center')}>
+                    <View style={tailwind('m-3 p-3 bg-red-500 border-2 border-red-700 rounded-xl')}>
+                        <Text style={tailwind('text-red-50 text-xs text-center font-medium')}>
                             All product and company names are trademarks™ or registered® trademarks of their respective holders.
                             Use of them does not imply any affiliation with or endorsement by them, unless otherwise stated.
                         </Text>

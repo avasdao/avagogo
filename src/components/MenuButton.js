@@ -29,19 +29,19 @@ import tailwind from 'tailwind-rn'
  *
  * Loads a "context-sensitive" information screen.
  */
-const InfoButton = () => {
+const MenuButton = () => {
     /* Request navigation. */
     const navigation = useNavigation()
 
     return (
         <Pressable onPress={() => navigation.navigate('Info')}>
             <Ionicons
-                style={tailwind('mr-2 text-yellow-500')}
-                name={'information-circle'}
-                size={36}
+                style={tailwind('mr-3 text-gray-500')}
+                name={'grid'}
+                size={32}
             />
         </Pressable>
     )
 }
 
-export default InfoButton
+export default MenuButton
