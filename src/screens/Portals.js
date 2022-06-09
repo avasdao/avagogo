@@ -32,9 +32,9 @@ import store from '../store'
 import Divider from '../components/Divider'
 
 /**
- * Boards Screen
+ * Portals Screen
  */
-function Boards({navigation}) {
+function Portals({navigation}) {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
     /* Initialize SYSTEM context. */
@@ -52,12 +52,12 @@ function Boards({navigation}) {
                 <View style={tailwind('py-3')}>
                     <View style={tailwind('px-3 pt-3')}>
                         <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
-                            Ava's Featured Communities
+                            Ava's Featured Portals
                         </Text>
                     </View>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.TraderJoe')}
+                        onPress={() => navigation.navigate('Portals.TraderJoe')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -68,7 +68,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.PancakeSwap')}
+                        onPress={() => navigation.navigate('Portals.PancakeSwap')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -82,12 +82,12 @@ function Boards({navigation}) {
 
                     <View style={tailwind('px-3 pt-3')}>
                         <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
-                            New & Noteworthy Communities
+                            New & Noteworthy Portals
                         </Text>
                     </View>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.Verse')}
+                        onPress={() => navigation.navigate('Portals.Verse')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -101,12 +101,12 @@ function Boards({navigation}) {
 
                     <View style={tailwind('px-3 pt-3')}>
                         <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
-                            TOP DeFi + GameFi Communities
+                            TOP DeFi + GameFi Portals
                         </Text>
                     </View>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.1inch')}
+                        onPress={() => navigation.navigate('Portals.1inch')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -117,7 +117,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.Aave')}
+                        onPress={() => navigation.navigate('Portals.Aave')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -128,7 +128,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.AlphaFinanceLab')}
+                        onPress={() => navigation.navigate('Portals.AlphaFinanceLab')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -139,7 +139,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.BENQI')}
+                        onPress={() => navigation.navigate('Portals.BENQI')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -150,7 +150,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.BenSwap')}
+                        onPress={() => navigation.navigate('Portals.BenSwap')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -161,7 +161,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.Compound')}
+                        onPress={() => navigation.navigate('Portals.Compound')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -172,7 +172,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.Cream')}
+                        onPress={() => navigation.navigate('Portals.Cream')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -183,7 +183,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.Curve')}
+                        onPress={() => navigation.navigate('Portals.Curve')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -194,7 +194,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.MistSwap')}
+                        onPress={() => navigation.navigate('Portals.MistSwap')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -205,7 +205,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.Pangolin')}
+                        onPress={() => navigation.navigate('Portals.Pangolin')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -216,7 +216,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.TangoSwap')}
+                        onPress={() => navigation.navigate('Portals.TangoSwap')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -227,7 +227,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.Uniswap')}
+                        onPress={() => navigation.navigate('Portals.Uniswap')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -238,7 +238,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.Yearn')}
+                        onPress={() => navigation.navigate('Portals.Yearn')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -249,7 +249,7 @@ function Boards({navigation}) {
                     </Pressable>
 
                     <Pressable
-                        onPress={() => navigation.navigate('Boards.YieldYak')}
+                        onPress={() => navigation.navigate('Portals.YieldYak')}
                         style={tailwind('items-center')}
                     >
                         <Image
@@ -289,7 +289,7 @@ function Boards({navigation}) {
                         />
 
                         <Text style={tailwind('text-pink-500 font-semibold')}>
-                            TOP DeFi Boards
+                            TOP DeFi Portals
                         </Text>
                     </View>
 
@@ -299,7 +299,7 @@ function Boards({navigation}) {
                         </Text>
 
                         <Text style={tailwind('mt-3 text-sm text-gray-800')}>
-                            The team at Ava GoGo are BUIDLing <Text style={tailwind('font-bold')}>native mobile</Text> experiences to the <Text style={tailwind('font-bold')}>TOP Boards</Text> found throughout the Avalanche ecosystem.
+                            The team at Ava GoGo are BUIDLing <Text style={tailwind('font-bold')}>native mobile</Text> experiences to the <Text style={tailwind('font-bold')}>TOP Portals</Text> found throughout the Avalanche ecosystem.
                         </Text>
 
                         <Text style={tailwind('mt-3 text-sm text-gray-800')}>
@@ -350,4 +350,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Boards
+export default Portals

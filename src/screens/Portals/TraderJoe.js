@@ -240,7 +240,7 @@ function Board({navigation}) {
                 </Pressable>
 
                 <Pressable
-                    onPress={() => navigation.navigate('Boards.TraderJoeStake')}
+                    onPress={() => navigation.navigate('Portals.TraderJoeStake')}
                     style={tailwind('m-3 bg-pink-300 border-2 border-pink-500 rounded-xl items-center justify-center')}
                 >
                     <Image

@@ -11,29 +11,29 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 /* Add START screen. */
-import Start from './Boards'
+import Start from './Portals'
 
 /* Add BOARDS screens. */
-import _1inch from './Boards/1inch'
-import Aave from './Boards/Aave'
-import AlphaFinanceLab from './Boards/AlphaFinanceLab'
-import BENQI from './Boards/BENQI'
-import BenSwap from './Boards/BenSwap'
-import Compound from './Boards/Compound'
-import Cream from './Boards/Cream'
-import Curve from './Boards/Curve'
-import MistSwap from './Boards/MistSwap'
-import PancakeSwap from './Boards/PancakeSwap'
-import Pangolin from './Boards/Pangolin'
-import TangoSwap from './Boards/TangoSwap'
+import _1inch from './Portals/1inch'
+import Aave from './Portals/Aave'
+import AlphaFinanceLab from './Portals/AlphaFinanceLab'
+import BENQI from './Portals/BENQI'
+import BenSwap from './Portals/BenSwap'
+import Compound from './Portals/Compound'
+import Cream from './Portals/Cream'
+import Curve from './Portals/Curve'
+import MistSwap from './Portals/MistSwap'
+import PancakeSwap from './Portals/PancakeSwap'
+import Pangolin from './Portals/Pangolin'
+import TangoSwap from './Portals/TangoSwap'
 
-import TraderJoe from './Boards/TraderJoe'
-import TraderJoeStake from './Boards/TraderJoe/Stake'
+import TraderJoe from './Portals/TraderJoe'
+import TraderJoeStake from './Portals/TraderJoe/Stake'
 
-import Uniswap from './Boards/Uniswap'
-import Verse from './Boards/Verse'
-import Yearn from './Boards/Yearn'
-import YieldYak from './Boards/YieldYak'
+import Uniswap from './Portals/Uniswap'
+import Verse from './Portals/Verse'
+import Yearn from './Portals/Yearn'
+import YieldYak from './Portals/YieldYak'
 
 import InfoButton from '../components/InfoButton'
 
@@ -41,22 +41,22 @@ import InfoButton from '../components/InfoButton'
 const Stack = createNativeStackNavigator()
 
 /**
- * Boards Stack
+ * Portals Stack
  */
-const BoardsStack = () => {
+const PortalsStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="Boards.Start"
+                name="Portals.Start"
                 component={Start}
                 options={{
-                    title: 'Boards',
+                    title: 'Portals',
                     headerRight: InfoButton,
                 }}
             />
 
             <Stack.Screen
-                name="Boards.1inch"
+                name="Portals.1inch"
                 component={_1inch}
                 options={{
                     title: '1inch Network',
@@ -65,7 +65,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.Aave"
+                name="Portals.Aave"
                 component={Aave}
                 options={{
                     title: 'Aave',
@@ -74,7 +74,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.AlphaFinanceLab"
+                name="Portals.AlphaFinanceLab"
                 component={AlphaFinanceLab}
                 options={{
                     title: 'Alpha Finance Lab',
@@ -83,7 +83,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.BENQI"
+                name="Portals.BENQI"
                 component={BENQI}
                 options={{
                     title: 'BENQI',
@@ -92,7 +92,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.BenSwap"
+                name="Portals.BenSwap"
                 component={BenSwap}
                 options={{
                     title: 'BenSwap',
@@ -101,7 +101,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.Compound"
+                name="Portals.Compound"
                 component={Compound}
                 options={{
                     title: 'Compound',
@@ -110,7 +110,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.Cream"
+                name="Portals.Cream"
                 component={Cream}
                 options={{
                     title: 'Cream',
@@ -119,7 +119,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.Curve"
+                name="Portals.Curve"
                 component={Curve}
                 options={{
                     title: 'Curve',
@@ -128,7 +128,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.MistSwap"
+                name="Portals.MistSwap"
                 component={MistSwap}
                 options={{
                     title: 'MistSwap',
@@ -137,7 +137,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.PancakeSwap"
+                name="Portals.PancakeSwap"
                 component={PancakeSwap}
                 options={{
                     title: 'PancakeSwap',
@@ -146,7 +146,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.Pangolin"
+                name="Portals.Pangolin"
                 component={Pangolin}
                 options={{
                     title: 'Pangolin',
@@ -155,7 +155,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.TangoSwap"
+                name="Portals.TangoSwap"
                 component={TangoSwap}
                 options={{
                     title: 'TangoSwap',
@@ -164,7 +164,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.TraderJoe"
+                name="Portals.TraderJoe"
                 component={TraderJoe}
                 options={{
                     title: 'Trader Joe',
@@ -172,7 +172,7 @@ const BoardsStack = () => {
                 }}
             />
             <Stack.Screen
-                name="Boards.TraderJoeStake"
+                name="Portals.TraderJoeStake"
                 component={TraderJoeStake}
                 options={{
                     title: 'Trader Joe Staking',
@@ -181,7 +181,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.Uniswap"
+                name="Portals.Uniswap"
                 component={Uniswap}
                 options={{
                     title: 'Uniswap',
@@ -190,7 +190,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.Verse"
+                name="Portals.Verse"
                 component={Verse}
                 options={{
                     title: 'Verse',
@@ -199,7 +199,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.Yearn"
+                name="Portals.Yearn"
                 component={Yearn}
                 options={{
                     title: 'Yearn Finance',
@@ -208,7 +208,7 @@ const BoardsStack = () => {
             />
 
             <Stack.Screen
-                name="Boards.YieldYak"
+                name="Portals.YieldYak"
                 component={YieldYak}
                 options={{
                     title: 'Yield Yak',
@@ -220,4 +220,4 @@ const BoardsStack = () => {
     )
 }
 
-export default BoardsStack
+export default PortalsStack

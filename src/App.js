@@ -60,9 +60,9 @@ createChannel() // default-channel
 //     `Support all notifications generated from the Café area.`
 // )
 // createChannel(
-//     'boards-channel',
-//     `Boards Channel`,
-//     `Support all notifications generated from the Boards area.`
+//     'portals-channel',
+//     `Portals Channel`,
+//     `Support all notifications generated from the Portals area.`
 // )
 
 /**

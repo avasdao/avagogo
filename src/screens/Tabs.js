@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 /* Add (navigation) stacks. */
-import BoardsStackScreen from './BoardsStack'
+import PortalsStackScreen from './PortalsStack'
 import TreasuryStackScreen from './TreasuryStack'
 
 /* Add (main) screens. */
@@ -36,7 +36,7 @@ const Tabs = () => {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === 'Boards') {
+                    if (route.name === 'Portals') {
                         iconName = focused
                         ? 'ios-apps'
                         : 'ios-apps-outline'
@@ -92,8 +92,8 @@ const Tabs = () => {
             />
 
             <Tab.Screen
-                name="Boards"
-                component={BoardsStackScreen}
+                name="Portals"
+                component={PortalsStackScreen}
                 options={{
                     headerShown: false,
                 }}

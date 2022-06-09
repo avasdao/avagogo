@@ -35,7 +35,7 @@ import LottieView from 'lottie-react-native'
 
 import PushNotificationIOS from '@react-native-community/push-notification-ios'
 
-// import testBoards from './Info/_testBoards'
+// import testPortals from './Info/_testPortals'
 // import testCafe from './Info/_testCafe'
 import testCommunity from './Info/_testCommunity'
 // import testPortfolio from './Info/_testPortfolio'
@@ -44,7 +44,7 @@ import testCommunity from './Info/_testCommunity'
 
 import moment from 'moment'
 
-const testBoards = testCafe = testPortfolio = testReminder = testTreasury = () => {
+const testPortals = testCafe = testPortfolio = testReminder = testTreasury = () => {
     const details = request = {
         id: '1',
         body: `Yeah, so we're starting over..`,
@@ -157,10 +157,10 @@ const Support = () => {
 
                     <Pressable
                         style={tailwind('w-5/12 p-3 border-2 border-pink-400 bg-pink-200 rounded-xl')}
-                        onPress={testBoards}
+                        onPress={testPortals}
                     >
                         <Text style={tailwind('text-xl text-red-500 font-bold text-center')}>
-                            Boards
+                            Portals
                         </Text>
                     </Pressable>
                 </View>
