@@ -56,67 +56,15 @@ const Pools = observer(({navigation}) => {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('')}
         >
-            <View style={tailwind('m-4 p-3 border-2 border-purple-400 bg-purple-200 rounded-lg')}>
-                <View style={tailwind('flex-row justify-between')}>
-                    <View>
-                        <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
-                            History
-                        </Text>
-
-                        <Text style={tailwind('text-2xl text-gray-700 font-bold')}>
-                            $1,049,237.18
-                        </Text>
-
-                        <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
-                            Jun 02, '22
-                        </Text>
-                    </View>
-
-                    <View>
-                        <Text style={tailwind('text-sm font-bold')}>
-                            1W | 1M | ALL
-                        </Text>
-                    </View>
-                </View>
-            </View>
-
-            <View style={tailwind('m-4 p-3 border-2 border-purple-400 bg-purple-200 rounded-lg')}>
-                <View style={tailwind('flex-row justify-between')}>
-                    <View>
-                        <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
-                            Volume
-                        </Text>
-
-                        <Text style={tailwind('text-2xl text-gray-700 font-bold')}>
-                            $12,835.43
-                        </Text>
-
-                        <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
-                            Jun 02, '22
-                        </Text>
-                    </View>
-
-                    <View>
-                        <Text style={tailwind('text-sm font-bold')}>
-                            1W | 1M | ALL
-                        </Text>
-                    </View>
-                </View>
-            </View>
-
-            <Text style={tailwind('my-16 text-purple-600 text-3xl font-semibold text-center uppercase')}>
-                Verse
-            </Text>
-
-            <View style={tailwind('py-5 items-center')}>
-                <LottieView
-                    style={tailwind('h-48')}
-                    source={require('../../../assets/lottie/finance-guru.json')} autoPlay loop
-                />
-
-                <Text style={tailwind('text-purple-700 font-light')}>
-                    This area is still under development
+            <View style={tailwind('mt-32 items-center')}>
+                <Text style={tailwind('text-gray-500 text-xl font-medium')}>
+                    no history available
                 </Text>
+
+                <LottieView
+                    style={tailwind('mt-0 h-48')}
+                    source={require('../../../assets/lottie/no-result-found.json')} autoPlay loop
+                />
             </View>
 
         </ScrollView>
