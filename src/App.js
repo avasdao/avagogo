@@ -35,7 +35,7 @@ import messaging from '@react-native-firebase/messaging'
 
 import store from './store'
 
-import HomeStack from './screens/Home'
+import MainStack from './screens/Main'
 
 /* Create a new notification channels. */
 createChannel() // default-channel
@@ -232,7 +232,7 @@ const App = () => {
                 onLayout={_updateLayout}
                 style={backgroundStyle, tailwind('h-full')}
             >
-                <HomeStack />
+                <MainStack />
             </SafeAreaView>
         </BugsnagNavigationContainer>
     )

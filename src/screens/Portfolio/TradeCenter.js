@@ -89,11 +89,6 @@ const Dashboard = observer(({navigation}) => {
     const [circulating, setCirculating] = React.useState('292,187,500')
     const [circulatingPct, setCirculatingPct] = React.useState('29%')
 
-    /* Initialize SYSTEM context. */
-    const {
-        DEBUG,
-    } = React.useContext(store.System)
-
     /* Retreive window width. */
     const width = Dimensions.get('window').width
 

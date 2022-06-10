@@ -290,24 +290,21 @@ function Treasury({navigation}) {
 
                     <Divider />
 
-                    <>
-                        <View style={tailwind('my-1')}>
-                            <Text style={tailwind('text-gray-400 text-base font-bold uppercase')}>
-                                Bills &amp; Income
-                            </Text>
-                        </View>
+                    <Pressable
+                        onPress={() => navigation.navigate('Bridges')}
+                        style={tailwind('mt-3 mb-7 bg-yellow-200 border-2 border-yellow-400 rounded-xl items-center justify-center')}
+                    >
+                        <Text style={tailwind('py-3 text-yellow-500 text-2xl font-bold')}>
+                            Bridges
+                        </Text>
 
-                        <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
-                            <Text style={tailwind('text-gray-500 text-lg font-bold')}>
-                                Trader Joe
-                            </Text>
-
-                            <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                                1 day ago - $1,337.88
-                            </Text>
-                        </View>
-                    </>
-
+                        <LottieView
+                            style={tailwind('h-32')}
+                            source={require('../assets/lottie/52099-golden-gate-bridge.json')}
+                            autoPlay
+                            loop={true}
+                        />
+                    </Pressable>
                 </View>
             </ScrollView>
         )

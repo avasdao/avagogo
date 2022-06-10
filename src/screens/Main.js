@@ -37,6 +37,7 @@ import TabsScreen from './Tabs'
 
 /* Add (modal) windows. */
 import BoostedFarmCalcWin from '../windows/BoostedFarmCalc'
+import BridgesWin from '../windows/Bridges'
 import EarlyPreviewWin from '../windows/EarlyPreview'
 import PoolsWin from '../windows/Pools'
 import TxManagerWin from '../windows/TxManager'
@@ -57,6 +58,7 @@ const Home = () => {
 
             <HomeStack.Group screenOptions={{ presentation: 'modal' }}>
                 <HomeStack.Screen name="BoostedFarmCalc" component={BoostedFarmCalcWin} />
+                <HomeStack.Screen name="Bridges" component={BridgesWin} />
                 <HomeStack.Screen name="EarlyPreview" component={EarlyPreviewWin} />
                 <HomeStack.Screen name="Pools" component={PoolsWin} />
                 <HomeStack.Screen name="TxManager" component={TxManagerWin} />

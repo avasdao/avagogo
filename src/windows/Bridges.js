@@ -64,30 +64,40 @@ const Blank = observer(({navigation}) => {
                 </Pressable>
             </View>
 
-            <View style={tailwind('py-6 items-center')}>
-                <View style={tailwind('bg-pink-200 px-3 py-2 rounded-full')}>
-                    <Text style={tailwind('text-pink-800 text-xl font-semibold')}>
-                        THIS IS AN EARLY PREVIEW...
-                    </Text>
-                </View>
-            </View>
+            <ScreenTitle title="Bridges" />
 
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 30 }}>
-                    Do <Text style={tailwind('font-bold')}>YOU</Text> need help?
-                </Text>
-
-                <Pressable onPress={() => navigation.goBack()} title="No thanks" />
-            </View>
-
-            <View style={tailwind('py-5 bg-gray-50 items-center')}>
+            <View style={tailwind('py-5 bg-gray-50 items-center border-b-4 border-gray-300')}>
                 <LottieView
                     style={tailwind('h-48')}
-                    source={require('../assets/lottie/couple-talk.json')} autoPlay loop
+                    source={require('../assets/lottie/52099-golden-gate-bridge.json')}
+                    autoPlay
+                    loop={true}
                 />
+            </View>
 
-                <Text style={tailwind('text-pink-500 font-semibold')}>
-                    24 Hour Cafe
+            <Text style={tailwind('mt-3 px-3 text-gray-800 text-xl font-medium')}>
+                Easily move your assets back-and-forth across your favorite blockchains:
+            </Text>
+
+            <View style={tailwind('mt-3 px-10')}>
+                <Text style={tailwind('mt-2 text-lg text-gray-800 font-semibold')}>
+                    &#8618; Avalanche (AVAX)
+                </Text>
+
+                <Text style={tailwind('mt-2 text-lg text-gray-800 font-semibold')}>
+                    &#8618; BNB Chain (BSC)
+                </Text>
+
+                <Text style={tailwind('mt-2 text-lg text-gray-800 font-semibold')}>
+                    &#8618; Ethereum (ETH)
+                </Text>
+
+                <Text style={tailwind('mt-2 text-lg text-gray-800 font-semibold')}>
+                    &#8618; Polygon (MATIC)
+                </Text>
+
+                <Text style={tailwind('mt-2 text-lg text-gray-800 font-semibold')}>
+                    &#8618; Smart Bitcoin (SBCH)
                 </Text>
             </View>
 

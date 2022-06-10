@@ -38,11 +38,6 @@ import ScreenTitle from '../../components/ScreenTitle'
 const FundsManager = observer(({navigation}) => {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
-    /* Initialize SYSTEM context. */
-    const {
-        DEBUG,
-    } = React.useContext(store.System)
-
     /* Handle onLoad scripts. */
     React.useEffect(() => {
         /**
