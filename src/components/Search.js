@@ -39,9 +39,9 @@ const Search = (_props) => {
     }
 
     return (
-        <View style={_props.style}>
+        <View style={[ tailwind('bg-gray-800 border-2 border-gray-800 rounded-lg'), _props.style ]}>
             <TextInput
-                style={tailwind('h-12 pl-12 pb-2 bg-gray-800 border-2 border-gray-800 text-lg text-gray-300 font-medium rounded-lg')}
+                style={tailwind('h-14 pl-14 pb-3 text-xl text-gray-300 font-medium')}
                 onChangeText={_handleInput}
                 onFocus={() => alert('Search is NOT enabled in this DEMO')}
                 value={queryText}
@@ -50,8 +50,9 @@ const Search = (_props) => {
             />
 
             <Ionicons
-                style={tailwind('absolute left-3 top-2 text-gray-500 text-3xl')}
+                style={tailwind('absolute left-3 top-2 text-gray-500')}
                 name={'search'}
+                size={36}
             />
         </View>
     )

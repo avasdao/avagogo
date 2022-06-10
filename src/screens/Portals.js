@@ -30,6 +30,7 @@ import LottieView from 'lottie-react-native'
 import store from '../store'
 
 import Divider from '../components/Divider'
+import Search from '../components/Search'
 
 /**
  * Portals Screen
@@ -42,6 +43,11 @@ function Portals({navigation}) {
         DEBUG,
     } = React.useContext(store.System)
 
+    /* Handle search query. */
+    const _handleQuery = (_query) => {
+        console.log('QUERY (props):', _query)
+    }
+
     /* Validate user agreement. */
     if (hasAgreed || !DEBUG) {
         return (
@@ -52,7 +58,7 @@ function Portals({navigation}) {
                 <View style={tailwind('py-3')}>
                     <View style={tailwind('px-3 pt-3')}>
                         <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
-                            Ava's Featured Portals
+                            Featured Showcase
                         </Text>
                     </View>
 
@@ -67,6 +73,12 @@ function Portals({navigation}) {
                         />
                     </Pressable>
 
+                    <View style={tailwind('-mt-2 mb-2 mr-7 items-end')}>
+                        <Text style={tailwind('text-xs text-gray-400')}>
+                            1.3M staked $GOGO
+                        </Text>
+                    </View>
+
                     <Pressable
                         onPress={() => navigation.navigate('Portals.PancakeSwap')}
                         style={tailwind('items-center')}
@@ -78,11 +90,17 @@ function Portals({navigation}) {
                         />
                     </Pressable>
 
+                    <View style={tailwind('-mt-2 mb-2 mr-7 items-end')}>
+                        <Text style={tailwind('text-xs text-gray-400')}>
+                            650K staked $GOGO
+                        </Text>
+                    </View>
+
                     <Divider />
 
                     <View style={tailwind('px-3 pt-3')}>
                         <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
-                            New & Noteworthy Portals
+                            New & Noteworthy
                         </Text>
                     </View>
 
@@ -97,13 +115,42 @@ function Portals({navigation}) {
                         />
                     </Pressable>
 
+                    <View style={tailwind('-mt-2 mb-2 mr-7 items-end')}>
+                        <Text style={tailwind('text-xs text-gray-400')}>
+                            added 3 days ago
+                        </Text>
+                    </View>
+
+                    <Pressable
+                        onPress={() => navigation.navigate('Portals.Uniswap')}
+                        style={tailwind('items-center')}
+                    >
+                        <Image
+                            style={styles.dappBanner}
+                            source={require('../assets/images/banners/uniswap.jpg')}
+                            resizeMode={'cover'}
+                        />
+                    </Pressable>
+
+                    <View style={tailwind('-mt-2 mb-2 mr-7 items-end')}>
+                        <Text style={tailwind('text-xs text-gray-400')}>
+                            added 2 weeks ago
+                        </Text>
+                    </View>
+
                     <Divider />
 
                     <View style={tailwind('px-3 pt-3')}>
                         <Text style={tailwind('text-base font-medium text-gray-400 uppercase')}>
-                            TOP DeFi + GameFi Portals
+                            Ava's DeFi + GameFi Collection
                         </Text>
                     </View>
+
+                    <Search
+                        style={tailwind('mx-2 mt-2 mb-5 rounded-2xl')}
+                        onQuery={_handleQuery}
+                        placeholder="Search by name, chain or asset"
+                    />
 
                     <Pressable
                         onPress={() => navigation.navigate('Portals.1inch')}
@@ -222,17 +269,6 @@ function Portals({navigation}) {
                         <Image
                             style={styles.dappBanner}
                             source={require('../assets/images/banners/tango-swap.jpg')}
-                            resizeMode={'cover'}
-                        />
-                    </Pressable>
-
-                    <Pressable
-                        onPress={() => navigation.navigate('Portals.Uniswap')}
-                        style={tailwind('items-center')}
-                    >
-                        <Image
-                            style={styles.dappBanner}
-                            source={require('../assets/images/banners/uniswap.jpg')}
                             resizeMode={'cover'}
                         />
                     </Pressable>
