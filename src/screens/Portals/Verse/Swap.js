@@ -9,10 +9,12 @@
 import React from 'react'
 
 import {
+    Image,
     Pressable,
     ScrollView,
     StatusBar,
     Text,
+    TextInput,
     useColorScheme,
     View,
 } from 'react-native'
@@ -32,27 +34,64 @@ import LottieView from 'lottie-react-native'
 
 import store from '../../../store'
 
+import Tokens from '../../../assets/images/tokens'
+
+import Divider from '../../../components/Divider'
+
+/**
+ * Account Address Abbreviation.
+ *
+ * Will shorten the length of the address.
+ */
+const _abbr = (_address) => {
+    if (!_address) return '0x0'
+
+    return _address.slice(0, 10) + ' ... ' + _address.slice(-8)
+}
+
+/**
+ * Parse Pool
+ *
+ * Splits the base and trade pair values.
+ */
+const _parsePool = (_pool) => {
+    /* Validate pool. */
+    if (!_pool) {
+        return {
+            basePair: null,
+            tradePair: null,
+        }
+    }
+
+    return {
+        basePair: _pool.split('/')[0],
+        tradePair: _pool.split('/')[1],
+    }
+}
+
 /**
  * DEX Screen
  */
 const DEX = observer(({navigation}) => {
     const [hasAgreed, setHasAgreed] = React.useState(false)
 
-    /* Initialize JOE balance handlers. */
-    const [joeBalance, setJoeBalance] = React.useState(0)
-    const [joeBalanceDisplay, setJoeBalanceDisplay] = React.useState(0)
+    const [assetName, setAssetName] = React.useState(null)
+    const [acctAddress, setAcctAddress] = React.useState(null)
 
-    /* Initialize sJOE balance handlers. */
-    const [sJoeBalance, setSJoeBalance] = React.useState(0)
-    const [sJoeBalanceDisplay, setSJoeBalanceDisplay] = React.useState(0)
-
-    /* Initialize rJOE balance handlers. */
-    const [rJoeBalance, setRJoeBalance] = React.useState(0)
-    const [rJoeBalanceDisplay, setRJoeBalanceDisplay] = React.useState(0)
+    /* Initialize balance handlers. */
+    const [balance, setBalance] = React.useState(0)
+    const [balanceDisplay, setBalanceDisplay] = React.useState(0)
 
     /* Initialize veJOE balance handlers. */
+    // FIXME: How can we make this generic.
     const [veJoeBalance, setVeJoeBalance] = React.useState(0)
+    // const [veJoeBalanceDisplay, onChangeVeJoeBalance] = React.useState(null)
     const [veJoeBalanceDisplay, setVeJoeBalanceDisplay] = React.useState(0)
+
+    /* Initialize veJOE total supply handlers. */
+    // FIXME: How can we make this generic.
+    const [veJoeTotalSupply, setVeJoeTotalSupply] = React.useState(0)
+    const [veJoeTotalSupplyDisplay, setVeJoeTotalSupplyDisplay] = React.useState(0)
 
     /* Initialize reward debt handlers. */
     const [rewardDebt, setRewardDebt] = React.useState(0)
@@ -61,16 +100,21 @@ const DEX = observer(({navigation}) => {
     /* Initialize last claim handlers. */
     const [lastClaim, setLastClaim] = React.useState(0)
     const [lastClaimDisplay, setLastClaimDisplay] = React.useState(0)
-    const [lastClaimSinceDisplay, setLastClaimSinceDisplay] = React.useState(0)
 
     /* Initialize speed-up handlers. */
     const [speedUpEnd, setSpeedUpEnd] = React.useState(0)
     const [speedUpEndDisplay, setSpeedUpEndDisplay] = React.useState(0)
-    const [speedUpUntilEndDisplay, setSpeedUpUntilEndDisplay] = React.useState(0)
 
     /* Initialize pending reward handlers. */
-    const [pendingVeJoe, setPendingVeJoe] = React.useState(0)
-    const [pendingVeJoeDisplay, setPendingVeJoeDisplay] = React.useState(0)
+    const [pendingReward, setPendingReward] = React.useState(0)
+    const [pendingRewardDisplay, setPendingRewardDisplay] = React.useState(0)
+
+    /* Initialize PLATFORM context. */
+    const {
+        currentPool,
+        basePairBalances,
+        tradePairBalances,
+    } = React.useContext(store.Platform)
 
     /* Initialize PROFILE context. */
     const {
@@ -244,11 +288,11 @@ const DEX = observer(({navigation}) => {
         }
 
         /* Fetch info. */
-        fetchInfo()
+        // fetchInfo()
 
         /* Start pending rewards interval. */
         // setInterval(handlePendingRewards, 1000)
-        handlePendingRewards()
+        // handlePendingRewards()
     }, [])
 
     return (
@@ -256,133 +300,211 @@ const DEX = observer(({navigation}) => {
             contentInsetAdjustmentBehavior="automatic"
             style={tailwind('px-3')}
         >
-            <View style={tailwind('m-4 p-3 border-2 border-purple-400 bg-purple-200 rounded-lg')}>
-                <View style={tailwind('flex-row justify-between')}>
-                    <View>
-                        <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
-                            THIS IS THE DEX
-                        </Text>
-
-                        <Text style={tailwind('text-2xl text-gray-700 font-bold')}>
-                            $1,049,237.18
-                        </Text>
-
-                        <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
-                            Jun 02, '22
-                        </Text>
-                    </View>
-
-                    <View>
-                        <Text style={tailwind('text-sm font-bold')}>
-                            1W | 1M | ALL
-                        </Text>
-                    </View>
-                </View>
-            </View>
-
-            <View style={tailwind('mt-5 mb-3 px-3 border-4 border-purple-300 bg-purple-200 rounded-xl')}>
-                <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                        Staked JOE Balance
+            <View style={tailwind('mt-3 flex flex-row')}>
+                <Pressable
+                    onPress={() => alert('USD')}
+                    style={tailwind('py-1 px-4 border-2 border-yellow-600 border-r bg-yellow-400 rounded-l-full')}
+                >
+                    <Text style={tailwind('text-yellow-800 text-lg font-bold')}>
+                        USD
                     </Text>
+                </Pressable>
 
-                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                        {joeBalanceDisplay}
-                    </Text>
-                </View>
-
-                <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                        sJOE Balance
-                    </Text>
-
-                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                        {sJoeBalanceDisplay}
-                    </Text>
-                </View>
-
-                <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                        rJOE Balance
-                    </Text>
-
-                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                        {rJoeBalanceDisplay}
-                    </Text>
-                </View>
-
-                <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-50 px-3 py-2 rounded-lg')}>
-                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                        veJOE Balance
-                    </Text>
-
-                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                        {veJoeBalanceDisplay}
-                    </Text>
-                </View>
-            </View>
-
-            <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Pending veJOE Balance
-                </Text>
-
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {pendingVeJoeDisplay}
-                </Text>
-            </View>
-
-            <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Reward Debt
-                </Text>
-
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {rewardDebtDisplay}
-                </Text>
-            </View>
-
-            <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Last Claim Time
-                </Text>
-
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {lastClaimDisplay}
-                </Text>
-
-                <Text style={tailwind('text-red-500 text-lg font-bold')}>
-                    {lastClaimSinceDisplay}
-                </Text>
-            </View>
-
-            <View style={tailwind('my-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
-                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    Speed-up End Time
-                </Text>
-
-                <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
-                    {speedUpEndDisplay}
-                </Text>
-
-                <Text style={tailwind('text-red-500 text-lg font-bold')}>
-                    {speedUpUntilEndDisplay}
-                </Text>
+                <Pressable
+                	onPress={() => alert('BCH')}
+                	style={tailwind('py-1 px-4 border-2 border-green-600 border-l bg-green-400 rounded-r-full')}
+                >
+                	<Text style={tailwind('text-green-800 text-lg font-bold')}>
+                		BCH
+                	</Text>
+                </Pressable>
             </View>
 
             <Pressable
-                onPress={() => navigation.navigate('BoostedFarmCalc')}
-                style={tailwind('mt-3 mb-7 bg-yellow-200 border-2 border-yellow-400 rounded-xl items-center justify-center')}
+                onPress={() => navigation.navigate('Pools')}
+                style={tailwind('mt-3 flex flex-row justify-between bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}
             >
-                <Text style={tailwind('py-3 text-yellow-500 text-2xl font-bold')}>
-                    Boosted Farm Calculator
+                <View>
+                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                        Selected Pool
+                    </Text>
+
+                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                        {currentPool || 'no pool selected'}
+                    </Text>
+                </View>
+
+                {currentPool &&
+                    <View style={tailwind('flex flex-row mr-2')}>
+                        <View style={tailwind('bg-gray-50 border-4 border-gray-50 rounded-full overflow-hidden')}>
+                            <Image
+                                style={tailwind('w-12 h-12')}
+                                source={Tokens[_parsePool(currentPool).basePair]}
+                            />
+                        </View>
+
+                        <View style={tailwind('bg-gray-50 border-4 border-gray-50 rounded-full overflow-hidden relative -ml-4')}>
+                            <Image
+                                style={tailwind('w-12 h-12')}
+                                source={Tokens[_parsePool(currentPool).tradePair]}
+                            />
+                        </View>
+                    </View>
+                }
+            </Pressable>
+
+            <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    veJOE Balance
                 </Text>
 
-                <LottieView
-                    style={tailwind('h-32')}
-                    source={require('../../../assets/lottie/96208-carbon-calculator.json')} autoPlay loop
+                <TextInput
+                    style={tailwind('mt-1 px-3 text-gray-200 text-2xl font-bold bg-gray-800 border-2 border-blue-500 rounded-xl')}
+                    onChangeText={setVeJoeBalanceDisplay}
+                    value={veJoeBalanceDisplay}
+                    placeholder="Enter your new balance"
+                    placeholderTextColor="#AAA"
                 />
+            </View>
+
+            <View style={tailwind('mt-3 flex flex-row justify-between items-center')}>
+                <View style={tailwind('flex flex-col mx-4 mb-2')}>
+                    <Text style={tailwind('text-sm text-gray-400 font-bold uppercase')}>
+                        Current Asset
+                    </Text>
+
+                    <Text style={tailwind('text-4xl text-gray-800 font-bold')}>
+                        {assetName}
+                    </Text>
+                </View>
+
+                <LottieView
+                    style={tailwind('h-20 mr-4')}
+                    source={require('../../../assets/lottie/80736-mbt-calculator.json')} autoPlay loop
+                />
+            </View>
+
+            <Pressable
+                onPress={() => navigation.navigate('Pools')}
+                style={tailwind('mt-3 flex flex-row justify-between bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}
+            >
+                <View>
+                    <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                        Selected Pool
+                    </Text>
+
+                    <Text style={tailwind('text-gray-800 text-2xl font-bold')}>
+                        {currentPool || 'no pool selected'}
+                    </Text>
+                </View>
+
+                {currentPool &&
+                    <View style={tailwind('flex flex-row mr-2')}>
+                        <View style={tailwind('bg-gray-50 border-4 border-gray-50 rounded-full overflow-hidden')}>
+                            <Image
+                                style={tailwind('w-12 h-12')}
+                                source={Tokens[_parsePool(currentPool).basePair]}
+                            />
+                        </View>
+
+                        <View style={tailwind('bg-gray-50 border-4 border-gray-50 rounded-full overflow-hidden relative -ml-4')}>
+                            <Image
+                                style={tailwind('w-12 h-12')}
+                                source={Tokens[_parsePool(currentPool).tradePair]}
+                            />
+                        </View>
+                    </View>
+                }
             </Pressable>
+
+            <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
+                <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
+                    veJOE Balance
+                </Text>
+
+                <TextInput
+                    style={tailwind('mt-1 px-3 text-gray-200 text-2xl font-bold bg-gray-800 border-2 border-blue-500 rounded-xl')}
+                    onChangeText={setVeJoeBalanceDisplay}
+                    value={veJoeBalanceDisplay}
+                    placeholder="Enter your new balance"
+                    placeholderTextColor="#AAA"
+                />
+            </View>
+
+            <View style={tailwind('mt-1 pl-3')}>
+                <Text style={tailwind('text-gray-500 font-medium')}>
+                    * estimated amount received
+                </Text>
+            </View>
+
+            <View style={tailwind('my-3 flex flex-row justify-end')}>
+                <Pressable
+                	onPress={() => alert('confirm swap')}
+                	style={tailwind('py-2 px-5 border-2 border-blue-500 bg-blue-300 rounded-xl')}
+                >
+                	<Text style={tailwind('text-blue-800 text-2xl font-bold')}>
+                		Swap Preview
+                	</Text>
+                </Pressable>
+            </View>
+
+            <Divider />
+
+            <Text style={tailwind('m-5 text-yellow-700 text-xl font-bold text-center')}>
+                swap details
+            </Text>
+
+            <View style={tailwind('px-5 mb-7')}>
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-500 text-lg font-bold')}>
+                        Exchange Path
+                    </Text>
+
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        BCH &gt; flexUSD
+                    </Text>
+                </View>
+
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-500 text-lg font-bold')}>
+                        Exchange Fee
+                    </Text>
+
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        0.3%
+                    </Text>
+                </View>
+
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-500 text-lg font-bold')}>
+                        Minimum Expected
+                    </Text>
+
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        0 flexUSD
+                    </Text>
+                </View>
+
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-500 text-lg font-bold')}>
+                        Slippage Tolerance
+                    </Text>
+
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        1.00%
+                    </Text>
+                </View>
+
+                <View style={tailwind('my-1 flex flex-row justify-between items-center')}>
+                    <Text style={tailwind('text-gray-500 text-lg font-bold')}>
+                        Exchange Provider
+                    </Text>
+
+                    <Text style={tailwind('text-gray-800 text-xl font-bold')}>
+                        Verse DEX
+                    </Text>
+                </View>
+            </View>
         </ScrollView>
     )
 })
