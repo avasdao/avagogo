@@ -57,11 +57,11 @@ const Analytics = observer(({navigation}) => {
                 <View style={tailwind('flex-row justify-between')}>
                     <View>
                         <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
-                            Liquidity
+                            Total Value Locked (TVL)
                         </Text>
 
                         <Text style={tailwind('text-2xl text-gray-700 font-bold')}>
-                            $1,049,237.18
+                            $4,124,923,718
                         </Text>
 
                         <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
@@ -81,11 +81,11 @@ const Analytics = observer(({navigation}) => {
                 <View style={tailwind('flex-row justify-between')}>
                     <View>
                         <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>
-                            Volume
+                            Volume (24H)
                         </Text>
 
                         <Text style={tailwind('text-2xl text-gray-700 font-bold')}>
-                            $12,835.43
+                            $800,861,283
                         </Text>
 
                         <Text style={tailwind('text-sm text-purple-700 font-bold uppercase')}>

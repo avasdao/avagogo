@@ -27,7 +27,7 @@ import tailwind from 'tailwind-rn'
 
 import LottieView from 'lottie-react-native'
 
-import AnalyticsScreen from './Uniswap/Analytics'
+import ChartsScreen from './Uniswap/Charts'
 import HistoryScreen from './Uniswap/History'
 import InvestScreen from './Uniswap/Invest'
 import SwapScreen from './Uniswap/Swap'
@@ -79,10 +79,10 @@ function Board({navigation}) {
             />
 
             <Tab.Screen
-                name="Analytics"
-                component={AnalyticsScreen}
+                name="Charts"
+                component={ChartsScreen}
                 options={{
-                    title: 'Analytics'
+                    title: 'Charts'
                 }}
             />
         </Tab.Navigator>

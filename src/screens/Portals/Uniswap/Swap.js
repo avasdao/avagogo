@@ -355,7 +355,7 @@ const DEX = observer(({navigation}) => {
 
             <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    veJOE Balance
+                    USDT Balance
                 </Text>
 
                 <TextInput
@@ -419,7 +419,7 @@ const DEX = observer(({navigation}) => {
 
             <View style={tailwind('mt-3 bg-gray-200 border-2 border-gray-400 px-3 py-2 rounded-lg')}>
                 <Text style={tailwind('text-gray-500 text-base font-bold uppercase')}>
-                    veJOE Balance
+                    DAI Balance
                 </Text>
 
                 <TextInput
@@ -450,8 +450,8 @@ const DEX = observer(({navigation}) => {
 
             <Divider />
 
-            <Text style={tailwind('m-5 text-yellow-700 text-xl font-bold text-center')}>
-                swap details
+            <Text style={tailwind('m-5 text-yellow-500 text-xl font-bold text-center')}>
+                Exchange Details
             </Text>
 
             <View style={tailwind('px-5 mb-7')}>
@@ -461,7 +461,7 @@ const DEX = observer(({navigation}) => {
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                        BCH &gt; flexUSD
+                        USDT &gt; DAI
                     </Text>
                 </View>
 
@@ -481,7 +481,7 @@ const DEX = observer(({navigation}) => {
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                        0 flexUSD
+                        0 DAI
                     </Text>
                 </View>
 
@@ -501,7 +501,7 @@ const DEX = observer(({navigation}) => {
                     </Text>
 
                     <Text style={tailwind('text-gray-800 text-xl font-bold')}>
-                        Verse DEX
+                        Uniswap v3
                     </Text>
                 </View>
             </View>
